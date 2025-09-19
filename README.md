@@ -209,25 +209,219 @@ URL del repositorio para el proyecto: [Link](https://github.com/TukunTech-Experi
 ## 1.1. Startup Profile
 <a id="1-1-1-descripcion-de-la-startup"></a>
 ### 1.1.1. Descripción de la Startup
+
+Las enfermedades cardiovasculares representan una de las principales causas de mortalidad en adultos mayores y personas con antecedentes cardíacos. El monitoreo actual de signos vitales suele ser invasivo, costoso o limitado a mediciones puntuales, lo que impide un seguimiento continuo y accesible.
+
+Aunque existen dispositivos comerciales como relojes inteligentes u oxímetros, estos muchas veces no están diseñados para adultos mayores debido a su complejidad, alto costo o poca claridad en la interpretación de resultados. Además, los datos generados no siempre son accesibles en tiempo real para familiares o cuidadores.
+
+Por ello, se requiere un sistema poco invasivo, portable y fácil de usar, que funcione como un gadget accesible, capaz de monitorear parámetros básicos como frecuencia cardíaca y saturación de oxígeno, y que traduzca los datos médicos en acciones simples y comprensibles. A través de una conexión con la nube, este sistema debe permitir que la información esté disponible en aplicaciones web y móviles, generando alertas inmediatas mediante un esquema de tres niveles de aviso (relajación, medicación, emergencia), simulados con LEDs en el dispositivo físico.
+
 <a id="1-1-2-perfiles-de-integrantes-del-equipo"></a>
 ### 1.1.2. Perfiles de integrantes del equipo
 
+| Nombre | Descripción |
+|--------|-------------|
+| <img src="Images/.png" width="200"/>    | Soy estudiante de Ingeniería de Software con un enfoque proactivo en la resolución de problemas. Me caracterizo por mi adaptabilidad a diversas situaciones y por superar desafíos. Además, tengo conocimientos en C++, HTML, CSS, JavaScript y Python, lo que me permite trabajar en diversos proyectos tecnológicos.          |
+| <img src="Images/.png" width="200"/>     | Soy estudiante de Ingeniería de Software con habilidades en programación en lenguajes como C++ y Python. Mi enfoque dedicado a los proyectos que me apasionan me impulsa a explorar nuevas fronteras en mi carrera. Estas habilidades me permiten desarrollar una amplia gama de aplicaciones y soluciones, y estoy comprometido a seguir aprendiendo y aplicando estas habilidades para resolver desafíos creativos en el mundo del desarrollo de software.            |
+|  <img src="Images/.png"/>      | Soy Adriana Palomares, tengo 21 años y actualmente estudio Ingeniería de Software en UPC en el 5to ciclo. Me gusta explorar nuevas tecnologías, especialmente lenguajes de programación. También me apasionan los animales, particularmente los perros. Me comprometo al trabajo en equipo y la responsabilidad que conlleva este.            |
+|  <img src="Images/.png"/>       |  Vengo de la carrera de Ingeniería de software, tengo conocimientos en los lenguajes de programación C++ y python. Me gusta explorar diversas soluciones a desafíos tecnológicos y me apasiona aprender nuevas cosas.           |
+| <img src="Images/eric.png" width="150"/>       | Soy Eric Agama, estudiante de Ingeniería de Software. Me caracterizo por ser responsable y comprometido en mis trabajos, y siempre busco optimizar la organización dentro del equipo. Tengo experiencia con el lenguaje Luau en Roblox Studio.            |
+
 <a id="1-2-solution-profile"></a>
 ## 1.2. Solution Profile
+
+Decidimos llamar a nuestro producto “TukunTech”, inspirado en el sonido “tukun” que imita el latido del corazón, símbolo de vida y salud. Este nombre refleja el objetivo principal de nuestro sistema: monitorear y cuidar de manera preventiva los signos vitales en adultos mayores y personas con problemas cardíacos.
+El sufijo “Tech” resalta la innovación tecnológica aplicada al cuidado de la salud, transmitiendo la unión entre lo humano y lo tecnológico.
+TukunTech busca ser más que un dispositivo: un compañero de bienestar, accesible y confiable, que combina el pulso de la vida con soluciones digitales modernas.
+
+Product Description: TukunTech es un sistema portable, no invasivo y fácil de usar, diseñado especialmente para adultos mayores y personas con problemas cardíacos.
+El dispositivo, basado en Arduino y un sensor óptico, mide de forma continua la frecuencia cardíaca y la saturación de oxígeno (SpO₂).
+
+Los datos son enviados a la nube, donde se procesan en tiempo real. Según los parámetros detectados, el sistema genera alertas automáticas escalonadas, representadas en el dispositivo con LEDs que simulan acciones:
+
+Verde: frecuencia elevada → recomendación de relajación.
+Azul: valores críticos → sugerencia de medicación.
+Rojo: riesgo extremo → simulación de contacto con una ambulancia.
+
+Además, los usuarios y cuidadores pueden acceder a una aplicación web y móvil que permite visualizar los signos vitales en tiempo real, consultar el historial y recibir notificaciones instantáneas en situaciones de emergencia.
+
+De esta manera, TukunTech convierte datos médicos complejos en indicaciones claras y comprensibles, brindando seguridad y acompañamiento continuo tanto a pacientes como a sus familias.
+
+Monetización: Para garantizar la accesibilidad del sistema y cubrir distintos escenarios de uso, TukunTech ofrecerá dos planes principales:
+
+Plan Familiar
+Enfocado en hogares con un adulto mayor o persona con problemas cardíacos.
+Acceso a la aplicación móvil con notificaciones en tiempo real.
+Visualización de registros históricos y gráficos de signos vitales.
+Alertas personalizadas según los parámetros configurados.
+Vigencia: mensual.
+Ideal para familias que desean acompañar y monitorear de forma preventiva a sus seres queridos.
+
 <a id="1-2-1-antecedentes-y-problematica"></a>
 ### 1.2.1. Antecedentes y problemática
+
+Descripción de la problemática
+El problema identificado radica en la falta de una solución accesible, sencilla y poco invasiva para el monitoreo continuo de signos vitales en adultos mayores y personas con problemas cardíacos. Los sistemas actuales dependen en gran medida de dispositivos comerciales como relojes inteligentes u oxímetros tradicionales, que no ofrecen una integración real con plataformas de análisis ni permiten alertas automáticas y personalizadas.
+
+Esta situación genera que tanto pacientes como familiares no cuenten con un sistema preventivo confiable, limitando la capacidad de respuesta ante cambios bruscos en la frecuencia cardíaca o la oxigenación. Además, los dispositivos existentes suelen ser costosos o poco adaptados a las necesidades locales, lo que reduce su accesibilidad y uso en entornos familiares.
+
+### Objetivos
+- Desarrollar un dispositivo portátil basado en Arduino y sensores ópticos que permita el monitoreo continuo y en tiempo real de la frecuencia cardíaca y la saturación de oxígeno.
+- Crear un sistema de alertas escalonado (verde, azul, rojo) que simule acciones preventivas, recomendaciones médicas y llamados de emergencia.
+- Integrar los datos en una aplicación web y móvil conectada a la nube para facilitar el acceso remoto a la información por parte de pacientes y familiares.
+- Reducir la necesidad de supervisión manual, mejorando la prevención y la calidad del cuidado en adultos mayores y personas con enfermedades cardíacas.
+
+### Restricciones
+- Dependencia de la conectividad de red para transmitir datos a la nube. En zonas con mala conexión, la funcionalidad del sistema podría verse limitada.
+- Precisión de los sensores: al tratarse de un sistema portátil y accesible, la calidad de las mediciones puede variar frente a equipos médicos de alta gama.
+- Facilidad de uso: el dispositivo debe ser intuitivo para que adultos mayores lo utilicen sin dificultad.
+
+### Antecedentes
+#### Oxímetros y pulseras inteligentes
+Los oxímetros de dedo y relojes inteligentes disponibles en el mercado permiten medir la saturación y la frecuencia cardíaca, pero suelen funcionar de manera aislada y no siempre incluyen sistemas de alerta escalonada ni integración con aplicaciones familiares. TukunTech se diferencia al ofrecer un ecosistema completo que combina hardware accesible con software en la nube.
+
+#### AliveCor
+AliveCor ofrece dispositivos portátiles que registran la actividad cardíaca y generan electrocardiogramas móviles. Sin embargo, TukunTech busca una alternativa menos técnica y más accesible, enfocada en el monitoreo básico (latidos y oxigenación) con alertas claras y fáciles de interpretar por usuarios no médicos.
+
+#### Philips Healthcare
+Philips cuenta con soluciones avanzadas de monitoreo remoto, principalmente para entornos hospitalarios. TukunTech se diferencia al estar diseñado para el hogar, con un enfoque en simplicidad, bajo costo y adaptación a la realidad local, evitando la dependencia de infraestructura clínica compleja.
+
+### Herramienta de 5W y 2H
+- What - ¿Cuál es el problema?
+  - La falta de una solución portátil, accesible y no invasiva para el monitoreo continuo y en tiempo real de frecuencia cardíaca y oxigenación en adultos mayores y personas con problemas cardíacos.
+- When - ¿Cuándo sucede el problema?
+  - El problema ocurre en la vida diaria de los pacientes, donde es necesario un monitoreo constante y preventivo que detecte cambios bruscos o riesgos a tiempo.
+- Where - ¿Dónde surge el problema?
+  - Surge principalmente en hogares y entornos familiares donde se requiere un sistema confiable para supervisar la salud de adultos mayores sin depender de infraestructura hospitalaria.
+- Who - ¿Quiénes son afectados por el problema?
+  - Los adultos mayores y personas con enfermedades cardíacas, sus familiares y cuidadores, quienes carecen de herramientas preventivas fáciles de usar y en tiempo real.
+- Why - ¿Cuál es la causa del problema?
+  - La falta de integración de soluciones accesibles y la dependencia de dispositivos comerciales aislados que no incluyen un sistema preventivo con alertas inmediatas y personalizadas.
+- How - ¿Cómo se manifiesta el problema?
+  - En la ausencia de monitoreo continuo, en la dificultad de interpretar datos médicos por parte de usuarios no especializados y en la falta de respuesta rápida ante emergencias.
+- How much - ¿Cuál es la magnitud del problema?
+  - La magnitud se refleja en el aumento de riesgos para pacientes vulnerables, la preocupación constante de familiares, y la ausencia de una solución accesible que combine monitoreo en tiempo real con acciones preventivas claras.
+
 <a id="1-2-2-lean-ux-process"></a>
 ### 1.2.2. Lean UX Process.
 <a id="1-2-2-1-lean-ux-problem-statements"></a>
 #### 1.2.2.1. Lean UX Problem Statements.
+
+El monitoreo de signos vitales en adultos mayores y personas con problemas cardíacos ha dependido tradicionalmente de dispositivos médicos convencionales o de consumo, como oxímetros de dedo o relojes inteligentes. Estos equipos, si bien cumplen una función puntual, requieren la intervención manual del usuario o del personal de salud para la recolección de datos y no ofrecen una integración real con plataformas que permitan un análisis continuo y preventivo.
+
+En consecuencia, los sistemas actuales suelen ser fragmentados, estáticos y de difícil acceso para familias o cuidadores que requieren información en tiempo real. Esta falta de integración limita la eficiencia en la supervisión, la capacidad de generar alertas inmediatas y la posibilidad de responder rápidamente ante cambios bruscos en la frecuencia cardíaca o la saturación de oxígeno.
+
+Nuestro producto aborda esta brecha mediante el desarrollo de un sistema de monitoreo de signos vitales basado en IoT, diseñado específicamente para el hogar. Este sistema integrará un dispositivo portátil construido con un microcontrolador (ESP32/Arduino) y un sensor óptico capaz de medir continuamente la frecuencia cardíaca y la saturación de oxígeno en sangre.
+
+#### Según los parámetros detectados, el sistema activará un esquema de alertas escalonadas representadas en el prototipo físico mediante luces LED:
+- Verde: el usuario debe relajarse por un aumento leve en su frecuencia cardíaca.
+- Azul: el sistema recomienda tomar la medicación indicada.
+- Rojo: se simula el contacto inmediato con una ambulancia.
+
+En paralelo, tanto la aplicación móvil como la plataforma web mostrarán la información en tiempo real al paciente y a sus familiares o cuidadores, permitiendo un monitoreo continuo, accesible y poco invasivo.
+
+A diferencia de soluciones hospitalarias costosas y complejas, TukunTech se enfoca en brindar un dispositivo accesible y fácil de usar, pensado principalmente para hogares, adultos mayores y personas con enfermedades cardíacas que requieren un acompañamiento constante pero no invasivo.
+
+### El éxito de la solución se medirá en función de:
+- La reducción del tiempo de reacción ante cambios críticos en los signos vitales.
+- El aumento de la tranquilidad y confianza de los familiares al contar con alertas en tiempo real.
+- La facilidad de uso y aceptación del dispositivo por parte de adultos mayores.
+- La mejora en la prevención de emergencias médicas gracias al monitoreo continuo.
+
 <a id="1-2-2-2-lean-ux-assumptions"></a>
 #### 1.2.2.2. Lean UX Assumptions.
+
+En esta sección se presentan las suposiciones relacionadas con los resultados esperados del sistema de monitoreo continuo de signos vitales basado en IoT. Se dividen en cuatro categorías: Business Outcomes, que abordan los impactos comerciales y la sostenibilidad del producto; User Outcomes, que se centran en los beneficios para usuarios y familiares; User Outcomes Assumptions, que analizan las necesidades y comportamientos de los usuarios; y Features Assumptions, que plantean funcionalidades clave del sistema.
+
+##### Business Outcomes
+- Creemos que al implementar el sistema de monitoreo continuo de frecuencia cardíaca y saturación de oxígeno basado en IoT, podremos reducir el riesgo de emergencias médicas no atendidas en un 30%.
+- Creemos que al ofrecer alertas automáticas claras (verde, azul y rojo), aumentaremos la capacidad de reacción de los cuidadores y familiares en un 40%.
+- Creemos que al contar con un sistema accesible y poco invasivo, mejoraremos la adherencia al monitoreo en adultos mayores en un 25%.
+- Creemos que al centralizar los datos en una plataforma en la nube, facilitaremos el acceso remoto a la información, aumentando la confianza y tranquilidad de las familias en un 35%.
+
+##### Business Outcomes Assumptions
+- Creemos que la falta de monitoreo continuo y accesible en el hogar es un problema que afecta directamente la calidad de vida de adultos mayores y personas con enfermedades cardíacas.
+- Creemos que las familias estarán dispuestas a pagar una suscripción mensual o anual por un sistema que les permita monitorear en tiempo real y recibir alertas inmediatas ante situaciones críticas.
+- Creemos que un sistema basado en IoT será más atractivo que los dispositivos tradicionales al ser menos invasivo y más integrado con aplicaciones móviles.
+- Creemos que ofrecer un producto costo-eficiente y fácil de usar permitirá posicionar a TukunTech en un segmento amplio de usuarios domésticos.
+
+##### User Outcomes
+- Creemos que al ofrecer alertas visuales y notificaciones inmediatas, los familiares podrán tomar decisiones rápidas para proteger la salud de los pacientes.
+- Creemos que al proporcionar una aplicación móvil y una plataforma web simples, los cuidadores podrán acceder fácilmente a la información, sin necesidad de conocimientos técnicos.
+- Creemos que al implementar un historial digital de mediciones, los usuarios podrán detectar patrones y prevenir complicaciones.
+- Creemos que al transmitir los datos en tiempo real desde el dispositivo IoT, los familiares se sentirán más tranquilos y seguros respecto al estado de salud del paciente.
+- Creemos que la facilidad de uso motivará a los adultos mayores a mantener el dispositivo encendido y en uso diario.
+
+##### User Outcomes Assumptions
+- Creemos que los cuidadores necesitan un acceso inmediato y claro a los datos de frecuencia cardíaca y oxigenación para actuar oportunamente.
+- Creemos que los adultos mayores valoran soluciones poco invasivas que no requieran configuraciones complejas.
+- Creemos que las familias priorizan la tranquilidad y seguridad, por lo que confiarán en un sistema que ofrezca alertas automáticas y confiables.
+- Creemos que al reducir la necesidad de mediciones manuales, aumentaremos la disposición de los pacientes a utilizar el sistema diariamente.
+- Creemos que una plataforma simple y accesible desde cualquier dispositivo aumentará la adopción del sistema en hogares.
+
+##### Features Assumptions
+- Creemos que agregar un dashboard centralizado que muestre signos vitales en tiempo real facilitará la supervisión tanto en la app como en la web.
+- Creemos que implementar alertas automáticas basadas en umbrales (verde, azul, rojo) permitirá una respuesta rápida ante situaciones críticas sin necesidad de revisión constante.
+- Creemos que incluir un historial de mediciones permitirá identificar tendencias y ayudar en la prevención de emergencias.
+- Creemos que la integración con la nube permitirá a familiares y cuidadores acceder a los datos a distancia de manera segura.
+- Creemos que diseñar una interfaz simple e intuitiva reducirá las barreras de adopción tecnológica y fomentará su uso entre adultos mayores y familiares no técnicos.
+
 <a id="1-2-2-3-lean-ux-hypothesis-statements"></a>
 #### 1.2.2.3. Lean UX Hypothesis Statements.
+
+En esta sección, se busca validar el impacto de nuestro sistema de monitoreo de signos vitales basado en IoT en el ámbito domiciliario y familiar. Las hipótesis exploran cómo la plataforma puede mejorar la prevención de emergencias, brindar tranquilidad a los familiares, aumentar la adherencia al monitoreo en adultos mayores y fortalecer la confianza en soluciones tecnológicas accesibles y poco invasivas. Además, evaluamos cómo el modelo de negocio, basado en suscripciones individuales y familiares, puede generar ingresos recurrentes y fomentar relaciones de largo plazo con los usuarios finales.
+
+##### Hypothesis Statement #1
+- Creemos que reduciremos el riesgo de emergencias no atendidas en adultos mayores y personas con problemas cardíacos
+- Si los familiares y cuidadores
+  - Obtienen acceso inmediato a datos actualizados y alertas en tiempo real
+- Con un sistema de monitoreo IoT conectado que integra notificaciones automáticas y alertas visuales mediante LEDs en el dispositivo.
+
+##### Hypothesis Statement #2
+- Creemos que aumentaremos la tranquilidad y confianza de las familias en el cuidado de sus seres queridos
+- Si los cuidadores
+  - Obtienen una aplicación móvil y una plataforma web fáciles de usar
+- Con una interfaz intuitiva que permita acceder a la información desde cualquier lugar, sin necesidad de conocimientos técnicos.
+
+##### Hypothesis Statement #3
+- Creemos que mejoraremos la prevención de complicaciones en pacientes con problemas cardíacos
+- Si los usuarios y familiares
+  - Obtienen reportes automáticos y un historial de mediciones
+- Con un sistema que recopila y presenta tendencias sobre la frecuencia cardíaca y la saturación de oxígeno, ayudando a detectar anomalías de forma temprana.
+
+##### Hypothesis Statement #4
+- Creemos que aumentaremos la disposición de los adultos mayores a utilizar el sistema de manera continua
+- Si los pacientes
+  - Reciben un dispositivo accesible, cómodo y poco invasivo
+- Con un hardware sencillo (ESP32 + sensor óptico) que requiere mínima intervención y genera alertas automáticas sin necesidad de interacción constante.
+
+##### Hypothesis Statement #5
+- Creemos que facilitaremos la coordinación y el acompañamiento en el cuidado del paciente
+- Si los familiares
+  - Obtienen la posibilidad de compartir el acceso a la información en tiempo real
+- Con un sistema multiusuario que permite a varios cuidadores supervisar el estado de salud de la misma persona de manera simultánea.
+
 <a id="1-2-2-4-lean-ux-canvas"></a>
 #### 1.2.2.4. Lean UX Canvas.
+
+A continuación se presenta el Lean UX Canvas, una herramienta basada en los principios de Lean UX que nos permite comprender los problemas del usuario, la definición de supuestos, la formulación de hipótesis y la planificación de experimentos para validar o refutar estas hipótesis rápidamente. La principal ventaja es la reducción de riesgos en el desarrollo de nuestro producto, ya que permite iterar de manera rápida y efectiva basándonos en la retroalimentación de los usuarios.
+
+[Link al Lean UX Canvas](https://miro.com/welcomeonboard/YXAwb0YyY2RYdm9zYzQxeE45NHRjdnhOMHUxT3Uzc2FubWFaTTFWOUZUaFUyam14ZW13d0Y5Z2ZJR2hBRU5IQ1hkeldDU016c2tNMmZSNXRqQ202ZGJQSGNGeDZJV3V2bzZydFZGalphTm5YUTlNNDhYL1Jlcm9reFpuRXhuK3JzVXVvMm53MW9OWFg5bkJoVXZxdFhRPT0hdjE=?share_link_id=34180130578)
+
 <a id="1-3-segmentos-objetivo"></a>
 ## 1.3. Segmentos objetivo.
+
+De acuerdo a Vásquez (2010), “los médicos dependen cada vez más de los equipos electromédicos para lograr un diagnóstico certero y eficaz. Los equipos electromédicos son una herramienta fundamental para obtener diagnósticos y así brindar tratamientos adecuados a los pacientes”. Esta afirmación evidencia la relevancia de contar con tecnologías de monitoreo que faciliten diagnósticos oportunos, mejoren la experiencia de los usuarios y complementen los servicios de salud existentes.
+
+Por otro lado, Ruiz (2016) señala lo siguiente:
+“Los pacientes adultos mayores debido a su avanzada edad se les dificulta la realización de visitas periódicas a los centros especializados de salud … por eso surge la necesidad de mantener un correcto monitoreo de los principales signos vitales, esto permitirá mantener controlado al paciente, así evitando futuras complicaciones … además de contar con estadísticas de sus diferentes valores” (p. 21).
+
+Estos antecedentes refuerzan la importancia de diseñar soluciones accesibles, poco invasivas y conectadas a través de IoT, que permitan el monitoreo en tiempo real de la salud en entornos domiciliarios, brindando seguridad y confianza a las familias.
+
+En base a lo mencionado, se establecen los tres segmentos objetivos que serán abordados a lo largo del proyecto:
+- Segmento 1: Adultos mayores que requieren monitoreo preventivo y fácil de entender.
+- Segmento 2: Personas con problemas cardíacos crónicos.
+- Segmento 3: Familiares y cuidadores, que necesitan recibir notificaciones claras y oportunas sobre el estado de salud del paciente.
 
 <a id="capitulo-ii-requirements-elicitation-analysis"></a>
 # Capítulo II: Requirements Elicitation & Analysis
@@ -392,8 +586,6 @@ URL del repositorio para el proyecto: [Link](https://github.com/TukunTech-Experi
 <a id="5-2-5-implemented-native-mobile-application-evidence"></a>
 ### 5.2.5. Implemented Native-Mobile Application Evidence
 <a id="5-2-6-implemented-restful-api-and-or-serverless-backend-evidence"></a>
-### 5.2.6. Implemented RESTful API and/or Serverless Backend Evidence
-<a id="5-2-7-restful-api-documentation"></a>
 ### 5.2.7. RESTful API documentation
 <a id="5-2-8-team-collaboration-insights"></a>
 ### 5.2.8. Team Collaboration Insights

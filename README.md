@@ -844,17 +844,17 @@ La sección de Needfindings tiene como objetivo identificar las necesidades y pr
 A través de un perfil detallado, esta sección explora las características demográficas, necesidades, deseos, comportamientos y problemas específicos de los usuarios de los segmentos objetivos predefinidos, facilitando el diseño de soluciones que se alineen mejor con sus expectativas y desafíos.
 **Segmento #1: Adultos mayores que requieren monitoreo preventivo**
 <div align="center">
-<img src="assets/imgs/Segmento_1_User_Persona.png" alt="Segmento 1" />
+<img src="Images/Segmento_1_User_Persona.png" alt="Segmento 1" />
 </div>
 
 **Segmento #2: Personas con problemas cardíacos crónicos**
 <div align="center">
-<img src="assets/imgs/Segmento_2_User_Persona.png" alt="Segmento 2" />
+<img src="Images/Segmento_2_User_Persona.png" alt="Segmento 2" />
 </div>
 
 **Segmento #3: Familiares y cuidadores**
 <div align="center">
-<img src="assets/imgs/Segmento_3_User_Persona.png" alt="Segmento 3" />
+<img src="Images/Segmento_3_User_Persona.png" alt="Segmento 3" />
 </div>
 
 <a id="2-3-2-user-task-matrix"></a>

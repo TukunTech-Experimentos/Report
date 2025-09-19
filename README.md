@@ -914,7 +914,26 @@ En esta parte se muestra el Empathy Mapping de los dos segmentos a los que nos d
 
 
 <a id="2-3-5-as-is-scenario-mapping"></a>
-### 2.3.5. As-is Scenario Mapping.
+### 2.3.5. As-is Scenario Mapping
+
+#### Segmento 1: Personas que requieren monitoreo preventivo de problemas cardiacos
+
+| **Fase**                  | **Doing**                                                                                           | **Thinking**                                                                                      | **Feeling**                                                                                      |
+|----------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| Monitoreo de salud diario  | Usan oxímetros de dedo o relojes inteligentes de manera puntual; registran en cuadernos o memoria   | “¿Lo estaré usando bien?”                                                                         | Ansiedad e inseguridad por no entender del todo los resultados                                   |
+| Interpretación de resultados | Revisan valores en pantalla; a veces llaman a familiares o al médico                              | “¿Estos números son normales o peligrosos?”<br>“No sé si debo preocuparme o si es solo algo pasajero” | Confusión y frustración por falta de claridad                                                    |
+| Reacción ante cambios      | Si sienten síntomas (mareo, dolor), esperan a ver si pasa o llaman a un familiar                    | “¿Será necesario ir al hospital?”<br>“No quiero molestar a mi familia por algo leve”              | Intranquilidad, miedo a equivocarse, sensación de vulnerabilidad                                 |
+| Emergencia                 | Dependen de familiares para llevarlos al hospital o llamar a una ambulancia                         | “Ojalá lleguen rápido”<br>“No sé si tengo tiempo”                                                 | Temor y sensación de desamparo                                                                   |
+
+
+#### Segmento 2: Familiares y cuidadores
+
+| **Fase**                  | **Doing**                                                                                           | **Thinking**                                                                                      | **Feeling**                                                                                      |
+|----------------------------|-----------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------|
+| Supervisión de salud       | Preguntan al paciente cómo se siente o revisan manualmente dispositivos como oxímetros              | “No puedo estar todo el tiempo con él/ella”<br>“¿Qué pasa si ocurre algo cuando no estoy?”        | Preocupación constante y carga emocional                                                         |
+| Interpretación de resultados | Ven números en dispositivos, buscan en internet o llaman al médico                                | “¿Estos valores son peligrosos o normales para su edad?”<br>“¿Estoy haciendo lo correcto?”        | Incertidumbre y estrés por no tener claridad                                                     |
+| Reacción ante cambios      | Aconsejan reposo o medicación según experiencia previa; llaman a otros familiares para coordinar    | “¿Y si empeora?”                                                                                 | Ansiedad, temor a tomar malas decisiones                                                         |
+| Emergencia                 | Llaman a la ambulancia o trasladan al paciente; avisan a otros familiares                           | “Cada minuto cuenta”<br>“¿Llegaremos a tiempo?”                                                   | Angustia, desesperación, sensación de responsabilidad excesiva                                   |
 
 
 <a id="2-4-ubiquitous-language"></a>
@@ -965,7 +984,26 @@ De esta forma, las historias permiten:
 En este proyecto se han elaborado User Stories organizadas en épicas, cubriendo desde la landing page hasta el backend, pasando por la aplicación móvil, la aplicación web, las funcionalidades de monitoreo IoT y las reglas de seguridad.
 
 <a id="3-1-to-be-scenario-mapping"></a>
-## 3.1. To-Be Scenario Mapping.
+## 3.1. To-Be Scenario Mapping
+
+#### Segmento 1: Personas que requieren monitoreo preventivo de problemas cardiacos
+
+| **Fase**                           | **Doing**                                                                                 | **Thinking**                                                                                  | **Feeling**                                                                                 |
+|------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| Monitoreo automático y continuo    | Usan el dispositivo TukunTech de manera pasiva, que mide frecuencia cardíaca y SpO₂ en segundo plano | “Ya no necesito acordarme ni anotar”<br>“El sistema lo hace por mí”                          | Tranquilidad y alivio por tener supervisión constante sin esfuerzo                          |
+| Interpretación simplificada y accesible | Ven luces LED (verde, azul, rojo) en el dispositivo y mensajes claros en la app           | “Ahora entiendo fácilmente qué significa cada estado”                                         | Seguridad y confianza en la información recibida                                            |
+| Alertas preventivas y acciones inmediatas | Reciben avisos claros (relajarse, tomar medicación, emergencia) y siguen instrucciones   | “Sé exactamente qué hacer en cada caso”                                                       | Empoderamiento y reducción del miedo a equivocarse                                          |
+| Acompañamiento remoto y confianza familiar | Comparten sus datos en tiempo real con familiares/cuidadores a través de la app          | “No estoy solo, mi familia puede ver cómo estoy”                                              | Compañía, confianza y paz emocional                                                         |
+
+
+#### Segmento 2: Familiares y cuidadores
+
+| **Fase**                           | **Doing**                                                                                 | **Thinking**                                                                                  | **Feeling**                                                                                 |
+|------------------------------------|-------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| Monitoreo automático y continuo    | Acceden desde la app/web a los signos vitales del paciente en tiempo real                  | “Ya no dependo de preguntar”<br>“Puedo ver su estado en cualquier momento”                   | Alivio y reducción de la carga emocional                                                    |
+| Interpretación simplificada y accesible | Reciben alertas claras y visuales en la app (notificaciones push, SMS, correo)            | “Los colores y mensajes me dicen exactamente la gravedad del caso”                            | Confianza y seguridad en la información                                                     |
+| Alertas preventivas y acciones inmediatas | Reaccionan rápido siguiendo el protocolo (llamar, acompañar, activar plan de emergencia) | “Tengo tiempo y claridad para actuar correctamente”                                           | Serenidad, control y menor estrés                                                           |
+| Acompañamiento remoto y confianza familiar | Supervisan al paciente desde cualquier lugar y coordinan con otros familiares/médicos    | “Podemos cuidarlo juntos, incluso a distancia”                                                | Tranquilidad compartida, reducción del sentimiento de carga individual                      |
 
 
 <a id="3-2-user-stories"></a>
@@ -1200,9 +1238,13 @@ En este proyecto se han elaborado User Stories organizadas en épicas, cubriendo
 ## 3.4. Impact Mapping.
 El Product Backlog es la lista priorizada de todos los entregables que componen el producto, construida a partir de las User Stories. Cada elemento incluye un orden de implementación, su ID correspondiente, un título descriptivo, la redacción de la historia de usuario y una estimación en Story Points según la complejidad relativa (usando la escala 1, 2, 3, 5 y 8).
 **Encargado de adultos mayores que necesitan un monitoreo continuo de sus signos vitales**
-
+<div align="center">
+<img src="Images/ImpactMapAdMay.jpg" alt="Segmento 1" />
+</div>
 **Familiar de paciente cardíaco que necesita recibir alertas claras y oportunas en tiempo real**
-
+<div align="center">
+<img src="Images/ImpactMapCui.jpg" alt="Segmento 1" />
+</div>
 <a id="capitulo-iv-product-design"></a>
 # Capítulo IV: Product Design
 
@@ -1220,12 +1262,14 @@ Además, incluye reglas para elementos visuales, creación de contenido, mensaje
 Tras una lluvia de ideas, se decidió colocar **Tukun** porque es sencillo de recordar y amigable.  
 Se agregó **tech**, refiriéndose a la palabra *tecnología* en inglés, ya que resulta más corto de leer y pronunciar.  
 
-➡️ Combinando ambas palabras se creó el nombre de la startup: **TukunTech**.  
+➡Combinando ambas palabras se creó el nombre de la startup: **TukunTech**.  
 
 Este aspecto es fundamental para lograr un **alto posicionamiento frente a la competencia**, haciendo el sitio web más atractivo para el público objetivo y aumentando la probabilidad de adquisición del servicio.  
 
 **Logo de TukunTech:**  
-*(Insertar imagen del logo aquí)*
+<div align="center">
+<img src="Images/logo.png" alt="Segmento 1" />
+</div>
 
 ---
 
@@ -1239,8 +1283,9 @@ La tipografía juega un papel clave en la organización y estructuración del le
 **Fuente seleccionada:**  
 - **Quicksand** (Google Fonts).  
 
-Figura 1: Ejemplo de la fuente Quicksand en diferentes estilos. Adaptado de GoogleFonts (s.f.).
-
+<div align="center">
+<img src="Images/fonts.jpg" alt="Segmento 1" />
+</div>
 ---
 
 #### Colors
@@ -1292,6 +1337,10 @@ La aplicación será **responsive**, garantizando una experiencia óptima en **s
 
 Cada tipo de dispositivo será considerado cuidadosamente para que el contenido esté estructurado de manera **óptima y coherente** en todas las plataformas.
 
+<div align="center">
+<img src="Images/StyleWeb1.png" alt="Segmento 1" />
+</div>
+
 ---
 
 #### Patrón de diseño: Z-Pattern
@@ -1302,6 +1351,9 @@ Se aplicará el **patrón Z** para guiar la interacción del usuario de manera e
 3. **Desplazamiento vertical hacia abajo:** interacción con el **contenido principal** de la aplicación.  
 4. **Parte inferior:** enlaces a **redes sociales y medios de contacto**, completando el recorrido de forma fluida y organizada.  
 
+<div align="center">
+<img src="Images/StyleWeb2.png" alt="Segmento 1" />
+</div>
 ---
 
 #### Colores y contraste
@@ -1565,6 +1617,9 @@ En esta primera parte se muestra la **página de inicio** de la plataforma web.
   - Información de soporte.  
 
 ---
+<div align="center">
+<img src="Images/WireframeLand.png" alt="Segmento 1" />
+</div>
 
 <a id="4-3-2-landing-page-mock-up"></a>
 ### 4.3.2. Landing Page Mock-up
@@ -1573,6 +1628,10 @@ En esta sección se presentan los **mock-ups de la Landing Page**, los cuales co
 Mientras que los wireframes permiten validar la **estructura y organización del contenido**, los mock-ups integran la **paleta de colores, tipografía, iconografía y elementos gráficos definidos en la guía de estilo**, ofreciendo una representación cercana al producto final.  
 
 El objetivo de estos mock-ups es proporcionar una vista previa fiel de cómo los usuarios experimentarán la interfaz en la versión de escritorio, asegurando la coherencia visual de la marca y anticipando posibles mejoras antes de pasar a la fase de prototipado interactivo.
+
+<div align="center">
+<img src="Images/MokUpLan.png" alt="Segmento 1" />
+</div>
 
 
 <a id="4-4-mobile-applications-ux-ui-design"></a>
@@ -1585,6 +1644,26 @@ En esta sección se presentan los wireframes de las aplicaciones móviles, como 
 Los wireframes sirven como guía para visualizar la organización de los contenidos, la jerarquía de la información y los flujos de navegación que experimentan los usuarios. Además, permiten validar tempranamente las decisiones de diseño antes de avanzar hacia etapas de mayor detalle visual y desarrollo.
 A continuación, se incluyen los wireframes elaborados con las herramientas indicadas, que muestran cómo se materializan estos principios en la propuesta de experiencia móvil de TukunTech.
 
+<div align="center">
+<img src="Images/WireframeMov1.png" alt="Segmento 1" />
+</div>
+
+<div align="center">
+<img src="Images/WireframeMov2.png" alt="Segmento 1" />
+</div>
+
+<div align="center">
+<img src="Images/WireframeMov3.png" alt="Segmento 1" />
+</div>
+
+<div align="center">
+<img src="Images/WireframeMov4.png" alt="Segmento 1" />
+</div>
+
+<div align="center">
+<img src="Images/WireframeMov5.png" alt="Segmento 1" />
+</div>
+
 
 <a id="4-4-2-mobile-applications-wireflow-diagrams"></a>
 ### 4.4.2. Mobile Applications Wireflow Diagrams.
@@ -1594,43 +1673,63 @@ Previo a la construcción de estos diagramas, se elaboraron Task Flows para cons
 **Diagrama 1: User Goal: Como usuario deseo crear una cuenta**
 Descripción:  En el presente Wireflow, se evidencia un flujo que seguirá el usuario para crear una cuenta en la mobile application. En la ventana de “Log in” inicio tendrá que seleccionar el botón “Create” y visualizará los campos que debe llenar para poder crear su cuenta. En esta ventana deberá llenar los campos y finalmente seleccionar el botón “Create” para crear su cuenta.
 
+<div align="center">
+<img src="Images/WireflowDiagram1.png" alt="Segmento 1" />
+</div>
+
 
 **Diagrama 2: User Goal: Como usuario deseo iniciar sesión con mi cuenta**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para iniciar sesión en la Mobile application. Primero tendrá que llenar los campos con la información de su cuenta y luego seleccionar el botón “Log in”. Una vez iniciada su sesión se le mostrará la ventana “Home”.
 
+<div align="center">
+<img src="Images/WireflowDiagram2.png" alt="Segmento 1" />
+</div>
 
 **Diagrama 3: User Goal: Como usuario deseo visualizar la información del paciente.**
 
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para poder visualizar la información del paciente. En el inicio tendrá que seleccionar el botón “Patient” y visualizará los datos del paciente en la sección “Patient”. 
-
+<div align="center">
+<img src="Images/WireflowDiagram3.png" alt="Segmento 1" />
+</div>
 
 **Diagrama 4: User Goal: Como usuario deseo actualizar la información del paciente.**
 
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para actualizar la información del paciente. En el inicio tendrá que seleccionar el botón “Paciente” y visualizará sus datos como paciente. En esta ventana podrá actualizar los datos al llenar los campos con la nueva información del paciente y luego seleccionar el botón “update”.
-
+<div align="center">
+<img src="Images/WireflowDiagram4.png" alt="Segmento 1" />
+</div>
 
 **Diagrama 5: User Goal: Como usuario deseo visualizar los signos vitales del paciente en tiempo real**
 
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para visualizar la información de los signos vitales en tiempo real del paciente. En el inicio tendrá que seleccionar el botón “Vital Signs” y visualizará los signos vitales en tiempo real además de las alertas.
 
+<div align="center">
+<img src="Images/WireflowDiagram5.png" alt="Segmento 1" />
+</div>
 
 **Diagrama 6: User Goal: Como usuario deseo visualizar las alertas pasadas del paciente.**
 
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para visualizar las alertas pasadas del paciente. En el inicio tendrá que seleccionar el botón “History” y visualizará los dias. Al seleccionar el día visualizará las opciones de reportes, podrá seleccionar los botones “Reporte BPM”, ”Reporte SpO2”, ”Reporte Temperatura” y “Alertas” para visualizar la información de los reportes respectivos del día escogido
 
-
+<div align="center">
+<img src="Images/WireflowDiagram6.png" alt="Segmento 1" />
+</div>
 
 **Diagrama 7: User Goal: Como usuario deseo enviar mensajes con mis dudas**
 
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para poder enviar mensajes con sus dudas o problemas. Primero deberá seleccionar el boton drop menu y visualizará las 3 opciones del menú. En el menú tendrá que seleccionar el botón “Support” y visualizará preguntas frecuentes sobre la Mobile application. En esta ventana podrá enviar mensajes de duda o problemas al llenar los campos correspondientes y seleccionar el botón “Send”.
 
-
+<div align="center">
+<img src="Images/WireflowDiagram7.png" alt="Segmento 1" />
+</div>
 
 **Diagrama 8: User Goal: Como usuario deseo visualizar el estado de mi suscripcion**
 
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para visualizar el estado de su suscripción. Primero deberá seleccionar el botón drop menu y visualizará las 3 opciones del menú. En el menú  tendrá que seleccionar el botón “Subscription” y visualizará la información del plan de su suscripción y el estado de la misma además de poder renovarla.
 
-
+<div align="center">
+<img src="Images/WireflowDiagram8.png" alt="Segmento 1" />
+</div>
 
 
 
@@ -1638,28 +1737,15 @@ Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usu
 ### 4.4.3. Mobile Applications Mock-ups.
 En esta sección se presentan los Mock-ups de las aplicaciones, como representaciones de alta fidelidad que muestran la propuesta visual final antes de su implementación. Los mock-ups permiten apreciar con detalle la aplicación de los principios de diseño, los elementos de interacción, las pautas de diseño inclusivo y la arquitectura de información definida en etapas previas. La propuesta integra el Design System establecido para los productos digitales de TukunTech, garantizando consistencia en la paleta de colores, tipografía, iconografía, componentes reutilizables y estilos visuales en todas las plataformas (web y móvil). Estos mock-ups cumplen la función de validar la experiencia de usuario desde una perspectiva estética y funcional, asegurando que cada pantalla facilite la comprensión, el acceso y la interacción con la información crítica. A continuación, se muestran los mock-ups elaborados con las herramientas indicadas, los cuales materializan la propuesta de experiencia digital planteada para los distintos contextos de uso.
 
-Log in:
+Log in y Register:
 
+<div align="center">
+<img src="Images/Movil1.png" alt="Segmento 1" />
+</div>
 
-Register:
-
-
-Home: 
-
-
-Patient:
-
-
-Patient data update: 
-
-
-Vital Signs: 
-
-
-History:
-
-
-
+<div align="center">
+<img src="Images/Movil2.png" alt="Segmento 1" />
+</div>
 
 <a id="4-4-4-mobile-applications-user-flow-diagrams"></a>
 ### 4.4.4. Mobile Applications User Flow Diagrams.
@@ -1667,39 +1753,60 @@ History:
 **User Goal: Como adulto mayor deseo visualizar mi información como paciente.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá el adulto mayor para poder visualizar su información como paciente. Primero se loguea con el correo y la contraseña e ingresa a “Home” luego tendrá que seleccionar el botón “Patient” para ser dirigido a la ventana correspondiente. Una vez que se encuentre en la ventana “Patient” podrá visualizar sus datos como paciente. 
 
+<div align="center">
+<img src="Images/MovilDiagrams1.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como usuario deseo actualizar la información del paciente.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá el adulto mayor para actualizar su información como paciente. Primero se loguea con el correo y la contraseña e ingresa a “Home” luego tendrá que seleccionar el botón “Patient” para ser dirigido a la ventana correspondiente. En esta ventana deberá seleccionar el botón “update” y se abrirá una ventana donde deberá llenar los campos con la nueva información del paciente y luego seleccionar el botón “update” para guardar los cambios y actualizar su información.
 
+<div align="center">
+<img src="Images/MovilDiagrams2.png" alt="Segmento 1" />
+</div>
 
 **Segmento objetivo 2: Personas con problemas cardíacos crónicos**
 **User Goal: Como usuario deseo iniciar sesión con mi cuenta.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá la persona con problemas cardíacos para iniciar sesión en la Web application. Primero se loguea con el correo y la contraseña de su cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home”.
 
+<div align="center">
+<img src="Images/MovilDiagrams3.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como persona con problemas cardiacos deseo visualizar mis signos vitales en tiempo real**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá la persona con problemas cardíacos para visualizar la información de sus signos vitales en tiempo real. Primero se loguea con el correo y la contraseña de su cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “Vital Signs” y se dirigirá a la ventana correspondiente donde visualizará sus signos vitales en tiempo real además de las alertas.
 
+<div align="center">
+<img src="Images/MovilDiagrams4.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como persona con problemas cardiacos deseo visualizar el estado de mi suscripción**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá la persona con problemas cardíacos para visualizar el estado de su suscripción. Primero se loguea con el correo y la contraseña de su cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “Drop menu” y se desplegará un menú, seleccionara el botón “Subscription” y se le redirigirá a la sección correspondiente donde visualizará la información de su plan de su suscripción y el estado de la misma además de poder renovarla.
 
-
+<div align="center">
+<img src="Images/MovilDiagrams5.png" alt="Segmento 1" />
+</div>
 
 **Segmento objetivo 3: Familiares y cuidadores**
 **User Goal: Como familiar y cuidador de una persona con problemas cardiacos deseo registrarlo en la Mobile Application**
 Descripción:  En el presente User Flow, se evidencia un flujo que seguirán los Familiares y cuidadores para crear una cuenta para la persona que cuidan en la Web application. Primero en la ventana de “Log in” tendrá que seleccionar el botón “Create” y visualizará los campos que debe llenar para poder crear la cuenta. En esta ventana deberá llenar los campos del paciente a registrar y finalmente seleccionar el botón “Create” para crear su cuenta y finalmente se le redirigirá a la ventana de “log in”.
 
-
+<div align="center">
+<img src="Images/MovilDiagrams6.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como familiar y cuidador de una persona con problemas cardiacos deseo visualizar las alertas pasadas del paciente.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirán los Familiares y cuidadores para visualizar las alertas pasadas del paciente. Primero se loguea con el correo y la contraseña de la cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “History” y se dirigirá a la ventana correspondiente. En esta ventana  visualizará opciones de dias. Al seleccionar un dia se le mostrará los botones “Bpm Analysis”, “SpO2 Analysis”, “Temp Analysis” y “Alertas” los cuales mostraran sus respectivos reportes de alertas.
 
+<div align="center">
+<img src="Images/MovilDiagrams7.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como familiar y cuidador de una persona con problemas cardíacos deseo enviar mensajes con mis dudas.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirán los Familiares y cuidadores para enviar mensajes con sus dudas o problemas. Primero se loguea con el correo y la contraseña de la cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “Drop menu” y se desplegará un menú, seleccionara el botón “Support” y se le redirigirá a la sección correspondiente donde visualizará preguntas frecuentes sobre la Mobile application. En esta ventana podrá enviar mensajes de duda o problemas al llenar los campos correspondientes y seleccionar el botón “Send”.
 
-
+<div align="center">
+<img src="Images/MovilDiagrams8.png" alt="Segmento 1" />
+</div>
 
 <a id="4-5-mobile-applications-prototyping"></a>
 ## 4.5. Mobile Applications Prototyping
@@ -1859,25 +1966,57 @@ Esta sección presenta y explica la propuesta visual y de interacción para las 
 En esta sección, se presentan los wireframes que ilustran la estructura y disposición de los elementos en la interfaz de la aplicación web. Estos wireframes permiten visualizar de manera clara y concisa la disposición de los componentes en las distintas páginas, facilitando la planificación del diseño y la navegación. A continuación, se detallan los wireframes correspondientes a las diferentes secciones de la aplicación web.
 Login:
 
+<div align="center">
+<img src="Images/WireFrameLand1.png" alt="Segmento 1" />
+</div>
+
 Create:
+
+<div align="center">
+<img src="Images/WireFrameLand2.png" alt="Segmento 1" />
+</div>
 
 Home:
 
+<div align="center">
+<img src="Images/WireFrameLand3.png" alt="Segmento 1" />
+</div>
+
 Patient:
+
+<div align="center">
+<img src="Images/WireFrameLand4.png" alt="Segmento 1" />
+</div>
 
 Update patient data:
 
+<div align="center">
+<img src="Images/WireFrameLand5.png" alt="Segmento 1" />
+</div>
+
 Real time Vital Signs:
+
+<div align="center">
+<img src="Images/WireFrameLand6.png" alt="Segmento 1" />
+</div>
 
 Alert history: 
 
+<div align="center">
+<img src="Images/WireFrameLand7.png" alt="Segmento 1" />
+</div>
+
 Subscription:
+
+<div align="center">
+<img src="Images/WireFrameLand8.png" alt="Segmento 1" />
+</div>
 
 Support:
 
-Support Message sent:
-
-
+<div align="center">
+<img src="Images/WireFrameLand9.png" alt="Segmento 1" />
+</div>
 
 
 <a id="4-6-2-web-applications-wireflow-diagrams"></a>

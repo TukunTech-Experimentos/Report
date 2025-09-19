@@ -2803,8 +2803,18 @@ La Landing Page de **TukunTech** fue implementada siguiendo los principios de **
 - Pruebas en dispositivos móviles y navegadores para validar la experiencia responsive.  
 
 #### Evidencias gráficas
-- **Sección hero**  
+- **Sección hero**
+
+<div align="center">
+<img src="Images/EvidenceLanding1.png" alt="Segmento 1" />
+</div>
+
 - **Planes**
+
+<div align="center">
+<img src="Images/EvidenceLanding2.png" alt="Segmento 1" />
+</div>
+  
 
 
 <a id="5-2-3-implemented-frontend-web-application-evidence"></a>
@@ -2840,8 +2850,20 @@ La aplicación web de **TukunTech** fue implementada con **Angular** como framew
 - **Responsive Web Design** validado en navegadores y dispositivos móviles.  
 
 #### Evidencias gráficas
-- **Inicio de Sesión**  
+- **Inicio de Sesión**
+
+<div align="center">
+<img src="Images/EvidenceWeb1.png" alt="Segmento 1" />
+</div>
+
+  
 - **Vista “Dashboard” como paciente**
+
+<div align="center">
+<img src="Images/EvidenceWeb2.png" alt="Segmento 1" />
+</div>
+
+  
 
 
 <a id="5-2-4-acuerdo-de-servicio-saas"></a>

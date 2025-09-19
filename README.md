@@ -91,8 +91,13 @@
 
 <div>
 
-| Version | Fecha      | Autor                            | Descripción de modificación                                                                            |
-|---------|------------|----------------------------------|--------------------------------------------------------------------------------------------------------|
+| Versión | Fecha       | Autor                                                                                                                                 | Descripción de modificación                                                                 |
+|---------|-------------|----------------------------------------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------------------|
+| 1.0     | 2025-09-19  | Maraza Pedemonte Erick<br>Palomares Chavez Adriana Giovanna<br>Soto Zorrilla Oscar Eduardo                                             | Desarrollo del código de la aplicación y elaboración de diagramas C4.                       |
+| 1.1     | 2025-09-19  | Maraza Pedemonte Erick<br>Palomares Chavez Adriana Giovanna<br>Soto Zorrilla Oscar Eduardo                                             | Creación de mockups (UX/UI).                                                                |
+| 1.2     | 2025-09-19  | Jave Chang Alejandro Manuel                                                                                                           | Creación de wireframes.                                                                     |
+| 1.3     | 2025-09-19  | Agama Espinoza Eric Fabrizio                                                                                                          | Elaboración de entrevistas, redacción y consolidación del informe.                          |
+| 1.4     | 2025-09-19  | Maraza Pedemonte Erick<br>Palomares Chavez Adriana Giovanna<br>Soto Zorrilla Oscar Eduardo<br>Jave Chang Alejandro Manuel<br>Agama Espinoza Eric Fabrizio | Revisión conjunta del documento, correcciones finales y validación de la versión entregable. |
 
 </div>
 

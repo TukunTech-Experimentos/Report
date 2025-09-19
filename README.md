@@ -430,8 +430,138 @@ En base a lo mencionado, se establecen los tres segmentos objetivos que serán a
 ## 2.1. Competidores.
 <a id="2-1-1-analisis-competitivo"></a>
 ### 2.1.1. Análisis competitivo.
+
+<table class="competitive-analysis-table">
+  <thead>
+    <tr>
+      <th colspan="2"></th>
+      <th>Tukuntech</th>
+      <th>AliveCor</th>
+      <th>Philips Healthcare</th>
+      <th>Xiaomi Smart Band</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="2" class="category-header">Perfil</td>
+      <td>Overview</td>
+      <td>Startup de healthtech basada en IoT enfocada en el monitoreo continuo, no invasivo y accesible de signos vitales (frecuencia cardíaca y SpO₂). Diseñada especialmente para adultos mayores y personas con problemas cardíacos, combina un dispositivo portable con sensores ópticos y una plataforma en la nube con aplicaciones web y móviles.</td>
+      <td>Medtech enfocada en ECG personales (KardiaMobile, KardiaMobile 6L, 12L portátil) y servicios/AI para monitoreo cardiaco remoto; opera B2C y B2B (sistemas de salud, pagadores, ensayos clínicos).</td>
+      <td>Multinacional de tecnología de salud (imágenes, monitorización de pacientes, cuidados respiratorios, informática clínica) para hospitales y sistemas de salud en todo el mundo.</td>
+      <td>Línea de pulseras fitness de bajo costo con pantalla AMOLED, >150 modos deportivos, batería de hasta ~21 días y app Mi Fitness para Android/iOS. Posibilidad de integrarse con el ecosistema HyperOS/Smart Hub de Xiaomi. </td>
+    </tr>
+    <tr>
+      <td>Ventaja competitiva<br>¿Qué valor ofrece a los clientes?</td>
+      <td>Ofrece monitoreo preventivo en tiempo real, con alertas escalonadas (verde, azul, rojo) fáciles de interpretar. Es accesible económicamente, sencillo de usar y pensado para adultos mayores y sus familias. Convierte datos médicos complejos en recomendaciones simples y claras.</td>
+      <td>Datos ECG de grado clínico en 30 s desde el móvil; dispositivos FDA-cleared; detecciones ampliables vía suscripción (KardiaCare); 6 derivaciones (6L) y 12 derivaciones (12L).</td>
+      <td>Portafolio integral con soluciones de punta a punta, integración de datos y presencia global; foco en sostenibilidad y alianzas.</td>
+      <td>Relación precio-prestaciones muy alta; amplia autonomía; ecosistema y app unificadas; variedad de diseños/straps.</td>
+    </tr>
+    <tr>
+      <td rowspan="2" class="category-header">Perfil de Marketing</td>
+      <td>Mercado objetivo</td>
+      <td>Hogares con adultos mayores o pacientes cardíacos, familiares y cuidadores; clínicas privadas interesadas en monitoreo domiciliario postoperatorio o preventivo; aseguradoras de salud que buscan reducir emergencias.</td>
+      <td>Hospitales, clínicas, redes de salud, gobierno y partners del sector salud (B2B).</td>
+      <td>UPacientes con riesgo/antecedentes de arritmias, usuarios pro-salud, cardiólogos y health systems que implementan monitorización remota.</td>
+      <td>Consumidores masivos que buscan wearables accesibles para actividad física, salud básica y notificaciones.</td>
+    </tr>
+    <tr>
+      <td>Estrategias de marketing</td>
+      <td>Estrategia B2C enfocada en el valor emocional (tranquilidad y acompañamiento familiar). Uso de marketing digital (redes sociales, testimonios de familias, blogs de salud preventiva), alianzas con clínicas y aseguradoras (B2B2C), y programas de adopción en comunidades de adultos mayores.</td>
+      <td>Mensajes clínicos (validación, publicaciones), respaldo de médicos, venta directa DTC (kardia.com) y soluciones empresariales (AliveCor.com) para pagadores/sistemas.</td>
+      <td>Marketing B2B consultivo con demos/ferias clínicas, canales de partners/distribuidores y financiación a canales.</td>
+      <td>Enfoque value for money, lanzamientos frecuentes, comunidad y e-commerce global (mi.com) + retail; empuje del ecosistema HyperOS/Mi Fitness.</td>
+    </tr>
+    <tr>
+      <td rowspan="3" class="category-header">Perfil de Producto</td>
+      <td>Productos & Servicios</td>
+      <td>1) Dispositivo portátil IoT basado en microcontrolador + sensor óptico. 2) Plataforma en la nube con dashboard. 3) App web y móvil para visualización en tiempo real e historial. 4) Alertas LED en el dispositivo y notificaciones push. 5) Planes de suscripción (Familiar / Clínico).</td>
+      <td>Dispositivos KardiaMobile (1-lead), KardiaMobile 6L, Kardia 12L, KardiaCare (membresía), integración de datos, KardiaPro/Station.</td>
+      <td>Imagen (CT/MR/Ultrasound/IGT), monitorización de pacientes, cuidados respiratorios, informática y servicios.</td>
+      <td>Smart Band 9/9 Active/10, carátulas, straps; funciones: pasos, HR, SpO₂, sueño, deportes, notificaciones.</td>
+    </tr>
+    <tr>
+      <td>Precios & Costos</td>
+      <td>Modelo de negocio por suscripción mensual. – Plan Familiar: accesible, pensado para un hogar con un adulto mayor, incluye app y notificaciones en tiempo real. – Escalabilidad hacia planes institucionales (clínicas/aseguradoras). Costos controlados al usar hardware de bajo costo (Arduino/ESP32, sensores ópticos).</td>
+      <td>KardiaMobile: US$79; membresía KardiaCare ~US$11.99/mes; bundles/planes Plus.</td>
+      <td>Precios no públicos (venta enterprise/licitaciones/financiación de canal); contratos por solución </td>
+      <td>Posicionamiento económico; Band 10 de US$54~ 85. (Variará por región y promo).</td>
+    </tr>
+    <tr>
+      <td>Canales de distribución (Web y/o Móvil)</td>
+      <td>Distribución directa online (web oficial, e-commerce, app stores). App web y móvil multiplataforma para visualización. Posibles acuerdos con farmacias, clínicas y aseguradoras como puntos de venta.</td>
+      <td>DTC (kardia.com/store), App Kardia en iOS/Android; también programas B2B.</td>
+      <td>Venta directa B2B y red global de distribuidores; acuerdos y licenciamiento/partners.</td>
+      <td>Web mi.com y retailers; app Mi Fitness en Google Play / App Store.</td>
+    </tr>
+    <tr>
+      <td rowspan="4" class="category-header">Análisis SWOT</td>
+      <td>Fortalezas</td>
+      <td>
+        <ul>
+          <li>Accesibilidad económica..</li>
+          <li>Diseño simple, pensado para adultos mayores.</li>
+          <li>Alertas comprensibles e intuitivas.</li>
+          <li>Datos disponibles en tiempo real para familiares y cuidadores.</li>
+          <li>Modelo escalable con suscripciones.</li>
+        </ul>
+      </td>
+      <td>Validación clínica y FDA-cleared, facilidad de uso móvil, opciones 6L/12L, base de usuarios y publicaciones.</td>
+      <td>Marca reconocida en salud, portafolio completo, escala global, soporte/servicios y partners.</td>
+      <td>Precio bajo, batería larga, ecosistema amplio, compatibilidad Android/iOS.</td>
+    </tr>
+    <tr>
+      <td>Debilidades</td>
+      <td>
+        <ul>
+          <li>Dependencia de conexión a Internet.</li>
+          <li>Precisión menor que equipos médicos de alta gama.</li>
+          <li> Startup en fase inicial con recursos limitados frente a grandes competidores.</li>
+        </ul>
+      </td>
+      <td>Dependencia del entorno móvil y suscripciones; exposición a litigios con grandes players.</td>
+      <td>Exposición a cumplimiento regulatorio y recalls (p. ej., Respironics CPAP) con impacto reputacional y costos.</td>
+      <td>Menor precisión clínica que dispositivos médicos certificados; funciones dependen de la app/phone.</td>
+    <tr>
+      <td>Oportunidades</td>
+      <td>
+         <ul>
+            <li>Competencia de grandes marcas (Apple, Xiaomi, Philips) que podrían lanzar productos similares.</li>
+            <li>Aumento de la población adulta mayor.</li>
+            <li>Interés de aseguradoras y clínicas en reducir hospitalizaciones.</li>
+            <li>Posible integración con wearables y ecosistemas de salud digitales.</li>
+        </ul>
+      </td>
+      <td>Envejecimiento poblacional, RPM (remote patient monitoring), acuerdos con sistemas de salud y pagadores.</td>
+      <td>Digital/AI en hospitales, modernización de infraestructura y contratos multi-año con financiamiento. </td>
+      <td>Crecimiento de wearables de bajo costo, integración hogar-salud, mercado emergente.</td>
+    </tr>
+    <tr>
+      <td>Amenazas</td>
+      <td>
+         <ul>
+            <li>Competencia de smartwatches ECG y riesgos de patentes/ITC.</li>
+            <li>Regulaciones médicas estrictas para certificación de dispositivos.</li>
+            <li>Reticencia de algunos adultos mayores a adoptar nueva tecnología</li>
+            <li>Riesgo de seguridad de datos en la nube.</li>
+         </ul>
+      </td>
+      <td>Competencia de smartwatches ECG y riesgos de patentes/ITC.</td>
+      <td>Sanciones/regulación estricta y contingencias legales (consent decree/settlements).</td>
+      <td>Competencia intensa (Apple, Fitbit, Huawei), cambios de plataformas y normativas de salud.</td>
+    </tr>
+  </tbody>
+</table>
+
 <a id="2-1-2-estrategias-y-tacticas-frente-a-competidores"></a>
 ### 2.1.2. Estrategias y tácticas frente a competidores.
+
+| Dimensión | Competidores (Xiaomi, AliveCor, Philips) | Estrategia de TukunTech | Tácticas Concretas |
+|---|---|---|---|
+| Fortalezas de competidores | • Xiaomi: bajo costo, gran comunidad<br>• AliveCor: precisión clínica, FDA-cleared<br>• Philips: marca global, portafolio integral | Diferenciarse con <strong>simplicidad, accesibilidad y foco en adultos mayores</strong> | • Interfaces intuitivas y alertas LED fáciles de entender<br>• Suscripciones familiares accesibles<br>• Comunicación emocional: seguridad y tranquilidad para familias |
+| Debilidades de competidores | • Xiaomi: no diseñado para adultos mayores<br>• AliveCor: alto costo, depende de suscripción individual<br>• Philips: soluciones costosas y complejas para hospitales | Aprovechar el espacio de <strong>prevención domiciliaria accesible</strong> | • Marketing con mensajes: “hecho para el adulto mayor”<br>• Planes económicos con varios usuarios<br>• Prototipos ligeros que no requieren infraestructura hospitalaria |
+| Oportunidades del mercado | • Creciente demanda de telemedicina y wearables<br>• Envejecimiento poblacional<br>• Interés de aseguradoras en monitoreo preventivo | Posicionarse como <strong>solución preventiva en casa</strong>, complementaria a sistemas médicos | • Alianzas con aseguradoras y clínicas para programas piloto<br>• Integración futura con wearables y dashboards de salud<br>• Estrategia B2B2C con instituciones de cuidado de adultos mayores |
+| Amenazas del mercado | • Competencia intensa de grandes marcas (Apple, Huawei, Fitbit)<br>• Regulaciones médicas estrictas<br>• Riesgos de privacidad de datos | Apostar por <strong>agilidad, nicho y confianza</strong> | • Invertir en seguridad de datos y certificaciones progresivas<br>• Construir comunidad y casos de éxito locales antes de expandir<br>• Diferenciarse en narrativa: “compañero de bienestar, no solo dispositivo” |
 
 <a id="2-2-entrevistas"></a>
 ## 2.2. Entrevistas.

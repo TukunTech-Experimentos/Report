@@ -571,6 +571,8 @@ En base a lo mencionado, se establecen los tres segmentos objetivos que serán a
 
 <a id="2-2-entrevistas"></a>
 ## 2.2. Entrevistas.
+En esta sección, presentamos las preguntas que hemos diseñado para llevar a cabo las entrevistas con los grupos de usuarios a los que nos dirigimos. Es importante mencionar que las preguntas son de formato abierto y dirigidas a los segmentos objetivos, lo que nos permitirá recopilar información valiosa para comprender mejor cómo abordar los desafíos que enfrentan.
+
 <a id="2-2-1-diseno-de-entrevistas"></a>
 ### 2.2.1. Diseño de entrevistas.
 <a id="2-2-2-registro-de-entrevistas"></a>

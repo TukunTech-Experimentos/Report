@@ -2024,44 +2024,66 @@ Support:
 **Diagrama 1: User Goal: Como usuario deseo crear una cuenta**
 Descripción:  En el presente Wireflow, se evidencia un flujo que seguirá el usuario para crear una cuenta en la Web application. En la ventana de “Log in” inicio tendrá que seleccionar el botón “Create” y visualizará los campos que debe llenar para poder crear su cuenta. En esta ventana deberá llenar los campos y finalmente seleccionar el botón “Create” para crear su cuenta.
 
+<div align="center">
+<img src="Images/WireflowWeb1.png" alt="Segmento 1" />
+</div>
+
 
 **Diagrama 2: User Goal: Como usuario deseo iniciar sesión con mi cuenta.**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para iniciar sesión en la Web application. Primero tendrá que llenar los campos con la información de su cuenta y luego seleccionar el botón “Log in”. Una vez iniciada su sesión se le mostrará la ventan “Home”.
+
+<div align="center">
+<img src="Images/WireflowWeb2.png" alt="Segmento 1" />
+</div>
 
 
 **Diagrama 3: User Goal: Como usuario deseo visualizar la información del paciente.**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para poder visualizar la información del paciente. En el inicio tendrá que seleccionar el botón “Patient” y visualizará los datos del paciente en la sección “Patient”. 
 
+<div align="center">
+<img src="Images/WireflowWeb3.png" alt="Segmento 1" />
+</div>
 
 
 **Diagrama 4: User Goal: Como usuario deseo actualizar la información del paciente.**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para actualizar la información del paciente. En el inicio tendrá que seleccionar el botón “Paciente” y visualizará sus datos como paciente. En esta ventana podrá actualizar los datos al llenar los campos con la nueva información del paciente y luego seleccionar el botón “update”.
 
+<div align="center">
+<img src="Images/WireflowWeb4.png" alt="Segmento 1" />
+</div>
 
 
 **Diagrama 5: User Goal: Como usuario deseo visualizar los signos vitales del paciente en tiempo real**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para visualizar la información de los signos vitales en tiempo real del paciente. En el inicio tendrá que seleccionar el botón “Vital Signs” y visualizará los signos vitales en tiempo real además de las alertas.
 
+<div align="center">
+<img src="Images/WireflowWeb5.png" alt="Segmento 1" />
+</div>
 
 
 **Diagrama 6: User Goal: Como usuario deseo visualizar las alertas pasadas del paciente.**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para visualizar las alertas pasadas del paciente. En el inicio tendrá que seleccionar el botón “History” y visualizará las alertas pasadas del paciente
 
+<div align="center">
+<img src="Images/WireflowWeb6.png" alt="Segmento 1" />
+</div>
 
 
 **Diagrama 7: User Goal: Como usuario deseo enviar mensajes con mis dudas**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para poder enviar mensajes con sus dudas o problemas. En el inicio tendrá que seleccionar el botón “Support” y visualizará preguntas frecuentes sobre la Web application. En esta ventana podrá enviar mensajes de duda o problemas al llenar los campos correspondientes y seleccionar el botón “Send”.
 
+<div align="center">
+<img src="Images/WireflowWeb7.png" alt="Segmento 1" />
+</div>
 
 
 
 **Diagrama 8: User Goal: Como usuario deseo visualizar el estado de mi suscripción**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá el usuario para visualizar el estado de su suscripción. En el inicio tendrá que seleccionar el botón “Subscription” y visualizará la información del plan de su suscripción y el estado de la misma además de poder renovarla.
 
-
-
-
-
+<div align="center">
+<img src="Images/WireflowWeb8.png" alt="Segmento 1" />
+</div>
 
 <a id="4-6-3-web-applications-mock-ups"></a>
 ### 4.6.3. Web Applications Mock-ups
@@ -2072,25 +2094,9 @@ A diferencia de los wireframes, que se centran en la estructura y organización 
 
 El objetivo de estos mock-ups es **validar la coherencia visual, la usabilidad y la identidad de marca** antes de avanzar hacia prototipos interactivos y pruebas de usuario, asegurando que la experiencia cumpla con los estándares definidos para TukunTech.
 
-Login:
-
-Create:
-
-Home:
-
-Patient:
-
-Update patient data:
-
-Real time Vital Signs:
-
-Alert history: 
-
-Subscription:
-
-Support:
-
-Support Message sent:
+<div align="center">
+<img src="Images/MockWeb.png" alt="Segmento 1" />
+</div>
 
 
 <a id="4-6-4-web-applications-user-flow-diagrams"></a>
@@ -2099,45 +2105,62 @@ Support Message sent:
 **User Goal: Como adulto mayor deseo visualizar mi información como paciente.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá el adulto mayor para poder visualizar su información como paciente. Primero se loguea con el correo y la contraseña e ingresa a “Home” luego tendrá que seleccionar el botón “Patient” para ser dirigido a la ventana correspondiente. Una vez que se encuentre en la ventana “Patient” podrá visualizar sus datos como paciente. 
 
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb1.png" alt="Segmento 1" />
+</div>
 
 
 **User Goal: Como usuario deseo actualizar la información del paciente.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá el adulto mayor para actualizar su información como paciente. Primero se loguea con el correo y la contraseña e ingresa a “Home” luego tendrá que seleccionar el botón “Patient” para ser dirigido a la ventana correspondiente. En esta ventana deberá seleccionar el botón “update” y se abrirá una ventana donde deberá llenar los campos con la nueva información del paciente y luego seleccionar el botón “update” para guardar los cambios y actualizar su información.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb2.png" alt="Segmento 1" />
+</div>
 
 **Segmento objetivo 2: Personas con problemas cardíacos crónicos**
 **User Goal: Como usuario deseo iniciar sesión con mi cuenta.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá la persona con problemas cardíacos para iniciar sesión en la Web application. Primero se loguea con el correo y la contraseña de su cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home”.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb3.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como persona con problemas cardiacos deseo visualizar mis signos vitales en tiempo real**
 Descripción: En el presente Wireflow, se evidencia un flujo que seguirá la persona con problemas cardíacos para visualizar la información de sus signos vitales en tiempo real. Primero se loguea con el correo y la contraseña de su cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “Vital Signs” y se dirigirá a la ventana correspondiente donde visualizará sus signos vitales en tiempo real además de las alertas.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb4.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como persona con problemas cardiacos deseo visualizar el estado de mi suscripción**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirá la persona con problemas cardíacos para visualizar el estado de su suscripción. Primero se loguea con el correo y la contraseña de su cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “Subscription” y se dirigirá a la ventana correspondiente donde visualizará la información de su plan de su suscripción y el estado de la misma además de poder renovarla.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb5.png" alt="Segmento 1" />
+</div>
 
 **Segmento objetivo 3: Familiares y cuidadores**
 **User Goal: Como familiar y cuidador de una persona con problemas cardiacos deseo registrarlo en la Web Application **
 Descripción:  En el presente User Flow, se evidencia un flujo que seguirán los Familiares y cuidadores para crear una cuenta para la persona que cuidan en la Web application. Primero en la ventana de “Log in” tendrá que seleccionar el botón “Create” y visualizará los campos que debe llenar para poder crear la cuenta. En esta ventana deberá llenar los campos del paciente a registrar y finalmente seleccionar el botón “Create” para crear su cuenta y finalmente se le redirigirá a la ventana de “log in”.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb6.png" alt="Segmento 1" />
+</div>
 
 
 **User Goal: Como familiar y cuidador de una persona con problemas cardiacos deseo visualizar las alertas pasadas del paciente.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirán los Familiares y cuidadores para visualizar las alertas pasadas del paciente. Primero se loguea con el correo y la contraseña de la cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “History” y se dirigirá a la ventana correspondiente. En esta ventana  visualizará las alertas pasadas del paciente.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb7.png" alt="Segmento 1" />
+</div>
 
 **User Goal: Como familiar y cuidador de una persona con problemas cardíacos deseo enviar mensajes con mis dudas.**
 Descripción: En el presente User Flow, se evidencia un flujo que seguirán los Familiares y cuidadores para enviar mensajes con sus dudas o problemas. Primero se loguea con el correo y la contraseña de la cuenta y selecciona el botón “Log in”, luego se le dirigirá a la ventana “Home” donde seleccionará el botón “Support” y será dirigido a la ventana correspondiente donde visualizará preguntas frecuentes sobre la Web application. En esta ventana podrá enviar mensajes de duda o problemas al llenar los campos correspondientes y seleccionar el botón “Send”.
 
-
+<div align="center">
+<img src="Images/UserFlowDiagramsWeb8.png" alt="Segmento 1" />
+</div>
 
 <a id="4-7-web-applications-prototyping"></a>
 ## 4.7. Web Applications Prototyping
@@ -2211,6 +2234,10 @@ Este nivel de abstracción es fundamental para comprender:
 
 El propósito de este diagrama es ofrecer una vista general que permita a todas las partes interesadas —tanto técnicas como no técnicas— comprender el **alcance del sistema**, sus **límites** y la forma en que se integra dentro de su ecosistema tecnológico y de negocio.
 
+<div align="center">
+<img src="Images/Architecture1.png" alt="Segmento 1" />
+</div>
+
 
 <a id="4-8-2-software-architecture-container-diagrams"></a>
 ### 4.8.2. Software Architecture Container Diagrams
@@ -2223,6 +2250,9 @@ Cada contenedor cumple un rol fundamental dentro de la arquitectura, garantizand
 
 El objetivo de este diagrama es proporcionar una **visión clara de cómo se distribuyen las responsabilidades técnicas** en la solución, mostrando las interacciones entre front-end, back-end, almacenamiento de datos y servicios externos que habilitan las funcionalidades de monitoreo de salud en tiempo real.
 
+<div align="center">
+<img src="Images/Architecture2.png" alt="Segmento 1" />
+</div>
 
 <a id="4-8-3-software-architecture-components-diagrams"></a>
 ### 4.8.3. Software Architecture Components Diagrams
@@ -2237,6 +2267,9 @@ En este nivel se representan:
 
 El propósito de este diagrama es ofrecer una visión detallada que facilite la **comprensión técnica**, la **asignación de responsabilidades en el desarrollo** y el **mantenimiento de la coherencia arquitectónica**, asegurando que cada parte del sistema esté alineada con los principios del **Domain-Driven Design (DDD)**.
 
+<div align="center">
+<img src="Images/Architecture3.png" alt="Segmento 1" />
+</div>
 
 <a id="4-9-software-object-oriented-design"></a>
 ## 4.9. Software Object-Oriented Design
@@ -2279,6 +2312,10 @@ Exámenes / Reportes: Incluye los reportes generados a partir del sistema, ya se
 <a id="4-10-database-design"></a>
 ## 4.10. Database Design.
 Implementación de la base de datos aplicado a nuestro proyecto
+
+<div align="center">
+<img src="Images/database.png" alt="Segmento 1" />
+</div>
 
 <a id="4-10-1-relational-non-relational-database-diagram"></a>
 ### 4.10.1. Relational/Non-Relational Database Diagram.
@@ -2345,7 +2382,6 @@ El despliegue de software se enfocó en asegurar una implementación **ágil, es
 Este esquema de despliegue permite que cada componente del sistema —**Landing Page, aplicaciones web, backend y base de datos**— esté **desacoplado pero integrado**, facilitando la evolución del producto y asegurando un rendimiento confiable en entornos de producción.
 
 <a id="5-1-2-source-code-management"></a>
-### 5.1.2. Source Code Management.
 ### 5.1.2. Source Code Management
 
 La **gestión de código fuente (Source Code Management, SCM)** es una práctica crucial en el desarrollo de software.  
@@ -2357,6 +2393,10 @@ Este sistema permite:
 - Garantizar una **colaboración fluida** entre los integrantes del equipo.  
 
 Para este proyecto se utilizará **GitHub** como plataforma principal, implementando **GitFlow** como estrategia de ramas y control de versiones.
+
+<div align="center">
+<img src="Images/SourceCode1.png" alt="Segmento 1" />
+</div>
 
 ---
 
@@ -2371,6 +2411,10 @@ GitFlow es un modelo estructurado que organiza el trabajo del equipo en **ramas 
 - **Feature Branches:** creadas a partir de *develop*, se usan para implementar nuevas funcionalidades o mejoras.  
 - **Release Branches:** creadas desde *develop* cuando se prepara una nueva versión estable para producción.  
 - **Hotfix Branches:** creadas desde *main* para corregir errores críticos en producción de forma rápida.  
+
+<div align="center">
+<img src="Images/SourceCode2.png" alt="Segmento 1" />
+</div>
 
 ---
 

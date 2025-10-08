@@ -4977,50 +4977,6 @@ class ErrorsSystemTest {
 ```
 <img src="Images/SystemTests3.png">
 
-<a id="6-2-static-testing-verification"></a>
-## 6.2. Static testing & Verification
-
-
-
-<a id="6-2-1-static-code-analysis"></a>
-### 6.2.1. Static Code Analysis
-<a id="6-2-1-1-coding-standard-code-conventions"></a>
-#### 6.2.1.1. Coding standard & Code conventions.
-<a id="6-2-1-2-code-quality-code-security"></a>
-#### 6.2.1.2. Code Quality & Code Security.
-<a id="6-2-2-reviews"></a>
-### 6.2.2. Reviews
-
-<a id="6-3-validation-interviews"></a>
-## 6.3. Validation Interviews.
-<a id="6-3-1-diseno-de-entrevistas"></a>
-### 6.3.1. Diseño de Entrevistas.
-<a id="6-3-2-registro-de-entrevistas"></a>
-### 6.3.2. Registro de Entrevistas.
-<a id="6-3-3-evaluaciones-segun-heuristicas"></a>
-### 6.3.3. Evaluaciones según heurísticas.
-
-<a id="6-4-auditoria-de-experiencias-de-usuario"></a>
-## 6.4. Auditoría de Experiencias de Usuario
-<a id="6-4-1-auditoria-realizada"></a>
-### 6.4.1. Auditoría realizada.
-<a id="6-4-1-1-informacion-del-grupo-auditado"></a>
-#### 6.4.1.1. Información del grupo auditado.
-<a id="6-4-1-2-cronograma-de-auditoria-realizada"></a>
-#### 6.4.1.2. Cronograma de auditoría realizada.
-<a id="6-4-1-3-contenido-de-auditoria-realizada"></a>
-#### 6.4.1.3. Contenido de auditoría realizada.
-<a id="6-4-2-auditoria-recibida"></a>
-### 6.4.2. Auditoría recibida.
-<a id="6-4-2-1-informacion-del-grupo-auditor"></a>
-#### 6.4.2.1. Información del grupo auditor.
-<a id="6-4-2-2-cronograma-de-auditoria-recibida"></a>
-#### 6.4.2.2. Cronograma de auditoría recibida.
-<a id="6-4-2-3-contenido-de-auditoria-recibida"></a>
-#### 6.4.2.3. Contenido de auditoría recibida.
-<a id="6-4-2-4-resumen-de-modificaciones-para-subsanar-hallazgos"></a>
-#### 6.4.2.4. Resumen de modificaciones para subsanar hallazgos.
-
 <a id="capitulo-vii-devops-practices"></a>
 # Capítulo VII: DevOps Practices
 
@@ -5147,19 +5103,6 @@ El pipeline de despliegue en producción se compone de varias fases críticas:
 
 
 4. Monitoreo en Producción: Una vez en producción, el sistema es monitoreado constantemente. Si se detecta un error crítico, se activa automáticamente un rollback para revertir al último estado funcional.
-
-<a id="7-4-continuous-monitoring"></a>
-## 7.4. Continuous Monitoring
-<a id="7-4-1-tools-and-practices"></a>
-### 7.4.1. Tools and Practices
-<a id="7-4-2-monitoring-pipeline-components"></a>
-### 7.4.2. Monitoring Pipeline Components
-<a id="7-4-3-alerting-pipeline-components"></a>
-### 7.4.3. Alerting Pipeline Components
-<a id="7-4-4-notification-pipeline-components"></a>
-### 7.4.4. Notification Pipeline Components.
-
-
 
 # Conclusiones
 El desarrollo del proyecto TukunTech permitió integrar de manera exitosa una solución tecnológica orientada al monitoreo y cuidado de la salud, combinando dispositivos IoT, aplicaciones móviles y web, y servicios en la nube bajo un modelo SaaS. A lo largo del proceso se aplicaron principios de usabilidad, accesibilidad, arquitectura de información y diseño responsivo, asegurando que pacientes, familiares, cuidadores y administradores puedan interactuar con la plataforma de forma sencilla y confiable.

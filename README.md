@@ -4434,67 +4434,69 @@ class JpaMappingsIntegrationTest {
 
 Para las pruebas se ha utilizado la herramienta Visual Studio con Reqnroll
 
-Feature:
+Feature:<br>
 <img src="Images/BehaviorDriven1.png">
-Aquí se define el flujo en el que un usuario accede a la página de registro, ingresa un correo y contraseña válidos, hace clic en “Registrarse” y valida la creación de cuenta y el envío de correo de confirmación.
+<br>
+Aquí se define el flujo en el que un usuario accede a la página de registro, ingresa un correo y contraseña válidos, hace clic en “Registrarse” y valida la creación de cuenta y el envío de correo de confirmación.<br>
 
-StepDefinition:
+StepDefinition:<br>
 <img src="Images/BehaviorDriven2.png">
 <img src="Images/BehaviorDriven3.png">
 <img src="Images/BehaviorDriven4.png">
 
-Los Step Definitions simulan el estado de la vista, validan formatos de correo y criterios de seguridad de la contraseña, ejecutan el clic y luego lanzan excepciones claras si el sistema no crea la cuenta o no envía el correo.
+Los Step Definitions simulan el estado de la vista, validan formatos de correo y criterios de seguridad de la contraseña, ejecutan el clic y luego lanzan excepciones claras si el sistema no crea la cuenta o no envía el correo.<br>
 
-Tests:
+Tests:<br>
 <img src="Images/BehaviorDriven5.png">
-Feature:
+<br>
+Feature:<br>
 <img src="Images/BehaviorDriven6.png">
-
-Aquí se describe cómo un paciente genera un código de invitación y cómo un familiar lo introduce para obtener acceso de solo lectura. También cubre la ruta de error con un código inválido. 
-StepDefinition:
+<br>
+Aquí se describe cómo un paciente genera un código de invitación y cómo un familiar lo introduce para obtener acceso de solo lectura. También cubre la ruta de error con un código inválido.<br>
+StepDefinition:<br>
 <img src="Images/BehaviorDriven7.png">
 <img src="Images/BehaviorDriven8.png">
 
-El step definition gestiona la generación del código, compara la entrada del familiar y controla dos banderas: vinculoCreado y permisosLecturaOtorgados, además de un mensaje de error cuando aplica.
-Tests:
-<img src="Images/BehaviorDriven9.png">
-Feature:
+El step definition gestiona la generación del código, compara la entrada del familiar y controla dos banderas: vinculoCreado y permisosLecturaOtorgados, además de un mensaje de error cuando aplica.<br>
+Tests:<br>
+<img src="Images/BehaviorDriven9.png"><br>
+Feature:<br>
 <img src="Images/BehaviorDriven10.png">
-
-Aquí se valida que un dispositivo conectado envíe lecturas de frecuencia cardíaca (FC) y saturación de oxígeno (SpO2) al servidor, reciba un 200 OK y las muestre rápidamente en el dashboard. También cubre el modo offline, almacenando localmente y sincronizando al reconectar.
-StepDefinition:
+<br>
+Aquí se valida que un dispositivo conectado envíe lecturas de frecuencia cardíaca (FC) y saturación de oxígeno (SpO2) al servidor, reciba un 200 OK y las muestre rápidamente en el dashboard. También cubre el modo offline, almacenando localmente y sincronizando al reconectar.<br>
+StepDefinition:<br>
 <img src="Images/BehaviorDriven11.png">
 <img src="Images/BehaviorDriven12.png">
 <img src="Images/BehaviorDriven13.png">
+<br>
 
-
-Los step definitions llevan un estado interno de conectividad, buffer offline, código de respuesta y latencia. Cada paso verifica rangos fisiológicos, simula envíos y controla condiciones de sincronización tras pérdida y recuperación de internet.
-Tests:
-<img src="Images/BehaviorDriven14.png">
-Feature:
+Los step definitions llevan un estado interno de conectividad, buffer offline, código de respuesta y latencia. Cada paso verifica rangos fisiológicos, simula envíos y controla condiciones de sincronización tras pérdida y recuperación de internet.<br>
+Tests:<br>
+<img src="Images/BehaviorDriven14.png"><br>
+Feature:<br>
 <img src="Images/BehaviorDriven15.png">
-
-En este feature el cuidador puede confirmar alertas verdes para detener su escalamiento y activar una “ventana de silencio” que bloquea push posteriores. El sistema debe almacenar las alertas generadas durante ese periodo y suprimir notificaciones.
-StepDefinition:
+<br>
+En este feature el cuidador puede confirmar alertas verdes para detener su escalamiento y activar una “ventana de silencio” que bloquea push posteriores. El sistema debe almacenar las alertas generadas durante ese periodo y suprimir notificaciones.<br>
+StepDefinition:<br>
 <img src="Images/BehaviorDriven16.png">
 <img src="Images/BehaviorDriven17.png">
 <img src="Images/BehaviorDriven18.png">
 
-El step definition lleva el estado de alerta, escalamiento y silenciamiento. Al confirmar, cambia el estado a “ACKNOWLEDGED” y apaga el escalamiento; al generar nuevas alertas, comprueba la duración de la ventana y decide si envía o no el push, almacenando siempre el registro.
-Tests:
-<img src="Images/BehaviorDriven19.png">
-Feature:
+El step definition lleva el estado de alerta, escalamiento y silenciamiento. Al confirmar, cambia el estado a “ACKNOWLEDGED” y apaga el escalamiento; al generar nuevas alertas, comprueba la duración de la ventana y decide si envía o no el push, almacenando siempre el registro.<br>
+Tests:<br>
+<img src="Images/BehaviorDriven19.png"><br>
+Feature:<br>
 <img src="Images/BehaviorDriven20.png">
+<br>
+Define la lógica de umbrales: por encima del máximo se produce alerta verde con notificación push de baja prioridad; por encima del crítico, alerta roja con notificación a cuidadores; y si tras un tiempo no confirman, llamada automática.<br>
 
-Define la lógica de umbrales: por encima del máximo se produce alerta verde con notificación push de baja prioridad; por encima del crítico, alerta roja con notificación a cuidadores; y si tras un tiempo no confirman, llamada automática.
-
-StepDefinition:
+StepDefinition:<br>
 <img src="Images/BehaviorDriven21.png">
 <img src="Images/BehaviorDriven22.png">
 
-Los steps mantienen los valores de umbral, la lectura actual y flags para cada acción (push, notificación, llamada). La ejecución de cada When y Then evalúa las condiciones y arroja excepciones con mensajes precisos en caso de discrepancias.
+Los steps mantienen los valores de umbral, la lectura actual y flags para cada acción (push, notificación, llamada). La ejecución de cada When y Then evalúa las condiciones y arroja excepciones con mensajes precisos en caso de discrepancias.<br>
 
-Test:
+Test:<br>
 <img src="Images/BehaviorDriven23.png">
 
 <a id="6-1-4-core-system-tests"></a>
@@ -5032,9 +5034,9 @@ El pipeline de construcción y pruebas de TukunTech se divide en varios componen
 <a id="7-2-1-tools-and-practices"></a>
 ### 7.2.1. Tools and Practices.
 
-Para TukunTech, implementamos Entrega Continua (CD) utilizando Jenkins y CircleCI como herramientas clave para automatizar el proceso de despliegue. Estas herramientas permiten que cualquier cambio aprobado se despliegue automáticamente en los entornos de staging y producción sin intervención manual.
+Para TukunTech, implementamos Entrega Continua (CD) utilizando Jenkins y CircleCI como herramientas clave para automatizar el proceso de despliegue. Estas herramientas permiten que cualquier cambio aprobado se despliegue automáticamente en los entornos de staging y producción sin intervención manual.<br>
 <img src="Images/ToolsPractices1.png">
-
+<br>
 Herramientas:
 - Jenkins: Se configura para hacer despliegues automáticos cada vez que un cambio pasa todas las pruebas.
 

@@ -4500,8 +4500,488 @@ Test:
 <a id="6-1-4-core-system-tests"></a>
 ### 6.1.4. Core System Tests.
 
+En esta subsección se presentan las pruebas de sistema desarrolladas para validar el correcto funcionamiento global de la aplicación en su conjunto.
+A diferencia de las pruebas unitarias o de integración, las pruebas de sistema se enfocan en evaluar el comportamiento completo del sistema como un todo, incluyendo la seguridad, la lógica de negocio y la interacción entre los distintos módulos que conforman el backend.
+Estas pruebas se realizaron bajo el contexto de un entorno de ejecución real, con la configuración de seguridad activa, los filtros JWT habilitados y la base de datos de pruebas cargada con roles y usuarios.
+El objetivo principal fue reproducir flujos reales de usuario, garantizando que todas las operaciones principales del sistema funcionen correctamente de extremo a extremo (End-to-End Testing).
+Los principales casos validados fueron los siguientes:
+- Prueba del flujo de autenticación completo (AuthSystemTest): Comprueba el ciclo de vida completo de autenticación, desde el registro de usuario hasta la obtención y renovación de tokens, así como el cierre de sesión y la verificación del acceso posterior.
+- Se valida que el sistema genere correctamente los tokens JWT, gestione la expiración y permita la renovación mediante el token de refresh.
+- Prueba de control de acceso por roles (RolesSystemTest): Evalúa el correcto funcionamiento de las políticas de seguridad en los endpoints restringidos según el tipo de usuario.
+- Se verifica que las rutas de prueba ```/test/admin/ping```, ```/test/attendant/ping``` y ```/test/patient/ping``` respondan adecuadamente con los códigos 200 (OK), 403 (Forbidden) o 401 (Unauthorized) según corresponda al rol del usuario autenticado.
+- Prueba de manejo de errores globales (ErrorsSystemTest): Valida que el sistema maneje de manera controlada los errores comunes en la autenticación y el registro de usuarios.
+- Se comprueban casos como el inicio de sesión con contraseña incorrecta (401 Unauthorized) y el intento de registrar un usuario con un correo electrónico duplicado (400 o 409), confirmando que las respuestas sean coherentes con la estructura de errores definida en GlobalExceptionHandler.
+
+Gracias a estas pruebas de sistema, se comprobó que la aplicación responde adecuadamente en escenarios reales, manteniendo la integridad de los flujos, la consistencia de los datos y la seguridad del entorno.
+Esto permitió asegurar que el backend está preparado para interactuar con el frontend y desplegarse en entornos de producción con un comportamiento estable y predecible.
+
+a. AuthSystemTest: Esta prueba valida el flujo completo de autenticación y gestión de sesión del sistema, simulando una interacción real desde el punto de vista del usuario final.
+Se evalúa el proceso completo que incluye:
+  1. Registro de usuario (/auth/register)
+  2. Inicio de sesión (/auth/login)
+  3. Consulta del perfil autenticado (/auth/me)
+  4. Renovación del token de acceso (/auth/refresh)
+  5. Cierre de sesión (/auth/logout)
+  6. Intento de acceso posterior al cierre de sesión (respuesta esperada 401)
+
+La prueba utiliza el flujo completo de tokens JWT y valida que el backend gestione correctamente las credenciales, el refresco de tokens y la invalidación de sesiones.
+De esta forma, se garantiza que el proceso de autenticación sea seguro, coherente y funcional en su totalidad dentro del sistema.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("System: Auth E2E (register → login → me → refresh → logout → me401)")
+class AuthSystemTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+   @Autowired
+   RoleRepository roleRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   private static String dni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   @BeforeEach
+   void seedRolesIfMissing() {
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("PATIENT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ATTENDANT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ADMINISTRATOR");
+           roleRepository.save(r);
+       }
+   }
+
+
+   @Test
+   @DisplayName("Flujo completo de autenticación y sesiones")
+   void auth_full_flow() throws Exception {
+       // Arrange: payloads
+       String email = "sys.ana@example.com";
+       String registerBody = """
+                 {
+                   "firstName":"Ana","lastName":"Pérez","dni":"%s","email":"%s","password":"Secret0!",
+                   "role":"PATIENT","gender":"FEMALE","age":25,
+                   "bloodGroup":"O_POSITIVE","nationality":"PERUVIAN","allergy":"PENICILLIN"
+                 }
+               """.formatted(dni(), email);
+
+
+       String loginBody = """
+                 {"email":"%s","password":"Secret0!"}
+               """.formatted(email);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(registerBody))
+               .andExpect(status().isOk())
+               .andExpect(content().contentTypeCompatibleWith(JSON));
+
+
+       var loginRes = mvc.perform(post("/auth/login").contentType(JSON).content(loginBody))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.tokenType").value("Bearer"))
+               .andExpect(jsonPath("$.accessToken").exists())
+               .andExpect(jsonPath("$.refreshToken").exists())
+               .andReturn();
+
+
+       JsonNode loginJson = om.readTree(loginRes.getResponse().getContentAsString());
+       String access1 = loginJson.get("accessToken").asText();
+       String refresh1 = loginJson.get("refreshToken").asText();
+
+
+       mvc.perform(get("/auth/me").header("Authorization", "Bearer " + access1))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.id").exists());
+
+
+       String refreshBody = """
+                 {"refreshToken":"%s"}
+               """.formatted(refresh1);
+       var refreshRes = mvc.perform(post("/auth/refresh").contentType(JSON).content(refreshBody))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.accessToken").exists())
+               .andReturn();
+
+
+       JsonNode refreshJson = om.readTree(refreshRes.getResponse().getContentAsString());
+       String access2 = refreshJson.get("accessToken").asText();
+       String refresh2 = refreshJson.has("refreshToken") ? refreshJson.get("refreshToken").asText() : refresh1;
+
+
+       String logoutBody = """
+                 {"refreshToken":"%s"}
+               """.formatted(refresh2);
+
+
+       mvc.perform(post("/auth/logout")
+                       .header("Authorization", "Bearer " + access2)
+                       .contentType(JSON)
+                       .content(logoutBody))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/auth/me").header("Authorization", "Bearer " + access2))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(post("/auth/refresh")
+                       .contentType(JSON)
+                       .content("""
+                               {"refreshToken":"%s"}
+                               """.formatted(refresh2)))
+               .andExpect(status().isUnauthorized());
+
+
+   }
+}
+```
+<img src="Images/SystemTests1.png">
+
+b. RolesSystemTest: Esta prueba verifica la aplicación práctica de las políticas de seguridad y control de acceso basadas en roles (RBAC) dentro del sistema. Se simulan solicitudes autenticadas hacia los endpoints protegidos del módulo de prueba (```/test```), asegurando que solo los usuarios con el rol correspondiente puedan acceder:
+```/test/admin/ping``` → debe permitir únicamente a usuarios con rol ADMINISTRATOR.
+```/test/attendant/ping``` → debe permitir únicamente a ATTENDANT.
+```/test/patient/ping``` → debe permitir únicamente a PATIENT.
+
+Durante la ejecución, el sistema genera usuarios de prueba con diferentes roles, se autentican y se verifica la respuesta HTTP devuelta por el backend. Esto permite confirmar que las reglas de autorización definidas en SecurityConfig y las anotaciones ```@PreAuthorize``` de los controladores funcionan de forma correcta y segura.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("System: Gates por rol (/test/*/ping)")
+class RolesSystemTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+
+
+   @Autowired
+   RoleRepository roleRepository;
+   @Autowired
+   UserRepository userRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   private static String dni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   @BeforeEach
+   void seedRoles() {
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ADMINISTRATOR");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ATTENDANT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("PATIENT");
+           roleRepository.save(r);
+       }
+   }
+
+
+   private String register(String email, String role) throws Exception {
+       String body = """
+               {
+                 "firstName": "U",
+                 "lastName": "%s",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "%s",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(role, dni(), email, role);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(body))
+               .andExpect(status().isOk());
+       return email;
+   }
+
+
+   private String login(String email) throws Exception {
+       String body = """
+               {
+                 "email": "%s",
+                 "password": "Secret0!"
+               }
+               """.formatted(email);
+
+
+       var res = mvc.perform(post("/auth/login").contentType(JSON).content(body))
+               .andExpect(status().isOk())
+               .andReturn();
+
+
+       return om.readTree(res.getResponse().getContentAsString())
+               .get("accessToken").asText();
+   }
+
+
+   @Test
+   @DisplayName("Admin 200 / Patient 403 / Sin token 401 en /test/admin/ping")
+   void gates_admin_ping() throws Exception {
+       // Arrange (AAA): registrar como PATIENT y luego elevar a ADMINISTRATOR en BD
+       String adminEmail = register("sys.admin@example.com", "PATIENT");
+       UserEntity u = userRepository.findByEmail(adminEmail).orElseThrow();
+       u.getRoles().clear();
+       u.getRoles().add(roleRepository.findByName("ADMINISTRATOR").orElseThrow());
+       userRepository.save(u);
+
+
+       String patientEmail = register("sys.patient@example.com", "PATIENT");
+
+
+       // Act: login y obtener tokens
+       String adminToken = login(adminEmail);
+       String patientToken = login(patientEmail);
+
+
+       // Assert
+       mvc.perform(get("/test/admin/ping").header("Authorization", "Bearer " + adminToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/admin/ping").header("Authorization", "Bearer " + patientToken))
+               .andExpect(status().isForbidden());
+
+
+       mvc.perform(get("/test/admin/ping"))
+               .andExpect(status().isUnauthorized());
+   }
+
+
+   @Test
+   @DisplayName("Attendant 200 / Patient 403 en /test/attendant/ping")
+   void gates_attendant_ping() throws Exception {
+       // Arrange
+       String attEmail = register("sys.attendant@example.com", "ATTENDANT");
+       String patEmail = register("sys.patient2@example.com", "PATIENT");
+
+
+       String attToken = login(attEmail);
+       String patToken = login(patEmail);
+
+
+       // Assert
+       mvc.perform(get("/test/attendant/ping").header("Authorization", "Bearer " + attToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/attendant/ping").header("Authorization", "Bearer " + patToken))
+               .andExpect(status().isForbidden());
+   }
+
+
+   @Test
+   @DisplayName("Patient 200 / Attendant 403 en /test/patient/ping")
+   void gates_patient_ping() throws Exception {
+       // Arrange
+       String patEmail = register("sys.patient3@example.com", "PATIENT");
+       String attEmail = register("sys.attendant2@example.com", "ATTENDANT");
+
+
+       String patToken = login(patEmail);
+       String attToken = login(attEmail);
+
+
+       // Assert
+       mvc.perform(get("/test/patient/ping").header("Authorization", "Bearer " + patToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/patient/ping").header("Authorization", "Bearer " + attToken))
+               .andExpect(status().isForbidden());
+   }
+}
+```
+<img src="Images/SystemTests2.png">
+
+ErrorsSystemTest: Esta prueba está orientada a validar el comportamiento del sistema ante errores controlados y respuestas excepcionales. Evalúa cómo el backend maneja situaciones comunes de fallo en la autenticación y registro de usuarios, asegurando que las respuestas sean coherentes, informativas y con el formato estándar definido en la clase GlobalExceptionHandler.
+Los escenarios principales incluyen:
+- Inicio de sesión con credenciales incorrectas: el sistema debe responder con un código 401 Unauthorized y un mensaje "Credenciales inválidas".
+- Registro con un correo electrónico ya existente: la aplicación debe devolver una respuesta 400 o 409, indicando claramente el motivo del error.
+
+De esta forma, se valida la robustez del sistema ante entradas no válidas o conflictos, garantizando una comunicación clara y predecible con el cliente o frontend.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("System: Errores comunes (401, 400/409)")
+class ErrorsSystemTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+   @Autowired
+   RoleRepository roleRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   private static String dni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   @BeforeEach
+   void seedRoles() {
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("PATIENT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ATTENDANT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ADMINISTRATOR");
+           roleRepository.save(r);
+       }
+   }
+
+
+   @Test
+   @DisplayName("Login con password incorrecta → 401")
+   void login_bad_password_401() throws Exception {
+       String email = "sys.err@example.com";
+       String registerBody = """
+               {
+                 "firstName": "A",
+                 "lastName": "B",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Correcta1!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 21,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(dni(), email);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(registerBody))
+               .andExpect(status().isOk());
+
+
+       String badLogin = """
+               {
+                 "email": "%s",
+                 "password": "incorrecta"
+               }
+               """.formatted(email);
+
+
+       mvc.perform(post("/auth/login").contentType(JSON).content(badLogin))
+               .andExpect(status().isUnauthorized());
+   }
+
+
+   @Test
+   @DisplayName("Registro con email duplicado → 400/409")
+   void register_duplicate_email_returns_400_or_409() throws Exception {
+       String email = "sys.dup@example.com";
+
+
+       String body1 = """
+               {
+                 "firstName": "X",
+                 "lastName": "Y",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(dni(), email);
+
+
+       String body2 = """
+               {
+                 "firstName": "X",
+                 "lastName": "Y",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(dni(), email);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(body1))
+               .andExpect(status().isOk());
+
+
+       var dup = mvc.perform(post("/auth/register").contentType(JSON).content(body2))
+               .andReturn();
+
+
+       int sc = dup.getResponse().getStatus();
+       assertThat(sc).isIn(400, 409);
+   }
+}
+```
+<img src="Images/SystemTests3.png">
+
 <a id="6-2-static-testing-verification"></a>
 ## 6.2. Static testing & Verification
+
+
+
 <a id="6-2-1-static-code-analysis"></a>
 ### 6.2.1. Static Code Analysis
 <a id="6-2-1-1-coding-standard-code-conventions"></a>
@@ -4548,22 +5028,125 @@ Test:
 ## 7.1. Continuous Integration
 <a id="7-1-1-tools-and-practices"></a>
 ### 7.1.1. Tools and Practices.
+
+Para TukunTech, utilizamos herramientas como Jenkins, GitHub Actions y Travis CI para implementar Integración Continua (CI). Estas herramientas permiten automatizar la integración de cambios al repositorio de código de forma continua, ejecutando pruebas automáticamente y asegurando que el código siempre esté en un estado funcional antes de ser integrado.
+Herramientas:
+- Jenkins: Utilizado para configurar pipelines de CI que se ejecutan cada vez que un desarrollador sube un cambio al repositorio. Jenkins ejecuta pruebas automáticas y valida la compilación del proyecto.
+
+
+- GitHub Actions: Integra GitHub con pipelines de CI/CD para garantizar que las pruebas y el despliegue se gestionen de manera continua.
+
+
+- Travis CI: Utilizado para verificar la calidad del código, ejecutar pruebas y realizar despliegues automáticos al entorno de staging.
+
+
+Prácticas de CI:
+- Automatización de pruebas: Cada vez que un desarrollador sube código nuevo, se ejecutan pruebas unitarias y de integración para garantizar que las nuevas modificaciones no rompan las funcionalidades existentes.
+
+
+- Revisión continua de código: Utilizamos Pull Requests para revisar el código antes de ser integrado a la rama principal, asegurando calidad y consistencia.
+
+
 <a id="7-1-2-build-test-suite-pipeline-components"></a>
 ### 7.1.2. Build & Test Suite Pipeline Components.
+
+El pipeline de construcción y pruebas de TukunTech se divide en varios componentes que garantizan que el código esté libre de errores antes de su integración al entorno de producción:
+1. Componente de Construcción (Build Component):
+  - El código fuente se compila y empaqueta automáticamente cada vez que se integra un nuevo cambio al repositorio.
+  - Utilizamos Maven y Gradle para gestionar las dependencias y crear la aplicación.
+
+
+2. Componente de Pruebas Unitarias (Unit Test Component):
+  - Se ejecutan pruebas unitarias mediante JUnit y Mockito para asegurar que cada módulo del software funcione de manera independiente.
+
+3. Componente de Pruebas de Integración (Integration Test Component):
+  - Se realizan pruebas de integración para verificar que las diferentes partes del sistema interactúan correctamente. Estas pruebas se gestionan mediante Selenium y Cucumber.
+
+
+4. Componente de Análisis Estático (Static Analysis Component):
+  - SonarQube se integra al pipeline para realizar un análisis estático del código, buscando errores de estilo, vulnerabilidades de seguridad y problemas de calidad del código.
+
+
+5. Componente de Despliegue (Deployment Component):
+  - Después de pasar todas las pruebas, el código es desplegado automáticamente en un entorno de pruebas (staging) usando Docker y Kubernetes.
+
 
 <a id="7-2-continuous-delivery"></a>
 ## 7.2. Continuous Delivery
 <a id="7-2-1-tools-and-practices"></a>
 ### 7.2.1. Tools and Practices.
+
+Para TukunTech, implementamos Entrega Continua (CD) utilizando Jenkins y CircleCI como herramientas clave para automatizar el proceso de despliegue. Estas herramientas permiten que cualquier cambio aprobado se despliegue automáticamente en los entornos de staging y producción sin intervención manual.
+<img src="Images/ToolsPractices1.png">
+
+Herramientas:
+- Jenkins: Se configura para hacer despliegues automáticos cada vez que un cambio pasa todas las pruebas.
+
+
+- Docker: Utilizamos Docker para empaquetar la aplicación en contenedores, lo que facilita el despliegue en diferentes entornos.
+
+
+- Kubernetes: Nos permite gestionar el ciclo de vida de las aplicaciones y realizar despliegues de manera escalable.
+
+
+Prácticas de CD:
+- Despliegue Automatizado: Cada vez que un cambio pasa las pruebas, se despliega automáticamente en el entorno de staging y producción.
+
+
+- Despliegue Gradual: Los cambios se despliegan en etapas para asegurar que no afecten a toda la base de usuarios. Utilizamos canary releases y blue-green deployments para minimizar riesgos.
+
+
 <a id="7-2-2-stages-deployment-pipeline-components"></a>
 ### 7.2.2. Stages Deployment Pipeline Components.
+
+El pipeline de despliegue de TukunTech está dividido en múltiples etapas para asegurar que cada componente se despliegue correctamente sin afectar el servicio. Estas etapas son:
+1. Desarrollo: En esta etapa, los desarrolladores realizan cambios en el código. Los cambios son verificados y probados localmente antes de ser integrados al repositorio.
+
+
+2. Integración Continua: Aquí se realiza la integración de todos los cambios a través del pipeline de CI, donde se ejecutan las pruebas unitarias y de integración.
+
+
+3. Pruebas en Staging: En esta etapa, el código es desplegado automáticamente en un entorno de staging para realizar pruebas de aceptación de usuario (UAT) y validación del sistema.
+
+
+4. Despliegue en Producción: Después de pasar las pruebas de staging, el código es desplegado automáticamente en el entorno de producción. Utilizamos Kubernetes para orquestar el despliegue y escalar las aplicaciones según sea necesario.
 
 <a id="7-3-continuous-deployment"></a>
 ## 7.3. Continuous deployment
 <a id="7-3-1-tools-and-practices"></a>
 ### 7.3.1. Tools and Practices.
+
+En TukunTech, aplicamos Despliegue Continuo (CD) para garantizar que los cambios sean desplegados automáticamente en producción sin intervención manual. Esto asegura una entrega más rápida y frecuente de nuevas funcionalidades.
+Herramientas:
+- Docker: Para asegurar que todos los entornos de desarrollo, staging y producción sean consistentes.
+
+
+- Kubernetes: Se utiliza para gestionar el despliegue en producción, automatizando el escalado y la gestión de contenedores.
+
+
+- AWS Lambda: En algunos casos, utilizamos AWS Lambda para realizar tareas de backend sin servidores, reduciendo costos y aumentando la eficiencia.
+
+
+Prácticas de CD:
+- Despliegue 24/7: Cada vez que un cambio es validado y aprobado, se despliega automáticamente en producción, garantizando que los usuarios siempre tengan la última versión del producto.
+
+
+- Monitoreo Post-Despliegue: Utilizamos herramientas de monitoreo como Prometheus y Grafana para asegurar que el sistema funcione correctamente después de cada despliegue y para detectar rápidamente cualquier problema.
+
 <a id="7-3-2-production-deployment-pipeline-components"></a>
 ### 7.3.2. Production Deployment Pipeline Components.
+
+El pipeline de despliegue en producción se compone de varias fases críticas:
+1. Despliegue en Entorno de Staging: Después de pasar las pruebas automatizadas, el código es desplegado primero en el entorno de staging, que replica la infraestructura de producción.
+
+
+2. Validación de UAT (User Acceptance Testing): Los usuarios clave validan el funcionamiento del sistema en staging antes de que el código sea liberado a producción.
+
+
+3. Despliegue Automático a Producción: Después de la validación, el código se despliega automáticamente en producción. Utilizamos blue-green deployments para reducir el tiempo de inactividad y minimizar los riesgos.
+
+
+4. Monitoreo en Producción: Una vez en producción, el sistema es monitoreado constantemente. Si se detecta un error crítico, se activa automáticamente un rollback para revertir al último estado funcional.
 
 <a id="7-4-continuous-monitoring"></a>
 ## 7.4. Continuous Monitoring

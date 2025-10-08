@@ -98,6 +98,7 @@
 | 1.2     | 2025-09-19  | Jave Chang Alejandro Manuel                                                                                                           | Creación de wireframes.                                                                     |
 | 1.3     | 2025-09-19  | Agama Espinoza Eric Fabrizio                                                                                                          | Elaboración de entrevistas, redacción y consolidación del informe.                          |
 | 1.4     | 2025-09-19  | Maraza Pedemonte Erick<br>Palomares Chavez Adriana Giovanna<br>Soto Zorrilla Oscar Eduardo<br>Jave Chang Alejandro Manuel<br>Agama Espinoza Eric Fabrizio | Revisión conjunta del documento, correcciones finales y validación de la versión entregable. |
+| 1.5     | 2025-10-07  | Maraza Pedemonte Erick<br>Palomares Chavez Adriana Giovanna<br>Soto Zorrilla Oscar Eduardo<br>Jave Chang Alejandro Manuel<br>Agama Espinoza Eric Fabrizio | Revisión conjunta del documento, correcciones de la anterior entrega y elaboracion del Capítulo VI y Capítulo VII. |
 
 </div>
 

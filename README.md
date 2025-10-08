@@ -207,6 +207,47 @@ URL del repositorio para el proyecto: [Link](https://github.com/TukunTech-Experi
     - [5.2.7. RESTful API documentation](#5-2-7-restful-api-documentation)
     - [5.2.8. Team Collaboration Insights](#5-2-8-team-collaboration-insights)
   - [5.3. Video About-the-Product.](#5-3-video-about-the-product)
+ - [Part II: Verification, Validation & Pipeline](#part-ii-verification-validation-pipeline)
+   - [Capítulo VI: Product Verification & Validation](#capitulo-vi-product-verification-validation)
+     - [6.1. Testing Suites & Validation](#6-1-testing-suites-validation)
+       - [6.1.1. Core Entities Unit Tests.](#6-1-1-core-entities-unit-tests)
+       - [6.1.2. Core Integration Tests.](#6-1-2-core-integration-tests)
+       - [6.1.3. Core Behavior-Driven Development](#6-1-3-core-behavior-driven-development)
+       - [6.1.4. Core System Tests.](#6-1-4-core-system-tests)
+     - [6.2. Static testing & Verification](#6-2-static-testing-verification)
+       - [6.2.1. Static Code Analysis](#6-2-1-static-code-analysis)
+         - [6.2.1.1. Coding standard & Code conventions.](#6-2-1-1-coding-standard-code-conventions)
+         - [6.2.1.2. Code Quality & Code Security.](#6-2-1-2-code-quality-code-security)
+       - [6.2.2. Reviews](#6-2-2-reviews)
+     - [6.3. Validation Interviews.](#6-3-validation-interviews)
+       - [6.3.1. Diseño de Entrevistas.](#6-3-1-diseno-de-entrevistas)
+       - [6.3.2. Registro de Entrevistas.](#6-3-2-registro-de-entrevistas)
+       - [6.3.3. Evaluaciones según heurísticas.](#6-3-3-evaluaciones-segun-heuristicas)
+     - [6.4. Auditoría de Experiencias de Usuario](#6-4-auditoria-de-experiencias-de-usuario)
+       - [6.4.1. Auditoría realizada.](#6-4-1-auditoria-realizada)
+         - [6.4.1.1. Información del grupo auditado.](#6-4-1-1-informacion-del-grupo-auditado)
+         - [6.4.1.2. Cronograma de auditoría realizada.](#6-4-1-2-cronograma-de-auditoria-realizada)
+         - [6.4.1.3. Contenido de auditoría realizada.](#6-4-1-3-contenido-de-auditoria-realizada)
+       - [6.4.2. Auditoría recibida.](#6-4-2-auditoria-recibida)
+         - [6.4.2.1. Información del grupo auditor.](#6-4-2-1-informacion-del-grupo-auditor)
+         - [6.4.2.2. Cronograma de auditoría recibida.](#6-4-2-2-cronograma-de-auditoria-recibida)
+         - [6.4.2.3. Contenido de auditoría recibida.](#6-4-2-3-contenido-de-auditoria-recibida)
+         - [6.4.2.4. Resumen de modificaciones para subsanar hallazgos.](#6-4-2-4-resumen-de-modificaciones-para-subsanar-hallazgos)
+   - [Capítulo VII: DevOps Practices](#capitulo-vii-devops-practices)
+     - [7.1. Continuous Integration](#7-1-continuous-integration)
+       - [7.1.1. Tools and Practices.](#7-1-1-tools-and-practices)
+       - [7.1.2. Build & Test Suite Pipeline Components.](#7-1-2-build-test-suite-pipeline-components)
+     - [7.2. Continuous Delivery](#7-2-continuous-delivery)
+       - [7.2.1. Tools and Practices.](#7-2-1-tools-and-practices)
+       - [7.2.2. Stages Deployment Pipeline Components.](#7-2-2-stages-deployment-pipeline-components)
+     - [7.3. Continuous deployment](#7-3-continuous-deployment)
+       - [7.3.1. Tools and Practices.](#7-3-1-tools-and-practices)
+       - [7.3.2. Production Deployment Pipeline Components.](#7-3-2-production-deployment-pipeline-components)
+     - [7.4. Continuous Monitoring](#7-4-continuous-monitoring)
+       - [7.4.1. Tools and Practices](#7-4-1-tools-and-practices)
+       - [7.4.2. Monitoring Pipeline Components](#7-4-2-monitoring-pipeline-components)
+       - [7.4.3. Alerting Pipeline Components](#7-4-3-alerting-pipeline-components)
+       - [7.4.4. Notification Pipeline Components.](#7-4-4-notification-pipeline-components)
 
 <a id="capitulo-i-introduccion"></a>
 # Capítulo I: Introducción
@@ -3030,6 +3071,2040 @@ El desarrollo de **TukunTech** se realizó bajo un enfoque colaborativo, siguien
 
 <a id="5-3-video-about-the-product"></a>
 ## 5.3. Video About-the-Product.
+
+<a id="part-ii-verification-validation-pipeline"></a>
+# Part II: Verification, Validation & Pipeline
+
+<a id="capitulo-vi-product-verification-validation"></a>
+# Capítulo VI: Product Verification & Validation
+
+<a id="6-1-testing-suites-validation"></a>
+## 6.1. Testing Suites & Validation
+
+En esta sección se detalla el conjunto de pruebas implementadas para garantizar la calidad, confiabilidad y correcto funcionamiento del sistema desarrollado.
+Las pruebas fueron diseñadas y ejecutadas siguiendo una estrategia incremental, iniciando desde la validación de las entidades centrales (unit tests) hasta la verificación del comportamiento completo del sistema en escenarios reales (system tests).
+El enfoque adoptado combina pruebas unitarias, pruebas de integración, pruebas de comportamiento (BDD) y pruebas de sistema, cubriendo así los distintos niveles de aseguramiento de calidad:
+- Unitarias: verifican la correcta funcionalidad interna de las entidades principales (User, Role, Session, Permission), asegurando que los métodos y validaciones individuales operen conforme a lo esperado.
+- Integración: evalúan la interacción entre componentes, como la comunicación entre controladores, servicios y repositorios, garantizando que los flujos del backend funcionen correctamente y que la seguridad (roles, autenticación y CORS) se mantenga operativa.
+- Behavior-Driven Development (BDD): modelan el comportamiento del sistema desde la perspectiva del usuario, empleando la estructura Given–When–Then para representar escenarios funcionales clave, como el registro y autenticación de usuarios.
+- Sistema: validan el funcionamiento completo del sistema en un entorno de prueba con seguridad activa, comprobando flujos de extremo a extremo (E2E), incluyendo registro, inicio de sesión, refresco y cierre de sesión, así como control de acceso por roles y manejo de errores globales.
+
+Gracias a esta suite de pruebas, se logró verificar que las funcionalidades principales del sistema son estables, seguras y coherentes con los requerimientos definidos, reduciendo el riesgo de defectos durante las etapas de despliegue y operación.
+
+<a id="6-1-1-core-entities-unit-tests"></a>
+### 6.1.1. Core Entities Unit Tests.
+
+El objetivo de estas pruebas fue verificar de manera aislada el correcto funcionamiento de los modelos de datos y sus atributos, asegurando que las clases principales cumplan con los requerimientos de integridad, consistencia y validación definidos en el diseño del dominio.
+Las pruebas se basaron en la metodología AAA (Arrange–Act–Assert), estructurando cada caso para preparar los datos de entrada, ejecutar la operación a validar y comprobar los resultados esperados.
+De esta manera, se garantizaron aspectos como:
+- La correcta creación y asignación de valores en los modelos (UserEntity, RoleEntity, SessionEntity, PermissionEntity).
+- El cumplimiento de restricciones y validaciones en campos críticos (como email, dni, password, entre otros).
+- La integridad de relaciones entre entidades (por ejemplo, la asociación de roles y permisos con los usuarios).
+Estas pruebas unitarias sirvieron como la base de validación inicial del sistema, permitiendo identificar y corregir errores en las estructuras de datos antes de proceder con las fases de integración y pruebas de sistema.
+
+1. UserEntityTest: Esta prueba valida la creación correcta de un objeto UserEntity y la asignación adecuada de todos sus atributos. Se comprueba que los campos obligatorios (dni, email, password, age, etc.) sean asignados correctamente y que los valores por defecto, como enabled = true, estén activos. Además, se asegura que las enumeraciones (Gender, BloodGroup, Nationality, Allergy) sean interpretadas correctamente y que las relaciones con los roles (```Set<RoleEntity>```) se inicialicen sin errores. El caso de prueba utiliza la estructura AAA (Arrange–Act–Assert) para validar que el método getter retorne los datos esperados y que el objeto sea válido.
+
+```java
+@DisplayName("Validación y comportamiento de la entidad UserEntity")
+class UserEntityTest {
+
+   private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+   private UserEntity buildValidUser() {
+       UserEntity user = new UserEntity();
+       user.setId(1L);
+       user.setFirstName("Ana");
+       user.setLastName("Pérez");
+       user.setDni("12345678");
+       user.setEmail("ana.perez@example.com");
+       user.setPassword("$2a$10$abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwxabcd12");
+       user.setGender(Gender.FEMALE);
+       user.setAge(25);
+       user.setBloodGroup(BloodGroup.O_POSITIVE);
+       user.setNationality(Nationality.PERUVIAN);
+       user.setAllergy(Allergy.NONE);
+       user.setEnabled(true);
+       return user;
+   }
+
+   @DisplayName("Debería crear un usuario válido cuando los datos son correctos")
+   @Test
+   void testCreateUserWithValidData() {
+       // Arrange
+       UserEntity user = buildValidUser();
+
+
+       // Act
+       Set<ConstraintViolation<UserEntity>> violations = validator.validate(user);
+
+
+       // Assert
+       assertThat(violations).isEmpty();
+   }
+
+   @DisplayName("No debería validar un usuario con email inválido")
+   @Test
+   void testUserWithInvalidEmailShouldFailValidation() {
+       // Arrange
+       UserEntity user = buildValidUser();
+       user.setEmail("no-es-email");
+
+       // Act
+       Set<ConstraintViolation<UserEntity>> violations = validator.validate(user);
+
+       // Assert
+       assertThat(violations)
+               .anyMatch(v -> v.getPropertyPath().toString().equals("email"));
+   }
+
+   @DisplayName("No debería validar un usuario con nombres vacíos")
+   @Test
+   void testUserWithBlankNamesShouldFailValidation() {
+       // Arrange
+       UserEntity user = buildValidUser();
+       user.setFirstName("   ");
+       user.setLastName("");
+
+       // Act
+       Set<ConstraintViolation<UserEntity>> violations = validator.validate(user);
+
+       // Assert
+       assertThat(violations)
+               .anyMatch(v -> v.getPropertyPath().toString().equals("firstName"))
+               .anyMatch(v -> v.getPropertyPath().toString().equals("lastName"));
+   }
+
+   @DisplayName("No debería validar un usuario con edad fuera de rango")
+   @Test
+   void testUserWithInvalidAgeShouldFailValidation() {
+       // Arrange
+       UserEntity user = buildValidUser();
+       user.setAge(-5);
+
+       // Act
+       Set<ConstraintViolation<UserEntity>> violations = validator.validate(user);
+
+       // Assert
+       assertThat(violations)
+               .anyMatch(v -> v.getPropertyPath().toString().equals("age"));
+   }
+
+   @DisplayName("El método normalize() debería formatear email y eliminar espacios")
+   @Test
+   void testNormalizeShouldTrimAndLowercaseFields() throws Exception {
+       // Arrange
+       UserEntity user = buildValidUser();
+       user.setEmail("  ANA.PEREZ@EXAMPLE.COM ");
+       user.setFirstName("  Ana  ");
+       user.setLastName("  Pérez ");
+       user.setDni("  12345678  ");
+       Method normalizeMethod = UserEntity.class.getDeclaredMethod("normalize");
+       normalizeMethod.setAccessible(true);
+
+       // Act
+       normalizeMethod.invoke(user);
+
+       // Assert
+       assertThat(user.getEmail()).isEqualTo("ana.perez@example.com");
+       assertThat(user.getFirstName()).isEqualTo("Ana");
+       assertThat(user.getLastName()).isEqualTo("Pérez");
+       assertThat(user.getDni()).isEqualTo("12345678");
+   }
+
+   @DisplayName("El método toString() no debería mostrar el campo password")
+   @Test
+   void testToStringShouldNotExposePassword() {
+       // Arrange
+       UserEntity user = buildValidUser();
+
+       // Act
+       String userString = user.toString();
+
+       // Assert
+       assertThat(userString.toLowerCase(Locale.ROOT))
+               .doesNotContain("password")
+               .doesNotContain(user.getPassword());
+   }
+
+   @DisplayName("Dos usuarios con el mismo ID deberían ser iguales")
+   @Test
+   void testEqualsAndHashCodeWhenSameId() {
+       // Arrange
+       UserEntity userA = buildValidUser();
+       UserEntity userB = buildValidUser();
+       userA.setId(1L);
+       userB.setId(1L);
+
+       // Act
+       boolean result = userA.equals(userB);
+
+       // Assert
+       assertThat(result).isTrue();
+       assertThat(userA.hashCode()).isEqualTo(userB.hashCode());
+   }
+
+   @DisplayName("Dos usuarios con ID diferentes no deberían ser iguales")
+   @Test
+   void testEqualsAndHashCodeWhenDifferentId() {
+       // Arrange
+       UserEntity userA = buildValidUser();
+       UserEntity userB = buildValidUser();
+       userA.setId(1L);
+       userB.setId(2L);
+
+       // Act
+       boolean result = userA.equals(userB);
+
+       // Assert
+       assertThat(result).isFalse();
+   }
+}
+```
+<img src="Images/test1.png">
+<br>
+2. RoleEntityTest: Esta prueba evalúa la entidad RoleEntity, verificando la creación de roles y su correcta relación con los permisos del sistema. Se comprueba que el nombre del rol (name) se almacene correctamente, que sea único y que la colección de permisos (```Set<PermissionEntity>```) pueda contener múltiples valores sin conflictos. El test también asegura que la configuración de la relación ManyToMany esté operativa y consistente con las reglas de persistencia establecidas.
+
+```java
+@DisplayName("Validación y comportamiento de la entidad RoleEntity")
+class RoleEntityTest {
+   private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+
+   private RoleEntity buildValidRole() {
+       RoleEntity role = new RoleEntity();
+       role.setId(1);
+       role.setName("ADMINISTRATOR");
+       role.setPermissions(new HashSet<>());
+       return role;
+   }
+
+
+   private PermissionEntity perm(String name) {
+       PermissionEntity p = new PermissionEntity();
+       p.setName(name);
+       return p;
+   }
+
+
+   @DisplayName("Debería validar un rol cuando los datos son correctos")
+   @Test
+   void should_PassValidation_When_RoleIsValid() {
+       // Arrange
+       RoleEntity role = buildValidRole();
+
+
+       // Act
+       Set<ConstraintViolation<RoleEntity>> violations = validator.validate(role);
+
+
+       // Assert
+       assertThat(violations).isEmpty();
+   }
+
+
+   @DisplayName("No debería validar un rol con nombre en blanco (si @NotBlank está presente)")
+   @Test
+   void should_FailValidation_When_NameIsBlank() {
+       // Arrange
+       RoleEntity role = buildValidRole();
+       role.setName("   ");
+
+
+       // Act
+       Set<ConstraintViolation<RoleEntity>> violations = validator.validate(role);
+
+
+       // Assert
+       assertThat(violations)
+               .anyMatch(v -> v.getPropertyPath().toString().equals("name"));
+   }
+
+
+   @DisplayName("normalize(): debería TRIM y upper-case al nombre")
+   @Test
+   void should_NormalizeName_When_PrePersistOrUpdate() throws Exception {
+       // Arrange
+       RoleEntity role = buildValidRole();
+       role.setName("  admin istrator  ");
+       Method normalize = RoleEntity.class.getDeclaredMethod("normalize");
+       normalize.setAccessible(true);
+
+
+       // Act
+       normalize.invoke(role);
+
+
+       // Assert
+       assertThat(role.getName()).isEqualTo("ADMIN ISTRATOR".toUpperCase());
+   }
+
+
+   @DisplayName("El rol debería contener los permisos asignados")
+   @Test
+   void should_ContainAssignedPermissions() {
+       // Arrange
+       RoleEntity role = buildValidRole();
+       PermissionEntity read = perm("PERM_USER_READ");
+       PermissionEntity write = perm("PERM_USER_WRITE");
+
+
+       // Act
+       role.getPermissions().add(read);
+       role.getPermissions().add(write);
+
+
+       // Assert
+       assertThat(role.getPermissions())
+               .extracting(PermissionEntity::getName)
+               .containsExactlyInAnyOrder("PERM_USER_READ", "PERM_USER_WRITE");
+   }
+
+
+   @DisplayName("No debería duplicar permisos iguales (Set + equals/hashCode por name)")
+   @Test
+   void should_NotDuplicateSamePermission() throws Exception {
+       // Arrange
+       RoleEntity role = buildValidRole();
+       PermissionEntity read1 = perm("  perm_user_read ");
+       PermissionEntity read2 = perm("PERM_USER_READ");
+
+
+       // Act
+       Method normPerm = PermissionEntity.class.getDeclaredMethod("normalize");
+       normPerm.setAccessible(true);
+       normPerm.invoke(read1);
+       normPerm.invoke(read2);
+
+
+       role.getPermissions().add(read1);
+       role.getPermissions().add(read2);
+
+
+       // Assert
+       assertThat(role.getPermissions()).hasSize(1);
+       assertThat(role.getPermissions().iterator().next().getName()).isEqualTo("PERM_USER_READ");
+   }
+
+
+   @DisplayName("Dos roles con el mismo ID deberían ser iguales")
+   @Test
+   void should_ConsiderEqual_When_SameId() {
+       // Arrange
+       RoleEntity a = buildValidRole(); a.setId(10);
+       RoleEntity b = buildValidRole(); b.setId(10);
+
+
+       // Act
+       boolean areEqual = a.equals(b);
+       int hashA = a.hashCode();
+       int hashB = b.hashCode();
+
+
+       // Assert
+       assertThat(areEqual).isTrue();
+       assertThat(hashA).isEqualTo(hashB);
+   }
+
+
+   @DisplayName("Dos roles con distinto ID no deberían ser iguales")
+   @Test
+   void should_ConsiderDifferent_When_DifferentId() {
+       // Arrange
+       RoleEntity a = buildValidRole(); a.setId(10);
+       RoleEntity b = buildValidRole(); b.setId(11);
+
+
+       // Act
+       boolean areEqual = a.equals(b);
+
+
+       // Assert
+       assertThat(areEqual).isFalse();
+   }
+
+
+   @DisplayName("Se puede reemplazar el Set de permisos de forma segura")
+   @Test
+   void should_ReplacePermissionsSet_Safely() {
+       // Arrange
+       RoleEntity role = buildValidRole();
+       Set<PermissionEntity> first = new HashSet<>();
+       first.add(perm("PERM_A"));
+       role.setPermissions(first);
+
+
+       // Act
+       Set<PermissionEntity> replacement = new HashSet<>();
+       replacement.add(perm("PERM_B"));
+       role.setPermissions(replacement);
+
+
+       // Assert
+       assertThat(role.getPermissions())
+               .extracting(PermissionEntity::getName)
+               .containsExactly("PERM_B");
+   }
+}
+```
+<img src="Images/test2.png">
+<br>
+
+3. PermissionEntityTest: En este caso se evalúa la entidad PermissionEntity, comprobando la creación de permisos únicos y el cumplimiento de las restricciones de longitud y unicidad del campo name. La prueba garantiza que los permisos puedan ser utilizados en las relaciones con los roles sin generar errores de integridad ni conflictos en la base de datos.
+```java
+@DisplayName("Validación y comportamiento de PermissionEntity (AAA)")
+class PermissionEntityTest {
+   private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+
+   private PermissionEntity buildValid() {
+       PermissionEntity p = new PermissionEntity();
+       p.setName("PERM_DEVICE_READ");
+       return p;
+   }
+
+
+   @DisplayName("Debería validar una permisión válida")
+   @Test
+   void should_PassValidation_When_PermissionIsValid() {
+       // Arrange
+       PermissionEntity p = buildValid();
+
+
+       // Act
+       Set<ConstraintViolation<PermissionEntity>> v = validator.validate(p);
+
+
+       // Assert
+       assertThat(v).isEmpty();
+   }
+
+
+   @DisplayName("No debería validar una permisión con nombre en blanco")
+   @Test
+   void should_FailValidation_When_NameIsBlank() {
+       // Arrange
+       PermissionEntity p = buildValid();
+       p.setName("   ");
+
+
+       // Act
+       Set<ConstraintViolation<PermissionEntity>> v = validator.validate(p);
+
+
+       // Assert
+       assertThat(v).anyMatch(cv -> cv.getPropertyPath().toString().equals("name"));
+   }
+
+
+   @DisplayName("normalize(): debería TRIM y upper-case al nombre")
+   @Test
+   void should_NormalizeName_OnPrePersistOrUpdate() throws Exception {
+       // Arrange
+       PermissionEntity p = new PermissionEntity();
+       p.setName("  perm_user_read ");
+
+
+       Method normalize = PermissionEntity.class.getDeclaredMethod("normalize");
+       normalize.setAccessible(true);
+
+
+       // Act
+       normalize.invoke(p);
+
+
+       // Assert
+       assertThat(p.getName()).isEqualTo("PERM_USER_READ");
+   }
+
+
+   @DisplayName("Dos permissions con el mismo name deberían ser iguales")
+   @Test
+   void should_BeEqual_When_SameName() throws Exception {
+       // Arrange
+       PermissionEntity p1 = new PermissionEntity(); p1.setName(" perm_user_read ");
+       PermissionEntity p2 = new PermissionEntity(); p2.setName("PERM_USER_READ");
+
+
+       Method normalize = PermissionEntity.class.getDeclaredMethod("normalize");
+       normalize.setAccessible(true);
+       normalize.invoke(p1);
+       normalize.invoke(p2);
+
+
+       // Act
+       boolean equals = p1.equals(p2);
+
+
+       // Assert
+       assertThat(equals).isTrue();
+       assertThat(p1.hashCode()).isEqualTo(p2.hashCode());
+   }
+
+
+}
+```
+<img src="Images/test3.png">
+<br>
+
+4. SessionEntityTest: Esta prueba está enfocada en validar el comportamiento de la entidad SessionEntity, la cual gestiona las sesiones activas de los usuarios. Se evalúa la correcta inicialización de los campos UUID, los tiempos de expiración (accessExpiresAt, refreshExpiresAt) y los metadatos de auditoría (createdAt, updatedAt). Además, se valida el método @PreUpdate, comprobando que el campo updatedAt se actualiza automáticamente al realizar modificaciones sobre una sesión existente.
+```java
+@DisplayName("Validación y reglas de negocio de SessionEntity")
+class SessionEntityTest {
+   private static final Validator validator = Validation.buildDefaultValidatorFactory().getValidator();
+
+
+   private UserEntity stubUser(Long id) {
+       UserEntity u = new UserEntity();
+       u.setId(id);
+       u.setFirstName("Ana");
+       u.setLastName("Pérez");
+       u.setDni("12345678");
+       u.setEmail("ana.perez@example.com");
+       u.setPassword("$2a$10$abcdefghijklmnopqrstuvwxabcdefghijklmnopqrstuvwxabcd12");
+       u.setGender(Gender.FEMALE);
+       u.setAge(25);
+       u.setBloodGroup(BloodGroup.O_POSITIVE);
+       u.setNationality(Nationality.PERUVIAN);
+       u.setEnabled(true);
+       return u;
+   }
+
+
+   private SessionEntity buildValidSession() {
+       SessionEntity s = new SessionEntity();
+       s.setId(UUID.randomUUID());
+       s.setUser(stubUser(1L));
+       s.setRefreshTokenHash("refresh-hash-demo");
+       s.setAccessExpiresAt(Instant.now().plusSeconds(3600));
+       s.setRefreshExpiresAt(Instant.now().plusSeconds(30 * 24 * 3600));
+       s.setActive(true);
+       s.setIp("127.0.0.1");
+       s.setUserAgent("JUnit");
+       s.setCreatedAt(Instant.now());
+       s.setUpdatedAt(Instant.now());
+       return s;
+   }
+
+
+   @DisplayName("Debería pasar validación cuando la sesión es válida")
+   @Test
+   void should_PassValidation_When_SessionIsValid() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+
+
+       // Act
+       Set<ConstraintViolation<SessionEntity>> v = validator.validate(s);
+
+
+       // Assert
+       assertThat(v).isEmpty();
+   }
+
+
+   @DisplayName("No debería validar cuando user es null")
+   @Test
+   void should_FailValidation_When_UserIsNull() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       s.setUser(null);
+
+
+       // Act
+       Set<ConstraintViolation<SessionEntity>> v = validator.validate(s);
+
+
+       // Assert
+       assertThat(v).anyMatch(cv -> cv.getPropertyPath().toString().equals("user"));
+   }
+
+
+   @DisplayName("No debería validar cuando refreshTokenHash está en blanco")
+   @Test
+   void should_FailValidation_When_RefreshTokenHashBlank() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       s.setRefreshTokenHash("   ");
+
+
+       // Act
+       Set<ConstraintViolation<SessionEntity>> v = validator.validate(s);
+
+
+       // Assert
+       assertThat(v).anyMatch(cv -> cv.getPropertyPath().toString().equals("refreshTokenHash"));
+   }
+
+
+   @DisplayName("No debería validar cuando las fechas de expiración son null")
+   @Test
+   void should_FailValidation_When_ExpiresAreNull() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       s.setAccessExpiresAt(null);
+       s.setRefreshExpiresAt(null);
+
+
+       // Act
+       Set<ConstraintViolation<SessionEntity>> v = validator.validate(s);
+
+
+       // Assert
+       assertThat(v)
+               .anyMatch(cv -> cv.getPropertyPath().toString().equals("accessExpiresAt"))
+               .anyMatch(cv -> cv.getPropertyPath().toString().equals("refreshExpiresAt"));
+   }
+
+
+   @DisplayName("isAccessExpired: debería ser true cuando accessExpiresAt ya pasó")
+   @Test
+   void should_ReturnTrueIsAccessExpired_When_AccessTimeInPast() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       s.setAccessExpiresAt(Instant.now().minusSeconds(1));
+
+
+       // Act
+       boolean expired = s.isAccessExpired(Instant.now());
+
+
+       // Assert
+       assertThat(expired).isTrue();
+   }
+
+
+   @DisplayName("isRefreshExpired: debería ser false cuando refresh aún no expira")
+   @Test
+   void should_ReturnFalseIsRefreshExpired_When_RefreshInFuture() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       s.setRefreshExpiresAt(Instant.now().plusSeconds(60));
+
+
+       // Act
+       boolean expired = s.isRefreshExpired(Instant.now());
+
+
+       // Assert
+       assertThat(expired).isFalse();
+   }
+
+
+   @DisplayName("canRefresh: true si sesión activa y refresh no expirado")
+   @Test
+   void should_AllowRefresh_When_ActiveAndRefreshValid() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       s.setActive(true);
+       s.setRefreshExpiresAt(Instant.now().plusSeconds(60));
+
+
+       // Act
+       boolean can = s.canRefresh(Instant.now());
+
+
+       // Assert
+       assertThat(can).isTrue();
+   }
+
+
+   @DisplayName("canRefresh: false si sesión inactiva o refresh expirado")
+   @Test
+   void should_DenyRefresh_When_InactiveOrRefreshExpired() {
+       // Arrange
+       SessionEntity inactive = buildValidSession();
+       inactive.setActive(false);
+
+
+       SessionEntity expired = buildValidSession();
+       expired.setRefreshExpiresAt(Instant.now().minusSeconds(1));
+
+
+       // Act
+       boolean canInactive = inactive.canRefresh(Instant.now());
+       boolean canExpired = expired.canRefresh(Instant.now());
+
+
+       // Assert
+       assertThat(canInactive).isFalse();
+       assertThat(canExpired).isFalse();
+   }
+
+
+   @DisplayName("revoke: debería marcar inactiva e informar revokedAt (idempotente)")
+   @Test
+   void should_RevokeSession_Idempotently() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+
+
+       // Act
+       s.revoke();
+       Instant firstRevokedAt = s.getRevokedAt();
+       boolean firstActive = s.getActive();
+
+
+       s.revoke();
+       Instant secondRevokedAt = s.getRevokedAt();
+       boolean secondActive = s.getActive();
+
+
+       // Assert
+       assertThat(firstActive).isFalse();
+       assertThat(secondActive).isFalse();
+       assertThat(firstRevokedAt).isNotNull();
+       assertThat(secondRevokedAt).isEqualTo(firstRevokedAt);
+   }
+
+
+   @DisplayName("@PrePersist: debería inicializar timestamps y normalizar campos")
+   @Test
+   void should_InitTimestampsAndNormalize_OnPrePersist() throws Exception {
+       // Arrange
+       SessionEntity s = new SessionEntity();
+       s.setId(null);
+       s.setUser(stubUser(1L));
+       s.setRefreshTokenHash("  hash  ");
+       s.setAccessExpiresAt(Instant.now().plusSeconds(1));
+       s.setRefreshExpiresAt(Instant.now().plusSeconds(60));
+       s.setActive(true);
+       s.setIp("  127.0.0.1  ");
+       s.setUserAgent("  junit  ");
+
+
+       Method prePersist = SessionEntity.class.getDeclaredMethod("prePersist");
+       prePersist.setAccessible(true);
+
+
+       // Act
+       prePersist.invoke(s);
+
+
+       // Assert
+       assertThat(s.getId()).isNotNull();
+       assertThat(s.getCreatedAt()).isNotNull();
+       assertThat(s.getUpdatedAt()).isNotNull();
+       assertThat(s.getRefreshTokenHash()).isEqualTo("hash");
+       assertThat(s.getIp()).isEqualTo("127.0.0.1");
+       assertThat(s.getUserAgent()).isEqualTo("junit");
+   }
+
+
+   @DisplayName("@PreUpdate: debería actualizar updatedAt y normalizar campos")
+   @Test
+   void should_UpdateUpdatedAtAndNormalize_OnPreUpdate() throws Exception {
+       // Arrange
+       SessionEntity s = buildValidSession();
+       Instant before = s.getUpdatedAt();
+       s.setIp("  LOCALHOST ");
+       s.setUserAgent("  Agent  ");
+       s.setRefreshTokenHash("  token  ");
+
+
+       Method preUpdate = SessionEntity.class.getDeclaredMethod("preUpdate");
+       preUpdate.setAccessible(true);
+
+
+       // Act
+       Thread.sleep(5);
+       preUpdate.invoke(s);
+
+
+       // Assert
+       assertThat(s.getUpdatedAt()).isAfter(before);
+       assertThat(s.getIp()).isEqualTo("localhost");
+       assertThat(s.getUserAgent()).isEqualTo("Agent");
+       assertThat(s.getRefreshTokenHash()).isEqualTo("token");
+   }
+
+
+   @DisplayName("toString: no debería exponer refreshTokenHash")
+   @Test
+   void should_NotLeakRefreshTokenHash_InToString() {
+       // Arrange
+       SessionEntity s = buildValidSession();
+
+
+       // Act
+       String txt = s.toString();
+
+
+       // Assert
+       assertThat(txt).doesNotContain("refreshTokenHash")
+               .doesNotContain(s.getRefreshTokenHash());
+   }
+
+
+   @DisplayName("equals/hashCode: dos sesiones con el mismo UUID deben ser iguales")
+   @Test
+   void should_ConsiderEqual_When_SameUUID() {
+       // Arrange
+       UUID id = UUID.randomUUID();
+       SessionEntity a = buildValidSession(); a.setId(id);
+       SessionEntity b = buildValidSession(); b.setId(id);
+
+
+       // Act
+       boolean eq = a.equals(b);
+
+
+       // Assert
+       assertThat(eq).isTrue();
+       assertThat(a.hashCode()).isEqualTo(b.hashCode());
+   }
+
+
+   @DisplayName("equals/hashCode: dos sesiones con distinto UUID no deben ser iguales")
+   @Test
+   void should_ConsiderDifferent_When_DifferentUUID() {
+       // Arrange
+       SessionEntity a = buildValidSession(); a.setId(UUID.randomUUID());
+       SessionEntity b = buildValidSession(); b.setId(UUID.randomUUID());
+
+
+       // Act
+       boolean eq = a.equals(b);
+
+
+       // Assert
+       assertThat(eq).isFalse();
+   }
+
+
+}
+```
+<img src="Images/test4.png">
+<br>
+
+<a id="6-1-2-core-integration-tests"></a>
+### 6.1.2. Core Integration Tests.
+
+En esta subsección se describen las pruebas de integración desarrolladas para verificar el correcto funcionamiento conjunto de los diferentes módulos del sistema.
+El objetivo principal fue asegurar la interacción fluida entre controladores, servicios, repositorios y componentes de seguridad, garantizando que el flujo de datos y las dependencias entre capas se mantienen coherentes bajo distintos escenarios de ejecución.
+Estas pruebas se realizaron en un entorno controlado con una base de datos de pruebas y un contexto de aplicación real de Spring Boot, utilizando MockMvc y el perfil test.
+A diferencia de las pruebas unitarias, aquí se ejecutó el sistema casi en su totalidad, evaluando la correcta comunicación entre capas y componentes clave.
+Los principales casos de integración desarrollados fueron los siguientes:
+- Prueba de autenticación (AuthIntegrationTest): Valida el flujo principal de registro, inicio de sesión y consulta del perfil del usuario (/auth/register, /auth/login, /auth/me), comprobando que la API responda correctamente a las credenciales válidas e inválidas.
+- Prueba de control de acceso por roles (RoleGatesIntegrationTest): Evalúa las restricciones de seguridad configuradas en la aplicación, garantizando que cada endpoint responda con el código HTTP adecuado según el rol del usuario (ADMINISTRATOR, ATTENDANT, PATIENT).
+- Se verifica el acceso permitido, denegado o no autorizado a rutas como /test/admin/ping, /test/attendant/ping y /test/patient/ping.
+- Prueba de políticas CORS (CorsIntegrationTest): Comprueba que la configuración CORS (Cross-Origin Resource Sharing) sea respetada por el sistema, permitiendo solicitudes legítimas desde orígenes autorizados y rechazando aquellas que provengan de orígenes no permitidos.
+- Prueba de mapeo de entidades JPA (JpaMappingsIntegrationTest): Verifica la correcta relación entre las entidades principales (User, Role y Permission), asegurando que las asociaciones ManyToMany y las operaciones de persistencia funcionen correctamente sin lanzar excepciones de carga diferida o problemas de integridad.<br>
+Estas pruebas de integración permitieron garantizar que los módulos del backend funcionaran de forma coordinada y confiable, simulando interacciones reales dentro del entorno de ejecución.
+El resultado fue una validación completa de la lógica de negocio, seguridad y persistencia, lo que refuerza la solidez general del sistema.
+
+1. AuthIntegrationTest: Esta prueba valida el flujo de autenticación principal del sistema, asegurando que las operaciones de registro, inicio de sesión y consulta del perfil del usuario funcionen correctamente de extremo a extremo. Se comprueba que un nuevo usuario pueda registrarse correctamente mediante el endpoint ```/auth/register```, que pueda autenticarse a través de ```/auth/login``` obteniendo un token JWT válido, y que luego pueda acceder a su información en ```/auth/me``` utilizando el token recibido. También se incluyen escenarios negativos, como el intento de inicio de sesión con una contraseña incorrecta, el cual debe devolver una respuesta con código 401 Unauthorized y un mensaje de error estandarizado.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("Integración Auth: register → login → me ")
+public class AuthIntegrationTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+
+
+   @Autowired
+   RoleRepository roleRepository;
+   @Autowired
+   PermissionRepository permissionRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   @BeforeEach
+   void seedPatientRoleIfMissing() {
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity role = new RoleEntity();
+           role.setName("PATIENT");
+
+
+           PermissionEntity pRead = new PermissionEntity();
+           pRead.setName("PERM_USER_READ");
+           PermissionEntity pWrite = new PermissionEntity();
+           pWrite.setName("PERM_USER_WRITE");
+           permissionRepository.save(pRead);
+           permissionRepository.save(pWrite);
+
+
+           role.getPermissions().add(pRead);
+           role.getPermissions().add(pWrite);
+
+
+           roleRepository.save(role);
+       }
+   }
+
+
+   @Test
+   @DisplayName("GoodWay debe registrar, autenticar y devolver perfil con Bearer")
+   void should_RegisterLoginAndGetMe() throws Exception {
+       // Arrange
+       String registerBody = """
+               {
+                 "firstName": "Ana",
+                 "lastName": "Pérez",
+                 "dni": "12345678",
+                 "email": "ana@example.com",
+                 "password": "Secret0!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """;
+
+
+       String loginBody = """
+               {
+                 "email": "ana@example.com",
+                 "password": "Secret0!"
+               }
+               """;
+
+
+       // Act: register
+       mvc.perform(post("/auth/register").contentType(JSON).content(registerBody))
+               .andExpect(status().isOk());
+
+
+       // Act: login
+       var loginRes = mvc.perform(post("/auth/login").contentType(JSON).content(loginBody))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.accessToken").exists())
+               .andExpect(jsonPath("$.tokenType").value("Bearer"))
+               .andReturn();
+
+
+       String accessToken = om.readTree(loginRes.getResponse().getContentAsString())
+               .get("accessToken").asText();
+
+
+       // Act + Assert
+       mvc.perform(get("/auth/me")
+                       .header("Authorization", "Bearer " + accessToken))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.id").value("1"))              // ojo: viene como string
+               .andExpect(jsonPath("$.firstName").value("Ana"))
+               .andExpect(jsonPath("$.lastName").value("Pérez"))
+               .andExpect(jsonPath("$.dni").value("12345678"))
+               .andExpect(jsonPath("$.gender").value("FEMALE"))
+               .andExpect(jsonPath("$.bloodGroup").value("O_POSITIVE"))
+               .andExpect(jsonPath("$.nationality").value("PERUVIAN"))
+               .andExpect(jsonPath("$.allergy").value("PENICILLIN"));
+
+
+   }
+
+
+   @Test
+   @DisplayName("Login con contraseña incorrecta debe devolver 401 y ApiError")
+   void should_Return401_When_InvalidCredentials() throws Exception {
+       // Arrange
+       String registerBody = """
+               {
+                 "firstName": "A",
+                 "lastName": "B",
+                 "dni": "11112222",
+                 "email": "badpass@example.com",
+                 "password": "Correcta1!",
+                 "gender": "FEMALE",
+                 "age": 21,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "role": "PATIENT"
+               }
+               """;
+
+
+       String badLoginBody = """
+               {
+                 "email": "badpass@example.com",
+                 "password": "incorrecta"
+               }
+               """;
+
+
+       mvc.perform(post("/auth/register")
+                       .contentType(JSON)
+                       .content(registerBody))
+               .andExpect(status().isOk()); // <- antes isCreated()
+
+
+       // Act + Assert
+       mvc.perform(post("/auth/login")
+                       .contentType(JSON)
+                       .content(badLoginBody))
+               .andExpect(status().isUnauthorized())
+               .andExpect(jsonPath("$.status").value(401))
+               .andExpect(jsonPath("$.message").exists());
+   }
+}
+```
+<img src="Images/test6.png" >
+
+2. RoleGatesIntegrationTest: Esta prueba comprueba el control de acceso basado en roles (Role-Based Access Control – RBAC), garantizando que los endpoints protegidos por reglas de seguridad respondan con el código adecuado según el rol del usuario autenticado.
+Se evalúan rutas como:
+```/test/admin/ping``` → solo accesible para ADMINISTRATOR.
+```/test/attendant/ping``` → solo accesible para ATTENDANT.
+```/test/patient/ping``` → solo accesible para PATIENT.
+Durante la ejecución, se crean usuarios con distintos roles, se autentican mediante JWT y se realizan solicitudes autenticadas para confirmar que el sistema retorna 200 (OK) para accesos válidos, 403 (Forbidden) para usuarios con rol incorrecto, y 401 (Unauthorized) para solicitudes sin token.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("Integración: gates por rol (ADMIN / ATTENDANT / PATIENT)")
+class RoleGatesIntegrationTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+
+
+   @Autowired
+   RoleRepository roleRepository;
+   @Autowired
+   PermissionRepository permissionRepository;
+   @Autowired
+   UserRepository userRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   @BeforeEach
+   void seedRolesIfMissing() {
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity admin = new RoleEntity();
+           admin.setName("ADMINISTRATOR");
+           PermissionEntity perm = new PermissionEntity();
+           perm.setName("PERM_ADMIN_DASHBOARD");
+           permissionRepository.save(perm);
+           admin.getPermissions().add(perm);
+           roleRepository.save(admin);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity attendant = new RoleEntity();
+           attendant.setName("ATTENDANT");
+           roleRepository.save(attendant);
+       }
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity patient = new RoleEntity();
+           patient.setName("PATIENT");
+           roleRepository.save(patient);
+       }
+   }
+
+
+   private static String uniqueDni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   private String tokenWithRole(String email, String desiredRole) throws Exception {
+       String roleForRegister = switch (desiredRole) {
+           case "PATIENT", "ATTENDANT" -> desiredRole;
+           default -> "PATIENT";
+       };
+
+
+       String registerBody = """
+               {
+                 "firstName": "Gate",
+                 "lastName": "%s",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "%s",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(desiredRole, uniqueDni(), email, roleForRegister);
+
+
+       mvc.perform(post("/auth/register")
+                       .contentType(JSON)
+                       .content(registerBody))
+               .andExpect(status().isOk());
+
+
+       if ("ADMINISTRATOR".equals(desiredRole)) {
+           UserEntity user = userRepository.findByEmail(email)
+                   .orElseThrow(() -> new IllegalStateException("User not found after register"));
+           RoleEntity admin = roleRepository.findByName("ADMINISTRATOR")
+                   .orElseThrow(() -> new IllegalStateException("Role not seeded: ADMINISTRATOR"));
+           user.getRoles().clear();
+           user.getRoles().add(admin);
+           userRepository.save(user);
+       }
+
+
+       String loginBody = """
+               {
+                 "email": "%s",
+                 "password": "Secret0!"
+               }
+               """.formatted(email);
+
+
+       var loginRes = mvc.perform(post("/auth/login")
+                       .contentType(JSON)
+                       .content(loginBody))
+               .andExpect(status().isOk())
+               .andReturn();
+
+
+       var json = om.readTree(loginRes.getResponse().getContentAsString());
+       return json.get("accessToken").asText();
+   }
+
+
+   @Test
+   @DisplayName("ADMINISTRATOR → /test/admin/ping = 200; PATIENT → 403; sin token → 401")
+   void adminGate_ShouldAllowAdmin_AndBlockOthers() throws Exception {
+       // Arrange
+       String adminToken = tokenWithRole("admin.gate@example.com", "ADMINISTRATOR");
+       String patientToken = tokenWithRole("patient.gate@example.com", "PATIENT");
+
+
+       // Act + Assert
+       mvc.perform(get("/test/admin/ping")
+                       .header("Authorization", "Bearer " + adminToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/admin/ping")
+                       .header("Authorization", "Bearer " + patientToken))
+               .andExpect(status().isForbidden());
+
+
+       mvc.perform(get("/test/admin/ping"))
+               .andExpect(status().isUnauthorized());
+   }
+
+
+   @Test
+   @DisplayName("ATTENDANT → /test/attendant/ping = 200; PATIENT → 403")
+   void attendantGate_ShouldAllowAttendant_AndBlockPatient() throws Exception {
+       String attendantToken = tokenWithRole("att.gate@example.com", "ATTENDANT");
+       String patientToken = tokenWithRole("patient2.gate@example.com", "PATIENT");
+
+
+       mvc.perform(get("/test/attendant/ping")
+                       .header("Authorization", "Bearer " + attendantToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/attendant/ping")
+                       .header("Authorization", "Bearer " + patientToken))
+               .andExpect(status().isForbidden());
+   }
+
+
+   @Test
+   @DisplayName("PATIENT → /test/patient/ping = 200; ATTENDANT → 403")
+   void patientGate_ShouldAllowPatient_AndBlockAttendant() throws Exception {
+       String patientToken = tokenWithRole("patient3.gate@example.com", "PATIENT");
+       String attendantToken = tokenWithRole("att2.gate@example.com", "ATTENDANT");
+
+
+       mvc.perform(get("/test/patient/ping")
+                       .header("Authorization", "Bearer " + patientToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/patient/ping")
+                       .header("Authorization", "Bearer " + attendantToken))
+               .andExpect(status().isForbidden());
+   }
+}
+```
+<img src="Images/test7.png">
+
+3. CorsIntegrationTest: Esta prueba evalúa la correcta aplicación de las políticas CORS (Cross-Origin Resource Sharing) configuradas en el backend. Se simulan solicitudes preflight (OPTIONS) provenientes tanto de orígenes válidos como de orígenes no autorizados, verificando que el sistema permita o deniegue la comunicación según la configuración establecida en CorsConfig y CorsProps.
+Por ejemplo:
+- Una solicitud desde un dominio permitido debe responder con código 200 OK y los encabezados CORS esperados.
+- Una solicitud desde un origen no autorizado debe responder con 403 Forbidden.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("Integración CORS: preflight permitido y denegado")
+class CorsIntegrationTest {
+
+
+   @Autowired
+   MockMvc mvc;
+
+
+   private static final String ALLOWED_ORIGIN = "http://localhost:4200";
+   private static final String DISALLOWED_ORIGIN = "http://evil.com";
+
+
+   @Test
+   @DisplayName("Preflight permitido para Origin permitido")
+   void should_AllowCorsPreflight_ForAllowedOrigin() throws Exception {
+       mvc.perform(options("/auth/login")
+                       .header("Origin", ALLOWED_ORIGIN)
+                       .header("Access-Control-Request-Method", HttpMethod.POST.name())
+                       .header("Access-Control-Request-Headers", "authorization,content-type")
+                       .contentType(MediaType.APPLICATION_JSON))
+               .andExpect(status().isOk())
+               .andExpect(header().string("Access-Control-Allow-Origin", ALLOWED_ORIGIN))
+               .andExpect(header().string("Access-Control-Allow-Methods", Matchers.containsString("POST")))
+               .andExpect(header().string("Access-Control-Allow-Headers", Matchers.allOf(
+                       Matchers.containsStringIgnoringCase("authorization"),
+                       Matchers.containsStringIgnoringCase("content-type")
+               )))
+               .andExpect(header().string("Vary", Matchers.anyOf(
+                       Matchers.containsString("Origin"),
+                       Matchers.any(String.class)
+               )));
+   }
+
+
+
+
+   @Test
+   @DisplayName("Preflight denegado para Origin NO permitido")
+   void should_DenyCorsPreflight_ForDisallowedOrigin() throws Exception {
+       mvc.perform(options("/auth/login")
+                       .header("Origin", DISALLOWED_ORIGIN)
+                       .header("Access-Control-Request-Method", HttpMethod.POST.name())
+                       .header("Access-Control-Request-Headers", "authorization,content-type")
+                       .contentType(MediaType.APPLICATION_JSON))
+               .andExpect(status().isForbidden())
+               .andExpect(header().doesNotExist("Access-Control-Allow-Origin"))
+               .andExpect(header().doesNotExist("Access-Control-Allow-Methods"))
+               .andExpect(header().doesNotExist("Access-Control-Allow-Headers"));
+   }
+
+
+}
+```
+<img src="Images/test8.png">
+
+4. JpaMappingsIntegrationTest: Esta prueba verifica la integración de las entidades principales del sistema con JPA (Java Persistence API), garantizando la correcta relación entre UserEntity, RoleEntity y PermissionEntity. Se valida la persistencia y recuperación de datos con relaciones ManyToMany y EAGER Fetch, confirmando que las entidades se cargan completamente sin generar excepciones de tipo LazyInitializationException. Además, se comprueba que los valores de los campos (dni, gender, bloodGroup, nationality, allergy, etc.) sean consistentes con los datos originales, y que las asociaciones entre roles y permisos se mantengan intactas tras una operación de persistencia.
+```java
+@DataJpaTest
+@DisplayName("JPA: mapeos User ↔ Role ↔ Permission + unicidad")
+class JpaMappingsIntegrationTest {
+
+
+   @Autowired
+   UserRepository userRepository;
+   @Autowired
+   RoleRepository roleRepository;
+   @Autowired
+   PermissionRepository permissionRepository;
+
+
+   @Autowired
+   EntityManager em;
+
+
+   private static String uniqueDni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   private UserEntity buildUser(String email, String dni) {
+       UserEntity u = new UserEntity();
+       u.setFirstName("Ana");
+       u.setLastName("Pérez");
+       u.setDni(dni);
+       u.setEmail(email);
+       String hashed = new BCryptPasswordEncoder().encode("Secret0!");
+       u.setPassword(hashed);
+       u.setGender(Gender.FEMALE);
+       u.setAge(25);
+       u.setBloodGroup(BloodGroup.O_POSITIVE);
+       u.setNationality(Nationality.PERUVIAN);
+       u.setAllergy(Allergy.PENICILLIN);
+       u.setEnabled(true);
+       return u;
+   }
+
+
+   @Test
+   @DisplayName("Debe persistir y recuperar User con Roles y Permisos (EAGER sin LazyException)")
+   void should_PersistAndLoad_UserWithRolesAndPermissions() {
+       // Arrange (AAA)
+       PermissionEntity pRead = new PermissionEntity();
+       pRead.setName("PERM_USER_READ");
+       PermissionEntity pWrite = new PermissionEntity();
+       pWrite.setName("PERM_USER_WRITE");
+       permissionRepository.save(pRead);
+       permissionRepository.save(pWrite);
+
+
+       RoleEntity role = new RoleEntity();
+       role.setName("PATIENT");
+       role.getPermissions().add(pRead);
+       role.getPermissions().add(pWrite);
+       roleRepository.save(role);
+
+
+       UserEntity user = buildUser("ana.jpa@example.com", uniqueDni());
+       user.getRoles().add(role);
+       userRepository.saveAndFlush(user);
+
+
+       em.clear();
+
+
+       // Act
+       UserEntity loaded = userRepository.findByEmail("ana.jpa@example.com")
+               .orElseThrow(() -> new IllegalStateException("User not found"));
+
+
+       // Assert
+       assertThat(loaded.getId()).isNotNull();
+       assertThat(loaded.getRoles()).hasSize(1);
+       RoleEntity loadedRole = loaded.getRoles().iterator().next();
+       assertThat(loadedRole.getName()).isEqualTo("PATIENT");
+       assertThat(loadedRole.getPermissions()).extracting(PermissionEntity::getName)
+               .containsExactlyInAnyOrder("PERM_USER_READ", "PERM_USER_WRITE");
+       assertThat(loaded.getDni()).hasSize(8);
+       assertThat(loaded.getGender()).isEqualTo(Gender.FEMALE);
+       assertThat(loaded.getBloodGroup()).isEqualTo(BloodGroup.O_POSITIVE);
+       assertThat(loaded.getNationality()).isEqualTo(Nationality.PERUVIAN);
+       assertThat(loaded.getAllergy()).isEqualTo(Allergy.PENICILLIN);
+       assertThat(loaded.getEnabled()).isTrue();
+   }
+
+
+   @Test
+   @DisplayName("Debe hacer cumplir unicidad de email")
+   void should_EnforceUniqueEmail() {
+       // Arrange
+       String email = "unique.email@example.com";
+       UserEntity u1 = buildUser(email, uniqueDni());
+       userRepository.save(u1);
+       userRepository.flush();
+
+
+       UserEntity u2 = buildUser(email, uniqueDni());
+
+
+       // Act + Assert
+       assertThrows(DataIntegrityViolationException.class, () -> {
+           userRepository.saveAndFlush(u2);
+       });
+   }
+
+
+   @Test
+   @DisplayName("Debe hacer cumplir unicidad de DNI")
+   void should_EnforceUniqueDni() {
+       // Arrange
+       String dni = uniqueDni();
+       UserEntity u1 = buildUser("dni.1@example.com", dni);
+       userRepository.save(u1);
+       userRepository.flush();
+
+
+       UserEntity u2 = buildUser("dni.2@example.com", dni);
+
+
+       // Act + Assert
+       assertThrows(DataIntegrityViolationException.class, () -> {
+           userRepository.saveAndFlush(u2);
+       });
+   }
+}
+```
+<img src="Images/test9.png">
+
+<a id="6-1-3-core-behavior-driven-development"></a>
+### 6.1.3. Core Behavior-Driven Development
+
+Para las pruebas se ha utilizado la herramienta Visual Studio con Reqnroll
+
+Feature:<br>
+<img src="Images/BehaviorDriven1.png">
+<br>
+Aquí se define el flujo en el que un usuario accede a la página de registro, ingresa un correo y contraseña válidos, hace clic en “Registrarse” y valida la creación de cuenta y el envío de correo de confirmación.<br>
+
+StepDefinition:<br>
+<img src="Images/BehaviorDriven2.png">
+<img src="Images/BehaviorDriven3.png">
+<img src="Images/BehaviorDriven4.png">
+
+Los Step Definitions simulan el estado de la vista, validan formatos de correo y criterios de seguridad de la contraseña, ejecutan el clic y luego lanzan excepciones claras si el sistema no crea la cuenta o no envía el correo.<br>
+
+Tests:<br>
+<img src="Images/BehaviorDriven5.png">
+<br>
+Feature:<br>
+<img src="Images/BehaviorDriven6.png">
+<br>
+Aquí se describe cómo un paciente genera un código de invitación y cómo un familiar lo introduce para obtener acceso de solo lectura. También cubre la ruta de error con un código inválido.<br>
+StepDefinition:<br>
+<img src="Images/BehaviorDriven7.png">
+<img src="Images/BehaviorDriven8.png">
+
+El step definition gestiona la generación del código, compara la entrada del familiar y controla dos banderas: vinculoCreado y permisosLecturaOtorgados, además de un mensaje de error cuando aplica.<br>
+Tests:<br>
+<img src="Images/BehaviorDriven9.png"><br>
+Feature:<br>
+<img src="Images/BehaviorDriven10.png">
+<br>
+Aquí se valida que un dispositivo conectado envíe lecturas de frecuencia cardíaca (FC) y saturación de oxígeno (SpO2) al servidor, reciba un 200 OK y las muestre rápidamente en el dashboard. También cubre el modo offline, almacenando localmente y sincronizando al reconectar.<br>
+StepDefinition:<br>
+<img src="Images/BehaviorDriven11.png">
+<img src="Images/BehaviorDriven12.png">
+<img src="Images/BehaviorDriven13.png">
+<br>
+
+Los step definitions llevan un estado interno de conectividad, buffer offline, código de respuesta y latencia. Cada paso verifica rangos fisiológicos, simula envíos y controla condiciones de sincronización tras pérdida y recuperación de internet.<br>
+Tests:<br>
+<img src="Images/BehaviorDriven14.png"><br>
+Feature:<br>
+<img src="Images/BehaviorDriven15.png">
+<br>
+En este feature el cuidador puede confirmar alertas verdes para detener su escalamiento y activar una “ventana de silencio” que bloquea push posteriores. El sistema debe almacenar las alertas generadas durante ese periodo y suprimir notificaciones.<br>
+StepDefinition:<br>
+<img src="Images/BehaviorDriven16.png">
+<img src="Images/BehaviorDriven17.png">
+<img src="Images/BehaviorDriven18.png">
+
+El step definition lleva el estado de alerta, escalamiento y silenciamiento. Al confirmar, cambia el estado a “ACKNOWLEDGED” y apaga el escalamiento; al generar nuevas alertas, comprueba la duración de la ventana y decide si envía o no el push, almacenando siempre el registro.<br>
+Tests:<br>
+<img src="Images/BehaviorDriven19.png"><br>
+Feature:<br>
+<img src="Images/BehaviorDriven20.png">
+<br>
+Define la lógica de umbrales: por encima del máximo se produce alerta verde con notificación push de baja prioridad; por encima del crítico, alerta roja con notificación a cuidadores; y si tras un tiempo no confirman, llamada automática.<br>
+
+StepDefinition:<br>
+<img src="Images/BehaviorDriven21.png">
+<img src="Images/BehaviorDriven22.png">
+
+Los steps mantienen los valores de umbral, la lectura actual y flags para cada acción (push, notificación, llamada). La ejecución de cada When y Then evalúa las condiciones y arroja excepciones con mensajes precisos en caso de discrepancias.<br>
+
+Test:<br>
+<img src="Images/BehaviorDriven23.png">
+
+<a id="6-1-4-core-system-tests"></a>
+### 6.1.4. Core System Tests.
+
+En esta subsección se presentan las pruebas de sistema desarrolladas para validar el correcto funcionamiento global de la aplicación en su conjunto.
+A diferencia de las pruebas unitarias o de integración, las pruebas de sistema se enfocan en evaluar el comportamiento completo del sistema como un todo, incluyendo la seguridad, la lógica de negocio y la interacción entre los distintos módulos que conforman el backend.
+Estas pruebas se realizaron bajo el contexto de un entorno de ejecución real, con la configuración de seguridad activa, los filtros JWT habilitados y la base de datos de pruebas cargada con roles y usuarios.
+El objetivo principal fue reproducir flujos reales de usuario, garantizando que todas las operaciones principales del sistema funcionen correctamente de extremo a extremo (End-to-End Testing).
+Los principales casos validados fueron los siguientes:
+- Prueba del flujo de autenticación completo (AuthSystemTest): Comprueba el ciclo de vida completo de autenticación, desde el registro de usuario hasta la obtención y renovación de tokens, así como el cierre de sesión y la verificación del acceso posterior.
+- Se valida que el sistema genere correctamente los tokens JWT, gestione la expiración y permita la renovación mediante el token de refresh.
+- Prueba de control de acceso por roles (RolesSystemTest): Evalúa el correcto funcionamiento de las políticas de seguridad en los endpoints restringidos según el tipo de usuario.
+- Se verifica que las rutas de prueba ```/test/admin/ping```, ```/test/attendant/ping``` y ```/test/patient/ping``` respondan adecuadamente con los códigos 200 (OK), 403 (Forbidden) o 401 (Unauthorized) según corresponda al rol del usuario autenticado.
+- Prueba de manejo de errores globales (ErrorsSystemTest): Valida que el sistema maneje de manera controlada los errores comunes en la autenticación y el registro de usuarios.
+- Se comprueban casos como el inicio de sesión con contraseña incorrecta (401 Unauthorized) y el intento de registrar un usuario con un correo electrónico duplicado (400 o 409), confirmando que las respuestas sean coherentes con la estructura de errores definida en GlobalExceptionHandler.
+
+Gracias a estas pruebas de sistema, se comprobó que la aplicación responde adecuadamente en escenarios reales, manteniendo la integridad de los flujos, la consistencia de los datos y la seguridad del entorno.
+Esto permitió asegurar que el backend está preparado para interactuar con el frontend y desplegarse en entornos de producción con un comportamiento estable y predecible.
+
+a. AuthSystemTest: Esta prueba valida el flujo completo de autenticación y gestión de sesión del sistema, simulando una interacción real desde el punto de vista del usuario final.
+Se evalúa el proceso completo que incluye:
+  1. Registro de usuario (/auth/register)
+  2. Inicio de sesión (/auth/login)
+  3. Consulta del perfil autenticado (/auth/me)
+  4. Renovación del token de acceso (/auth/refresh)
+  5. Cierre de sesión (/auth/logout)
+  6. Intento de acceso posterior al cierre de sesión (respuesta esperada 401)
+
+La prueba utiliza el flujo completo de tokens JWT y valida que el backend gestione correctamente las credenciales, el refresco de tokens y la invalidación de sesiones.
+De esta forma, se garantiza que el proceso de autenticación sea seguro, coherente y funcional en su totalidad dentro del sistema.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("System: Auth E2E (register → login → me → refresh → logout → me401)")
+class AuthSystemTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+   @Autowired
+   RoleRepository roleRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   private static String dni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   @BeforeEach
+   void seedRolesIfMissing() {
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("PATIENT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ATTENDANT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ADMINISTRATOR");
+           roleRepository.save(r);
+       }
+   }
+
+
+   @Test
+   @DisplayName("Flujo completo de autenticación y sesiones")
+   void auth_full_flow() throws Exception {
+       // Arrange: payloads
+       String email = "sys.ana@example.com";
+       String registerBody = """
+                 {
+                   "firstName":"Ana","lastName":"Pérez","dni":"%s","email":"%s","password":"Secret0!",
+                   "role":"PATIENT","gender":"FEMALE","age":25,
+                   "bloodGroup":"O_POSITIVE","nationality":"PERUVIAN","allergy":"PENICILLIN"
+                 }
+               """.formatted(dni(), email);
+
+
+       String loginBody = """
+                 {"email":"%s","password":"Secret0!"}
+               """.formatted(email);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(registerBody))
+               .andExpect(status().isOk())
+               .andExpect(content().contentTypeCompatibleWith(JSON));
+
+
+       var loginRes = mvc.perform(post("/auth/login").contentType(JSON).content(loginBody))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.tokenType").value("Bearer"))
+               .andExpect(jsonPath("$.accessToken").exists())
+               .andExpect(jsonPath("$.refreshToken").exists())
+               .andReturn();
+
+
+       JsonNode loginJson = om.readTree(loginRes.getResponse().getContentAsString());
+       String access1 = loginJson.get("accessToken").asText();
+       String refresh1 = loginJson.get("refreshToken").asText();
+
+
+       mvc.perform(get("/auth/me").header("Authorization", "Bearer " + access1))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.id").exists());
+
+
+       String refreshBody = """
+                 {"refreshToken":"%s"}
+               """.formatted(refresh1);
+       var refreshRes = mvc.perform(post("/auth/refresh").contentType(JSON).content(refreshBody))
+               .andExpect(status().isOk())
+               .andExpect(jsonPath("$.accessToken").exists())
+               .andReturn();
+
+
+       JsonNode refreshJson = om.readTree(refreshRes.getResponse().getContentAsString());
+       String access2 = refreshJson.get("accessToken").asText();
+       String refresh2 = refreshJson.has("refreshToken") ? refreshJson.get("refreshToken").asText() : refresh1;
+
+
+       String logoutBody = """
+                 {"refreshToken":"%s"}
+               """.formatted(refresh2);
+
+
+       mvc.perform(post("/auth/logout")
+                       .header("Authorization", "Bearer " + access2)
+                       .contentType(JSON)
+                       .content(logoutBody))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/auth/me").header("Authorization", "Bearer " + access2))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(post("/auth/refresh")
+                       .contentType(JSON)
+                       .content("""
+                               {"refreshToken":"%s"}
+                               """.formatted(refresh2)))
+               .andExpect(status().isUnauthorized());
+
+
+   }
+}
+```
+<img src="Images/SystemTests1.png">
+
+b. RolesSystemTest: Esta prueba verifica la aplicación práctica de las políticas de seguridad y control de acceso basadas en roles (RBAC) dentro del sistema. Se simulan solicitudes autenticadas hacia los endpoints protegidos del módulo de prueba (```/test```), asegurando que solo los usuarios con el rol correspondiente puedan acceder:
+```/test/admin/ping``` → debe permitir únicamente a usuarios con rol ADMINISTRATOR.
+```/test/attendant/ping``` → debe permitir únicamente a ATTENDANT.
+```/test/patient/ping``` → debe permitir únicamente a PATIENT.
+
+Durante la ejecución, el sistema genera usuarios de prueba con diferentes roles, se autentican y se verifica la respuesta HTTP devuelta por el backend. Esto permite confirmar que las reglas de autorización definidas en SecurityConfig y las anotaciones ```@PreAuthorize``` de los controladores funcionan de forma correcta y segura.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("System: Gates por rol (/test/*/ping)")
+class RolesSystemTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+
+
+   @Autowired
+   RoleRepository roleRepository;
+   @Autowired
+   UserRepository userRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   private static String dni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   @BeforeEach
+   void seedRoles() {
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ADMINISTRATOR");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ATTENDANT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("PATIENT");
+           roleRepository.save(r);
+       }
+   }
+
+
+   private String register(String email, String role) throws Exception {
+       String body = """
+               {
+                 "firstName": "U",
+                 "lastName": "%s",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "%s",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(role, dni(), email, role);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(body))
+               .andExpect(status().isOk());
+       return email;
+   }
+
+
+   private String login(String email) throws Exception {
+       String body = """
+               {
+                 "email": "%s",
+                 "password": "Secret0!"
+               }
+               """.formatted(email);
+
+
+       var res = mvc.perform(post("/auth/login").contentType(JSON).content(body))
+               .andExpect(status().isOk())
+               .andReturn();
+
+
+       return om.readTree(res.getResponse().getContentAsString())
+               .get("accessToken").asText();
+   }
+
+
+   @Test
+   @DisplayName("Admin 200 / Patient 403 / Sin token 401 en /test/admin/ping")
+   void gates_admin_ping() throws Exception {
+       // Arrange (AAA): registrar como PATIENT y luego elevar a ADMINISTRATOR en BD
+       String adminEmail = register("sys.admin@example.com", "PATIENT");
+       UserEntity u = userRepository.findByEmail(adminEmail).orElseThrow();
+       u.getRoles().clear();
+       u.getRoles().add(roleRepository.findByName("ADMINISTRATOR").orElseThrow());
+       userRepository.save(u);
+
+
+       String patientEmail = register("sys.patient@example.com", "PATIENT");
+
+
+       // Act: login y obtener tokens
+       String adminToken = login(adminEmail);
+       String patientToken = login(patientEmail);
+
+
+       // Assert
+       mvc.perform(get("/test/admin/ping").header("Authorization", "Bearer " + adminToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/admin/ping").header("Authorization", "Bearer " + patientToken))
+               .andExpect(status().isForbidden());
+
+
+       mvc.perform(get("/test/admin/ping"))
+               .andExpect(status().isUnauthorized());
+   }
+
+
+   @Test
+   @DisplayName("Attendant 200 / Patient 403 en /test/attendant/ping")
+   void gates_attendant_ping() throws Exception {
+       // Arrange
+       String attEmail = register("sys.attendant@example.com", "ATTENDANT");
+       String patEmail = register("sys.patient2@example.com", "PATIENT");
+
+
+       String attToken = login(attEmail);
+       String patToken = login(patEmail);
+
+
+       // Assert
+       mvc.perform(get("/test/attendant/ping").header("Authorization", "Bearer " + attToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/attendant/ping").header("Authorization", "Bearer " + patToken))
+               .andExpect(status().isForbidden());
+   }
+
+
+   @Test
+   @DisplayName("Patient 200 / Attendant 403 en /test/patient/ping")
+   void gates_patient_ping() throws Exception {
+       // Arrange
+       String patEmail = register("sys.patient3@example.com", "PATIENT");
+       String attEmail = register("sys.attendant2@example.com", "ATTENDANT");
+
+
+       String patToken = login(patEmail);
+       String attToken = login(attEmail);
+
+
+       // Assert
+       mvc.perform(get("/test/patient/ping").header("Authorization", "Bearer " + patToken))
+               .andExpect(status().isOk());
+
+
+       mvc.perform(get("/test/patient/ping").header("Authorization", "Bearer " + attToken))
+               .andExpect(status().isForbidden());
+   }
+}
+```
+<img src="Images/SystemTests2.png">
+
+ErrorsSystemTest: Esta prueba está orientada a validar el comportamiento del sistema ante errores controlados y respuestas excepcionales. Evalúa cómo el backend maneja situaciones comunes de fallo en la autenticación y registro de usuarios, asegurando que las respuestas sean coherentes, informativas y con el formato estándar definido en la clase GlobalExceptionHandler.
+Los escenarios principales incluyen:
+- Inicio de sesión con credenciales incorrectas: el sistema debe responder con un código 401 Unauthorized y un mensaje "Credenciales inválidas".
+- Registro con un correo electrónico ya existente: la aplicación debe devolver una respuesta 400 o 409, indicando claramente el motivo del error.
+
+De esta forma, se valida la robustez del sistema ante entradas no válidas o conflictos, garantizando una comunicación clara y predecible con el cliente o frontend.
+```java
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@AutoConfigureMockMvc
+@ActiveProfiles("test")
+@DisplayName("System: Errores comunes (401, 400/409)")
+class ErrorsSystemTest {
+
+
+   @Autowired
+   MockMvc mvc;
+   @Autowired
+   ObjectMapper om;
+   @Autowired
+   RoleRepository roleRepository;
+
+
+   private static final MediaType JSON = MediaType.APPLICATION_JSON;
+
+
+   private static String dni() {
+       long n = System.nanoTime() % 9_000_000L + 10_000_000L;
+       return Long.toString(n);
+   }
+
+
+   @BeforeEach
+   void seedRoles() {
+       if (roleRepository.findByName("PATIENT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("PATIENT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ATTENDANT").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ATTENDANT");
+           roleRepository.save(r);
+       }
+       if (roleRepository.findByName("ADMINISTRATOR").isEmpty()) {
+           RoleEntity r = new RoleEntity();
+           r.setName("ADMINISTRATOR");
+           roleRepository.save(r);
+       }
+   }
+
+
+   @Test
+   @DisplayName("Login con password incorrecta → 401")
+   void login_bad_password_401() throws Exception {
+       String email = "sys.err@example.com";
+       String registerBody = """
+               {
+                 "firstName": "A",
+                 "lastName": "B",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Correcta1!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 21,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(dni(), email);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(registerBody))
+               .andExpect(status().isOk());
+
+
+       String badLogin = """
+               {
+                 "email": "%s",
+                 "password": "incorrecta"
+               }
+               """.formatted(email);
+
+
+       mvc.perform(post("/auth/login").contentType(JSON).content(badLogin))
+               .andExpect(status().isUnauthorized());
+   }
+
+
+   @Test
+   @DisplayName("Registro con email duplicado → 400/409")
+   void register_duplicate_email_returns_400_or_409() throws Exception {
+       String email = "sys.dup@example.com";
+
+
+       String body1 = """
+               {
+                 "firstName": "X",
+                 "lastName": "Y",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(dni(), email);
+
+
+       String body2 = """
+               {
+                 "firstName": "X",
+                 "lastName": "Y",
+                 "dni": "%s",
+                 "email": "%s",
+                 "password": "Secret0!",
+                 "role": "PATIENT",
+                 "gender": "FEMALE",
+                 "age": 25,
+                 "bloodGroup": "O_POSITIVE",
+                 "nationality": "PERUVIAN",
+                 "allergy": "PENICILLIN"
+               }
+               """.formatted(dni(), email);
+
+
+       mvc.perform(post("/auth/register").contentType(JSON).content(body1))
+               .andExpect(status().isOk());
+
+
+       var dup = mvc.perform(post("/auth/register").contentType(JSON).content(body2))
+               .andReturn();
+
+
+       int sc = dup.getResponse().getStatus();
+       assertThat(sc).isIn(400, 409);
+   }
+}
+```
+<img src="Images/SystemTests3.png">
+
+<a id="capitulo-vii-devops-practices"></a>
+# Capítulo VII: DevOps Practices
+
+<a id="7-1-continuous-integration"></a>
+## 7.1. Continuous Integration
+<a id="7-1-1-tools-and-practices"></a>
+### 7.1.1. Tools and Practices.
+
+Para TukunTech, utilizamos herramientas como Jenkins, GitHub Actions y Travis CI para implementar Integración Continua (CI). Estas herramientas permiten automatizar la integración de cambios al repositorio de código de forma continua, ejecutando pruebas automáticamente y asegurando que el código siempre esté en un estado funcional antes de ser integrado.
+Herramientas:
+- Jenkins: Utilizado para configurar pipelines de CI que se ejecutan cada vez que un desarrollador sube un cambio al repositorio. Jenkins ejecuta pruebas automáticas y valida la compilación del proyecto.
+
+
+- GitHub Actions: Integra GitHub con pipelines de CI/CD para garantizar que las pruebas y el despliegue se gestionen de manera continua.
+
+
+- Travis CI: Utilizado para verificar la calidad del código, ejecutar pruebas y realizar despliegues automáticos al entorno de staging.
+
+
+Prácticas de CI:
+- Automatización de pruebas: Cada vez que un desarrollador sube código nuevo, se ejecutan pruebas unitarias y de integración para garantizar que las nuevas modificaciones no rompan las funcionalidades existentes.
+
+
+- Revisión continua de código: Utilizamos Pull Requests para revisar el código antes de ser integrado a la rama principal, asegurando calidad y consistencia.
+
+
+<a id="7-1-2-build-test-suite-pipeline-components"></a>
+### 7.1.2. Build & Test Suite Pipeline Components.
+
+El pipeline de construcción y pruebas de TukunTech se divide en varios componentes que garantizan que el código esté libre de errores antes de su integración al entorno de producción:
+1. Componente de Construcción (Build Component):
+  - El código fuente se compila y empaqueta automáticamente cada vez que se integra un nuevo cambio al repositorio.
+  - Utilizamos Maven y Gradle para gestionar las dependencias y crear la aplicación.
+
+
+2. Componente de Pruebas Unitarias (Unit Test Component):
+  - Se ejecutan pruebas unitarias mediante JUnit y Mockito para asegurar que cada módulo del software funcione de manera independiente.
+
+3. Componente de Pruebas de Integración (Integration Test Component):
+  - Se realizan pruebas de integración para verificar que las diferentes partes del sistema interactúan correctamente. Estas pruebas se gestionan mediante Selenium y Cucumber.
+
+
+4. Componente de Análisis Estático (Static Analysis Component):
+  - SonarQube se integra al pipeline para realizar un análisis estático del código, buscando errores de estilo, vulnerabilidades de seguridad y problemas de calidad del código.
+
+
+5. Componente de Despliegue (Deployment Component):
+  - Después de pasar todas las pruebas, el código es desplegado automáticamente en un entorno de pruebas (staging) usando Docker y Kubernetes.
+
+
+<a id="7-2-continuous-delivery"></a>
+## 7.2. Continuous Delivery
+<a id="7-2-1-tools-and-practices"></a>
+### 7.2.1. Tools and Practices.
+
+Para TukunTech, implementamos Entrega Continua (CD) utilizando Jenkins y CircleCI como herramientas clave para automatizar el proceso de despliegue. Estas herramientas permiten que cualquier cambio aprobado se despliegue automáticamente en los entornos de staging y producción sin intervención manual.<br>
+<img src="Images/ToolsPractices1.png">
+<br>
+Herramientas:
+- Jenkins: Se configura para hacer despliegues automáticos cada vez que un cambio pasa todas las pruebas.
+
+
+- Docker: Utilizamos Docker para empaquetar la aplicación en contenedores, lo que facilita el despliegue en diferentes entornos.
+
+
+- Kubernetes: Nos permite gestionar el ciclo de vida de las aplicaciones y realizar despliegues de manera escalable.
+
+
+Prácticas de CD:
+- Despliegue Automatizado: Cada vez que un cambio pasa las pruebas, se despliega automáticamente en el entorno de staging y producción.
+
+
+- Despliegue Gradual: Los cambios se despliegan en etapas para asegurar que no afecten a toda la base de usuarios. Utilizamos canary releases y blue-green deployments para minimizar riesgos.
+
+
+<a id="7-2-2-stages-deployment-pipeline-components"></a>
+### 7.2.2. Stages Deployment Pipeline Components.
+
+El pipeline de despliegue de TukunTech está dividido en múltiples etapas para asegurar que cada componente se despliegue correctamente sin afectar el servicio. Estas etapas son:
+1. Desarrollo: En esta etapa, los desarrolladores realizan cambios en el código. Los cambios son verificados y probados localmente antes de ser integrados al repositorio.
+
+
+2. Integración Continua: Aquí se realiza la integración de todos los cambios a través del pipeline de CI, donde se ejecutan las pruebas unitarias y de integración.
+
+
+3. Pruebas en Staging: En esta etapa, el código es desplegado automáticamente en un entorno de staging para realizar pruebas de aceptación de usuario (UAT) y validación del sistema.
+
+
+4. Despliegue en Producción: Después de pasar las pruebas de staging, el código es desplegado automáticamente en el entorno de producción. Utilizamos Kubernetes para orquestar el despliegue y escalar las aplicaciones según sea necesario.
+
+<a id="7-3-continuous-deployment"></a>
+## 7.3. Continuous deployment
+<a id="7-3-1-tools-and-practices"></a>
+### 7.3.1. Tools and Practices.
+
+En TukunTech, aplicamos Despliegue Continuo (CD) para garantizar que los cambios sean desplegados automáticamente en producción sin intervención manual. Esto asegura una entrega más rápida y frecuente de nuevas funcionalidades.
+Herramientas:
+- Docker: Para asegurar que todos los entornos de desarrollo, staging y producción sean consistentes.
+
+
+- Kubernetes: Se utiliza para gestionar el despliegue en producción, automatizando el escalado y la gestión de contenedores.
+
+
+- AWS Lambda: En algunos casos, utilizamos AWS Lambda para realizar tareas de backend sin servidores, reduciendo costos y aumentando la eficiencia.
+
+
+Prácticas de CD:
+- Despliegue 24/7: Cada vez que un cambio es validado y aprobado, se despliega automáticamente en producción, garantizando que los usuarios siempre tengan la última versión del producto.
+
+
+- Monitoreo Post-Despliegue: Utilizamos herramientas de monitoreo como Prometheus y Grafana para asegurar que el sistema funcione correctamente después de cada despliegue y para detectar rápidamente cualquier problema.
+
+<a id="7-3-2-production-deployment-pipeline-components"></a>
+### 7.3.2. Production Deployment Pipeline Components.
+
+El pipeline de despliegue en producción se compone de varias fases críticas:
+1. Despliegue en Entorno de Staging: Después de pasar las pruebas automatizadas, el código es desplegado primero en el entorno de staging, que replica la infraestructura de producción.
+
+
+2. Validación de UAT (User Acceptance Testing): Los usuarios clave validan el funcionamiento del sistema en staging antes de que el código sea liberado a producción.
+
+
+3. Despliegue Automático a Producción: Después de la validación, el código se despliega automáticamente en producción. Utilizamos blue-green deployments para reducir el tiempo de inactividad y minimizar los riesgos.
+
+
+4. Monitoreo en Producción: Una vez en producción, el sistema es monitoreado constantemente. Si se detecta un error crítico, se activa automáticamente un rollback para revertir al último estado funcional.
 
 # Conclusiones
 El desarrollo del proyecto TukunTech permitió integrar de manera exitosa una solución tecnológica orientada al monitoreo y cuidado de la salud, combinando dispositivos IoT, aplicaciones móviles y web, y servicios en la nube bajo un modelo SaaS. A lo largo del proceso se aplicaron principios de usabilidad, accesibilidad, arquitectura de información y diseño responsivo, asegurando que pacientes, familiares, cuidadores y administradores puedan interactuar con la plataforma de forma sencilla y confiable.

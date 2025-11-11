@@ -5114,6 +5114,442 @@ El pipeline de despliegue en producción se compone de varias fases críticas:
 
 4. Monitoreo en Producción: Una vez en producción, el sistema es monitoreado constantemente. Si se detecta un error crítico, se activa automáticamente un rollback para revertir al último estado funcional.
 
+
+<a id="8-experiment-driven-development"></a>
+# Capítulo VIII: Experiment-Driven Development
+
+<a id="8-1-experiment-planning"></a>
+## 8.1. Experiment Planning
+
+El presente apartado describe la fase de **planificación de experimentos** desarrollada como parte del enfoque de *Experiment-Driven Development (EDD)* dentro del ciclo de vida **DevOps** del proyecto.  
+Su finalidad es identificar, formular y priorizar los experimentos que permitirán **validar empíricamente** las decisiones técnicas y de diseño adoptadas en el sistema IoT propuesto.<br>
+
+En esta etapa, el equipo analiza el estado actual del producto y documenta los **supuestos, brechas de conocimiento, ideas y afirmaciones** que representan fuentes de incertidumbre en el desarrollo.  
+A partir de dicho análisis, se formulan **preguntas experimentales** orientadas a evidenciar mejoras cuantificables en áreas clave como **rendimiento, estabilidad, comprensión del flujo de uso y satisfacción del usuario**.<br>
+
+De acuerdo con la rúbrica institucional, la planificación incluye:
+- La definición del contexto **“As-Is”** del sistema.
+- La estructuración del **Question Backlog**.
+- Y la elaboración de **Experiment Cards**, que detallan el propósito, hipótesis, métricas, herramientas y criterios de éxito de cada experimento.<br>
+
+Este proceso garantiza la **trazabilidad entre la evidencia obtenida y las decisiones de ingeniería**, promoviendo un aprendizaje continuo y la mejora sistemática del producto antes de su despliegue final.
+
+<a id="8-1-1-as-is-summary"></a>
+### 8.1.1. As-Is Summary
+
+En la etapa actual de desarrollo, el sistema implementado por el equipo corresponde a una plataforma IoT para el monitoreo y gestión de variables ambientales en tiempo real, diseñada con una arquitectura basada en tres capas principales:
+
+- **Capa de Dispositivos:** conformada por sensores físicos conectados a microcontroladores ESP32, encargados de recopilar datos de temperatura, humedad y luminosidad, transmitidos mediante protocolo MQTT hacia el servidor.
+
+- **Capa de Comunicación y Procesamiento:** desarrollada en Node.js / Express, gestiona la recepción de datos, el almacenamiento en la base de datos y la comunicación con el frontend a través de servicios REST y WebSocket.
+
+- **Capa de Aplicación:** implementada con Angular, integra un dashboard interactivo que permite visualizar información en tiempo real mediante ApexCharts, gestionar los dispositivos registrados y supervisar alertas o eventos generados.
+
+
+<a id="8-1-2-raw-material"></a>
+### 8.1.2. Raw Material: Assumptions, Knowledge Gaps, Ideas, Claims
+
+Durante las pruebas funcionales y el despliegue inicial del sistema IoT, se identificaron diversos aspectos técnicos y de experiencia de usuario que requieren validación mediante experimentación. A continuación, se presentan las principales suposiciones, vacíos de conocimiento, ideas y afirmaciones que conforman la base del proceso de Experiment-Driven Development (EDD) de este proyecto.
+
+| Tipo | Descripción |
+|------|--------------|
+| **Assumption** | Los usuarios operadores prioriza la rapidez y estabilidad de actualización de datos sobre la complejidad visual del dashboard. |
+| **Assumption** | Reducir el intervalo de actualización de datos (polling) y aplicar lazy loading mejorará significativamente la percepción de rendimiento. |
+| **Assumption** | Una interfaz más limpia y con menos animaciones incrementará la fluidez percibida en los gráficos de ApexCharts. |
+| **Knowledge Gap** | Se desconoce el límite máximo de dispositivos IoT que el sistema puede soportar antes de degradar el rendimiento del dashboard. |
+| **Knowledge Gap** | No se cuenta con evidencia empírica sobre cómo interpretan los operadores las métricas ambientales mostradas (temperatura, humedad, luminosidad). |
+| **Knowledge Gap** | No se ha medido el impacto real de la latencia del servidor sobre la frecuencia de actualización del front-end. |
+| **Idea** | Implementar un módulo de ayuda contextual que describa el significado de cada métrica y su unidad de medida, visible durante el primer uso. |
+| **Idea** | Incorporar una sección de alertas visuales (colores o íconos dinámicos) para indicar el estado de conexión de los dispositivos. |
+| **Idea** | Evaluar la optimización de WebSockets y brokers MQTT para reducir la pérdida de paquetes en redes inestables. |
+| **Claim** | Si el tiempo medio de actualización se reduce a ≤ 1.5 s, los usuarios percibirán el sistema como completamente “en tiempo real”. |
+| **Claim** | Si se incluye una ayuda contextual y alertas visuales, la comprensión de las métricas IoT aumentará al menos un 20% en usuarios nuevos. |
+| **Claim** | Si se optimizan las consultas y el renderizado gráfico, la puntuación de usabilidad (SUS) mejorará de 71 a ≥ 80 puntos. |
+
+
+<a id="8-1-3-experiment-ready-questions"></a>
+### 8.1.3. Experiment-Ready Questions
+
+A partir del análisis de suposiciones, brechas de conocimiento, ideas y afirmaciones identificadas en la sección anterior, se formularon las siguientes preguntas experimentales verificables, orientadas a evaluar el rendimiento, la experiencia de usuario y la confiabilidad de la comunicación en el sistema IoT.  
+Cada una busca obtener evidencia empírica que permita confirmar o refutar hipótesis técnicas y de diseño, alineadas al ciclo de mejora continua (Build–Measure–Learn) del enfoque *Experiment-Driven Development (EDD)*.
+
+**Preguntas de Experimento:**
+
+| Nº | Pregunta Experimental | Dimensión Evaluada |
+|----|------------------------|--------------------|
+| **1** | ¿La implementación del módulo de lazy loading y la optimización de suscripciones RxJS en Angular reduce el tiempo promedio de actualización de los datos del dashboard en al menos un 30%? | Performance y eficiencia de carga del frontend |
+| **2** | ¿Reducir el intervalo de actualización del backend (polling interval) de 3 s a 1.5 s mejora la percepción de “tiempo real” por parte de los usuarios sin incrementar la carga del servidor? | Rendimiento y percepción de inmediatez |
+| **3** | ¿La incorporación de una vista de ayuda contextual y tooltips informativos aumenta la comprensión de las métricas IoT mostradas en el dashboard al menos en un 20% respecto a la versión actual? | Usabilidad y aprendizaje de interfaz |
+| **4** | ¿El rediseño visual de los gráficos en ApexCharts, reduciendo elementos innecesarios y animaciones, incrementa la fluidez de interacción y mejora la satisfacción percibida de los operadores? | Experiencia del usuario y respuesta visual |
+| **5** | ¿La integración de alertas visuales y notificaciones de estado mejora la detección de fallas de conexión y aumenta la sensación de control del usuario sobre los dispositivos IoT? | Confianza y retroalimentación del sistema |
+| **6** | ¿Optimizar la configuración del broker MQTT (QoS y reconexión automática) reduce la pérdida de datos en tiempo real en al menos un 50% en entornos de red inestable? | Estabilidad y confiabilidad de comunicación |
+
+
+<a id="8-1-4-question-backlog"></a>
+### 8.1.4. Question Backlog
+
+Una vez formuladas las preguntas experimentales, se procedió a evaluarlas y priorizarlas en función de su impacto potencial sobre la calidad del producto, el nivel de confianza en los resultados esperados y el esfuerzo técnico requerido para su ejecución.  
+Para la priorización se empleó la metodología **ICE Scoring (Impact × Confidence / Effort)**, comúnmente utilizada en contextos de innovación ágil y DevOps.  
+Este enfoque permite asignar recursos experimentales de manera eficiente, ejecutando primero aquellos experimentos con alto valor de aprendizaje y baja complejidad de implementación.
+
+| # | Pregunta experimental | Impacto (1-5) | Confianza (1-5) | Esfuerzo (1-5) | ICE Score | Decisión / Acción |
+|---|------------------------|----------------|------------------|----------------|------------|-------------------|
+| **1** | ¿La implementación del módulo de lazy loading y la optimización de suscripciones RxJS reduce el tiempo promedio de actualización del dashboard? | 5 | 4 | 2 | 10.0 | Ejecutar en la primera iteración (prioridad alta). |
+| **2** | ¿Reducir el intervalo de actualización del backend (polling) mejora la percepción de tiempo real sin afectar la carga del servidor? | 4 | 4 | 3 | 8.0 | Ejecutar en paralelo a la prueba de rendimiento del frontend. |
+| **3** | ¿La vista de ayuda contextual incrementa la comprensión de las métricas IoT mostradas en el dashboard? | 5 | 3 | 3 | 7.5 | Implementar en la segunda iteración (foco en usabilidad). |
+| **4** | ¿El rediseño visual de los gráficos en ApexCharts mejora la fluidez de interacción y satisfacción del usuario? | 4 | 3 | 3 | 6.0 | Planificar para la tercera iteración. |
+| **5** | ¿Las alertas visuales y notificaciones de estado aumentan la percepción de control del usuario sobre los dispositivos? | 3 | 4 | 2 | 6.0 | Implementar luego de validar rendimiento y comprensión. |
+| **6** | ¿Optimizar la configuración del broker MQTT reduce la pérdida de datos en tiempo real en entornos inestables? | 4 | 2 | 4 | 5.0 | Postergar hasta contar con entorno de pruebas distribuido. |
+
+
+<a id="8-1-5-experiment-cards"></a>
+### 8.1.5. Experiment Cards
+
+En esta sección se presentan las **tarjetas de experimentos (Experiment Cards)** diseñadas a partir del backlog priorizado.  
+Cada tarjeta documenta de forma estructurada los elementos clave de la experimentación: la pregunta a validar, la justificación, la intervención propuesta, la hipótesis, las métricas, las herramientas de medición y los criterios de éxito definidos.  
+
+El propósito de esta documentación es asegurar la trazabilidad entre las decisiones de ingeniería y la evidencia empírica obtenida, promoviendo el aprendizaje continuo y la mejora incremental del sistema IoT bajo el enfoque de *Experiment-Driven Development (EDD).*  
+Cada experimento busca evaluar el impacto de una mejora específica en el rendimiento, la usabilidad o la estabilidad del sistema, manteniendo coherencia con los objetivos del pipeline DevOps implementado por el equipo.
+
+---
+
+#### **Experiment Card 1: Optimización de Performance (Lazy Loading + RxJS)**
+
+| Elemento | Descripción |
+|-----------|--------------|
+| **Question** | ¿La implementación del módulo de lazy loading y la optimización de suscripciones RxJS en Angular reduce el tiempo promedio de actualización del dashboard en al menos un 30%? |
+| **Why** | El dashboard presenta retrasos visibles cuando aumenta el número de dispositivos IoT conectados, lo que afecta la percepción de inmediatez y el rendimiento general del sistema. |
+| **What** | Aplicar lazy loading en módulos Angular, configurar `ChangeDetectionStrategy.OnPush` y optimizar la suscripción de observables RxJS para reducir operaciones innecesarias. |
+| **Hypothesis** | Si se aplican técnicas de carga diferida y optimización de suscripciones, el tiempo promedio de actualización disminuirá ≥ 30% y el Lighthouse Score aumentará ≥ 15 puntos. |
+| **Metrics** | Tiempo promedio de actualización (ms), Lighthouse Performance Score, Consumo promedio de CPU (%). |
+| **Tools** | Chrome DevTools, Lighthouse CI, Angular Profiler. |
+| **Scope / Sample** | Pruebas con 6–10 dispositivos IoT conectados simultáneamente en entorno de *staging*. |
+| **Success Criteria** | Tiempo de actualización ≤ 1.5 s, Lighthouse ≥ 80, reducción de CPU ≥ 15%. |
+| **Decision Rule** | Si se cumplen los criterios, la optimización se integra en la rama principal; si no, se analizarán cuellos de botella adicionales. |
+
+---
+
+#### **Experiment Card 2: Mejora de Comprensión del Usuario (Vista de Ayuda Contextual)**
+
+| Elemento | Descripción |
+|-----------|--------------|
+| **Question** | ¿La incorporación de una vista de ayuda contextual y tooltips informativos aumenta la comprensión de las métricas IoT mostradas en el dashboard al menos en un 20%? |
+| **Why** | Los operadores nuevos presentan confusión al interpretar los valores y unidades de las métricas (temperatura, humedad, luminosidad), reduciendo la eficiencia en su trabajo. |
+| **What** | Implementar un módulo de ayuda contextual con tooltips explicativos, tutorial inicial y mensajes emergentes durante el primer uso. |
+| **Hypothesis** | Si se agrega una vista de ayuda contextual, la comprensión de métricas aumentará ≥ 20% y la puntuación de usabilidad (SUS) será ≥ 80 puntos. |
+| **Metrics** | Porcentaje de aciertos en interpretación de métricas, SUS Score, tiempo promedio para completar tareas guiadas (s). |
+| **Tools** | Encuestas SUS (Google Forms), test de tareas, Google Analytics (eventos de ayuda). |
+| **Scope / Sample** | 10–15 usuarios nuevos realizando pruebas de uso con y sin la vista de ayuda. |
+| **Success Criteria** | Comprensión ≥ 85%, SUS ≥ 80, reducción del tiempo de tarea ≥ 20%. |
+| **Decision Rule** | Si las métricas superan los umbrales, se despliega el módulo en producción; de lo contrario, se itera sobre el contenido de ayuda. |
+
+---
+
+#### **Experiment Card 3: Percepción de Tiempo Real (Polling Interval Optimization)**
+
+| Elemento | Descripción |
+|-----------|--------------|
+| **Question** | ¿Reducir el intervalo de actualización del backend de 3 s a 1.5 s mejora la percepción de “tiempo real” sin incrementar significativamente la carga del servidor? |
+| **Why** | Se detecta retardo entre la lectura del sensor y su visualización en el dashboard, afectando la confianza del usuario en el sistema. |
+| **What** | Ajustar el intervalo de actualización del backend y medir el impacto en latencia, carga del servidor y percepción del usuario. |
+| **Hypothesis** | Si se reduce el intervalo a 1.5 s, la percepción de inmediatez aumentará, manteniendo la carga del servidor por debajo del 70%. |
+| **Metrics** | Latencia promedio (ms), CPU usage (%), valoración subjetiva de fluidez (escala Likert 1–5). |
+| **Tools** | Node.js Performance Logs, PM2 Monitor, Google Forms (evaluación perceptiva). |
+| **Scope / Sample** | Pruebas con 5–10 dispositivos IoT activos en entorno controlado durante sesiones de 30 minutos. |
+| **Success Criteria** | Latencia ≤ 1.5 s, CPU < 70%, fluidez percibida ≥ 4/5. |
+| **Decision Rule** | Si los resultados cumplen los umbrales definidos, se adopta el nuevo intervalo; si no, se evaluará un modelo adaptativo de actualización. |
+
+
+<a id="8-2-experiment-design"></a>
+## 8.2. Experiment Design
+
+Esta sección presenta el diseño de los experimentos planificados para validar las hipótesis definidas en la etapa de *Experiment Planning*.  
+Cada experimento busca obtener evidencia empírica cuantitativa que permita evaluar el impacto de las mejoras implementadas en el sistema IoT, tanto en rendimiento como en usabilidad y confiabilidad.  
+
+El diseño experimental se construye siguiendo los principios del ciclo de aprendizaje continuo (*Build–Measure–Learn*) y se fundamenta en tres pilares:
+- Definición de hipótesis verificables y métricas de negocio.  
+- Establecimiento de condiciones controladas de medición.  
+- Selección de métodos y herramientas para el análisis de resultados.
+
+
+<a id="8-2-1-hypotheses"></a>
+### 8.2.1. Hypotheses
+
+La presente sección define las hipótesis experimentales derivadas del *Question Backlog* establecido en la fase de planificación.  
+Cada hipótesis busca comprobar, mediante evidencia empírica, el impacto que las mejoras propuestas generan sobre el desempeño del sistema IoT.  
+
+En concordancia con la rúbrica institucional, se establecen las relaciones entre **variables independientes** (intervenciones aplicadas) y **dependientes** (resultados medibles), considerando aspectos de rendimiento, usabilidad y percepción de tiempo real.  
+Estas hipótesis orientarán el proceso de diseño experimental, la recolección de datos y la validación de resultados en fases posteriores.
+
+| ID | Hipótesis (formulación científica) | Variable Independiente | Variable Dependiente | Dimensión Evaluada | Indicador Esperado |
+|----|------------------------------------|------------------------|----------------------|--------------------|--------------------|
+| **H1** | Si se implementa lazy loading en los módulos Angular y se optimizan las suscripciones RxJS, entonces el tiempo promedio de actualización del dashboard disminuirá al menos un 30%, porque se reducirá el número de operaciones de renderizado y la carga innecesaria de componentes. | Estrategia de carga y suscripción en el frontend (Angular) | Tiempo medio de actualización (ms), Lighthouse Performance Score | Rendimiento técnico | Disminución ≥ 30% en tiempo de actualización; Lighthouse ≥ 80. |
+| **H2** | Si se implementa una vista de ayuda contextual y tooltips explicativos, entonces la comprensión de las métricas IoT aumentará al menos un 20%, porque los usuarios contarán con una guía visual que mejora la interpretación de los indicadores del sistema. | Inclusión del módulo de ayuda contextual | Nivel de comprensión de métricas (%), Puntuación SUS | Usabilidad y comprensión | Incremento ≥ 20% en comprensión; SUS ≥ 80. |
+| **H3** | Si se reduce el intervalo de actualización del backend de 3 s a 1.5 s, entonces la percepción de “tiempo real” del sistema aumentará, porque los datos se reflejarán más rápidamente sin afectar el rendimiento del servidor. | Intervalo de actualización (polling interval) | Latencia promedio (ms), Carga del servidor (%), Fluidez percibida | Percepción de inmediatez | Latencia ≤ 1.5 s; CPU < 70%; Fluidez ≥ 4/5. |
+
+**Análisis general**  
+Cada hipótesis responde a un área de mejora identificada en el diagnóstico inicial del sistema IoT:  
+- **H1** aborda el rendimiento técnico del frontend y su eficiencia en la visualización de datos en tiempo real.  
+- **H2** se enfoca en la usabilidad y la comprensión del usuario ante los indicadores ambientales.  
+- **H3** evalúa la fluidez y confiabilidad del sistema en la comunicación entre dispositivos IoT y dashboard.
+
+
+<a id="8-2-2-domain-business-metrics"></a>
+### 8.2.2. Domain Business Metrics
+
+Las métricas de negocio y dominio permiten cuantificar el impacto de las decisiones técnicas en la operación y valor del sistema IoT.  
+En esta sección se definen los indicadores clave (**Key Performance Indicators – KPIs**) que se utilizarán para evaluar la efectividad de las mejoras implementadas, de acuerdo con las hipótesis formuladas en la sección 8.2.1.  
+
+Cada métrica está alineada con las dimensiones principales del producto: **rendimiento, estabilidad, comprensión de métricas IoT y satisfacción del usuario**.  
+Estas métricas serán monitoreadas dentro del pipeline DevOps, garantizando trazabilidad entre las intervenciones experimentales y los resultados observables.
+
+| Dimensión | Métrica / KPI | Descripción | Unidad de Medida | Fuente / Herramienta | Objetivo Esperado |
+|------------|----------------|--------------|------------------|----------------------|-------------------|
+| **Rendimiento del pipeline CI/CD** | `ci_build_duration_seconds` | Mide la duración total de las ejecuciones del pipeline y los pasos de compilación. | Segundos (s) | GitHub Actions + OpenTelemetry + Grafana Cloud | ≤ 120 s por build |
+| **Estabilidad del pipeline** | `ci_metric_push_total` / `ci_step_value` | Evalúa la cantidad de pasos completados exitosamente en cada workflow. | Contador | GitHub Actions (Workflow Metrics.yml) | 100 % de pasos completados |
+| **Rendimiento técnico (Frontend)** | `frontend_update_time_ms` | Tiempo promedio que tarda el dashboard Angular en actualizar los datos IoT. | Milisegundos (ms) | Frontend Instrumentation + OTLP Exporter | ≤ 1.5 s |
+| **Rendimiento técnico (Backend)** | `end_to_end_latency_ms` | Latencia total entre la lectura del sensor IoT y la visualización en el dashboard. | Milisegundos (ms) | Node.js Instrumentation + Prometheus | ≤ 1.5 s |
+| **Eficiencia del sistema** | `cpu_usage_percent` | Monitorea el consumo promedio de CPU durante procesos concurrentes. | Porcentaje (%) | Node Exporter / Grafana Cloud | < 70 % |
+| **Usabilidad / UX** | `perceived_fluidity_score` | Índice subjetivo de fluidez percibida, obtenido por encuestas post-evaluación. | Escala Likert (1–5) | Encuestas post-test + Grafana Cloud (manual input) | ≥ 4/5 |
+| **Engagement del usuario** | `user_session_frequency` | Frecuencia de uso promedio del dashboard por usuario activo. | Sesiones/semana | Grafana Cloud (custom event metric) | +20 % respecto al baseline |
+| **Satisfacción general** | `nps_score` | Evalúa la disposición de los usuarios a recomendar o continuar usando el sistema. | Escala –100 a +100 | Encuestas post-evaluación / Grafana Cloud | NPS ≥ +30 |
+
+Estas métricas permiten cubrir de forma integral tanto los aspectos técnicos del producto (rendimiento, latencia, estabilidad) como los aspectos de experiencia y valor de uso (usabilidad, comprensión, satisfacción).  
+Durante la ejecución de los experimentos, las métricas se registrarán en el pipeline de monitoreo implementado con **Lighthouse CI**, **PM2 Monitor** y **Google Analytics**, complementado con encuestas **SUS** y **NPS** para los indicadores de experiencia de usuario.  
+
+El cumplimiento de los objetivos esperados permitirá determinar con precisión qué hipótesis deben confirmarse, refinarse o descartarse, siguiendo el principio de mejora continua del enfoque *Experiment-Driven Development (EDD)*.
+
+
+<a id="8-2-3-measures"></a>
+### 8.2.3. Measures
+
+Las mediciones se clasifican en dos tipos principales:  
+- **Medidas técnicas**, asociadas al rendimiento, latencia y eficiencia del sistema.  
+- **Medidas de experiencia del usuario (UX)**, relacionadas con la comprensión, satisfacción y percepción de fluidez.
+
+| Tipo de Medida | Indicador / Métrica | Método de Recolección | Herramienta o Fuente de Datos | Frecuencia de Medición | Criterio de Éxito / Umbral |
+|-----------------|---------------------|------------------------|------------------------------|------------------------|-----------------------------|
+| **Técnica (Frontend)** | `frontend_update_time_ms` — Tiempo medio de actualización del dashboard | Análisis de tiempos de renderizado y carga de datos IoT | Lighthouse CI + OTLP Exporter → Grafana Cloud | En cada ejecución experimental (5 corridas promedio) | ≤ 1.5 s |
+| **Técnica (Backend)** | `end_to_end_latency_ms` — Latencia promedio de respuesta del servidor | Registro de tiempos de respuesta entre petición y API | Node.js OTLP Instrumentation → Prometheus + Grafana Cloud | Cada 10 segundos durante pruebas controladas | ≤ 1.5 s |
+| **Técnica (Infraestructura)** | `cpu_usage_percent` — Consumo promedio de CPU | Monitoreo de uso de recursos durante transmisión simultánea | Node Exporter → Grafana Cloud (Dashboard Exp-08) | Cada 30 s durante 5 min | < 70 % |
+| **Técnica (Confiabilidad)** | `mqtt_packet_loss_percent` — Pérdida de datos MQTT / desconexiones WebSocket | Conteo de mensajes fallidos y reconexiones durante sesiones activas | MQTT Broker Logs + OTLP Collector → Grafana Cloud | Por sesión (20 sesiones por experimento) | ≤ 2 % pérdida |
+| **UX (Usabilidad)** | SUS Score (System Usability Scale) | Encuesta SUS posterior al uso del dashboard | Google Forms (Encuesta SUS) → Promedio cargado en Grafana Cloud | Una vez por usuario (10–15 usuarios) | ≥ 80 |
+| **UX (Comprensión)** | Nivel de comprensión de métricas IoT | Test de interpretación (pre y post ayuda contextual) | Google Forms / Entrevista guiada | Dos fases (antes y después de implementación) | ≥ 85 % aciertos |
+| **UX (Fluidez percibida)** | `perceived_fluidity_score` — Percepción de tiempo real | Encuesta Likert sobre fluidez y respuesta visual | Google Forms (post-test) → Integración manual en Grafana Cloud | Una vez por iteración | ≥ 4/5 |
+| **UX (Engagement)** | `user_session_frequency` — Frecuencia de acceso al dashboard | Conteo de sesiones activas y duración promedio | Grafana Cloud (Custom Query sobre eventos OTLP) | Diario durante 7 días | +20 % vs baseline |
+| **UX (Satisfacción)** | `nps_score` — Satisfacción y recomendación del sistema | Encuesta NPS post-evaluación | Google Forms (Encuesta NPS) → Registro manual en Grafana Cloud | Post-experimento | NPS ≥ +30 |
+
+Las medidas técnicas se ejecutan de forma automatizada dentro del pipeline **CI/CD**, integrando **OpenTelemetry**, **Prometheus** y **Grafana Cloud** en cada despliegue experimental.  
+Por otro lado, las mediciones de experiencia del usuario se realizan mediante encuestas **SUS**, **Likert** y **NPS**, complementando los datos objetivos con percepciones reales.  
+Este enfoque combinado permite comparar las versiones base y mejoradas del sistema IoT con **evidencia empírica reproducible**, validando de manera integral el impacto de las intervenciones implementadas en el rendimiento, la usabilidad y la satisfacción de los usuarios.
+
+
+<a id="8-2-4-conditions"></a>
+### 8.2.4. Conditions
+
+El presente apartado describe las condiciones bajo las cuales se desarrollarán los experimentos, garantizando que los resultados obtenidos sean consistentes, comparables y reproducibles.  
+Se detallan los parámetros técnicos, el entorno de ejecución, las características de los participantes y las variables que serán controladas o monitoreadas durante la experimentación.  
+Estas condiciones permiten mantener la estabilidad del entorno y asegurar que las diferencias observadas entre las versiones del sistema provengan de las intervenciones aplicadas y no de factores externos.
+
+| Categoría | Condición | Descripción / Parámetro definido |
+|------------|------------|----------------------------------|
+| **Entorno de pruebas (staging)** | Plataforma de despliegue | Servidor de pruebas en Render |
+|  | Configuración del backend | WebSocket habilitadas, integración con OTLP Exporter. |
+|  | Configuración del frontend | Angular compilado en modo producción, módulos divididos en lazy loading. |
+| **Participantes** | Perfil de usuario | Operadores y administradores del sistema (n = 15). |
+|  | Nivel de experiencia | 60% usuarios nuevos, 40% usuarios con experiencia previa. |
+| **Condiciones técnicas (controladas)** | Tipo de conexión | Red Wi-Fi local estable, velocidad mínima 15 Mbps. |
+|  | Intervalo de actualización (polling) | 3 s en versión base, 1.5 s en versión experimental. |
+|  | Navegador estándar | Google Chrome v121. |
+|  | Resolución de pantalla | 1920 × 1080 px. |
+| **Condiciones de control (externas)** | Variables ambientales | Temperatura ambiente promedio 23 °C, condiciones de laboratorio controladas. |
+|  | Latencia de red | Se monitorea y mantiene ≤ 100 ms mediante herramienta PingPlotter. |
+|  | Estado del broker MQTT | Estabilidad monitoreada con registros automáticos del servicio Mosquitto. |
+| **Duración del experimento** | Periodo de ejecución | 5 días hábiles por experimento (fase de recolección continua). |
+|  | Tiempo por sesión | 30 minutos por usuario (promedio). |
+
+Todas las sesiones experimentales se ejecutaron en condiciones homogéneas y bajo supervisión del pipeline de monitoreo **Grafana Cloud / OTLP**, que garantizó la consistencia y trazabilidad de los datos recolectados.  
+El control de los factores técnicos y ambientales permitió aislar los efectos de las intervenciones implementadas, asegurando que las variaciones observadas en las métricas correspondan exclusivamente a los cambios de rendimiento, usabilidad o percepción de tiempo real evaluados en cada hipótesis.
+
+
+<a id="8-2-5-scale-calculations-and-decisions"></a>
+### 8.2.5. Scale Calculations and Decisions
+
+El presente apartado detalla los cálculos y criterios de decisión empleados para definir la escala de los experimentos.  
+El objetivo es determinar el tamaño de muestra, el número de mediciones y las condiciones mínimas necesarias para obtener resultados estadísticamente válidos y representativos del comportamiento real del sistema IoT.  
+Asimismo, se establecen los criterios para decidir cuándo un experimento debe ser escalado a un entorno más amplio, reiterado o descartado, en función del nivel de evidencia alcanzado y los recursos disponibles.
+
+#### **Cálculo del tamaño de muestra**
+
+Para los experimentos que involucran interacción humana (usabilidad y percepción), se determinó el tamaño de muestra considerando los principios de la **metodología Nielsen** y las prácticas estándar en pruebas de sistemas web interactivos.  
+Con base en ello, se seleccionó un grupo de **15 usuarios (10 operadores y 5 administradores)**, permitiendo observar tendencias significativas en métricas como comprensión de métricas IoT, fluidez percibida y SUS Score, con un nivel de confianza del **95 %** y un margen de error aproximado del **±5 %**.  
+
+Para los experimentos de rendimiento técnico, se realizaron un mínimo de **20 mediciones repetidas por configuración** (versión base y versión experimental) para cada métrica evaluada.  
+Estas mediciones fueron ejecutadas automáticamente dentro del pipeline **GitHub Actions → OTLP → Grafana Cloud**, asegurando condiciones idénticas, reproducibilidad y trazabilidad temporal.  
+Este número de repeticiones permite calcular promedios y desviaciones estándar con suficiente precisión para identificar diferencias de al menos **±10 %** entre ambas versiones.
+
+#### **Escala de experimentación**
+
+| Dimensión | Escala definida | Justificación |
+|------------|------------------|----------------|
+| **Rendimiento (Frontend y Backend)** | 20 mediciones por experimento (10 base + 10 experimental) | Permite evaluar estabilidad, variabilidad y tiempos promedio de respuesta instrumentados en Grafana Cloud. |
+| **Usabilidad (Vista de ayuda contextual)** | 15 usuarios (10 nuevos, 5 recurrentes) | Muestra suficiente para observar patrones de aprendizaje y comprensión (H2). |
+| **Percepción de tiempo real (Polling Interval)** | 10 sesiones consecutivas por configuración | Evalúa consistencia de latencia percibida bajo condiciones controladas de red (H3). |
+| **Monitoreo de estabilidad (MQTT y WebSocket)** | 5 días de transmisión continua | Permite analizar comportamiento sostenido y pérdida de datos (`mqtt_packet_loss_percent`) (H1). |
+
+#### **Criterios de decisión**
+
+Los resultados obtenidos de cada experimento se evaluarán de acuerdo con los siguientes criterios:
+
+- **Escalamiento:**  
+  Se considera escalar un experimento a una muestra mayor (≥30 usuarios o entorno productivo) cuando los resultados superen los umbrales de éxito definidos en al menos el **90 % de las mediciones**.  
+  El escalamiento implica pruebas en entornos de producción o con mayor carga de dispositivos IoT (20 o más sensores simultáneos).
+
+- **Iteración o refinamiento:**  
+  Si los resultados muestran mejoras parciales (**entre 70 % y 89 %** del objetivo esperado), se mantendrá la intervención pero se ajustarán los parámetros técnicos o de interfaz antes de una nueva ejecución.
+
+- **Descarte o rediseño:**  
+  Si los resultados son inconsistentes o inferiores al **70 %** del objetivo definido, el experimento se considera no concluyente y se replanteará la hipótesis o el método de prueba.
+
+#### **Aplicación práctica en el proyecto**
+
+La escala experimental propuesta equilibra la **validez estadística con la factibilidad técnica** del entorno IoT.  
+En las pruebas de rendimiento (**H1 y H3**), se prioriza la repetición sistemática de mediciones automatizadas integradas al pipeline de observabilidad (**Grafana Cloud, Prometheus, OTLP**).  
+
+En los ensayos de usabilidad (**H2**), el tamaño de muestra definido permite capturar una variedad de perfiles de operador y administrador, obteniendo métricas perceptuales complementarias mediante encuestas **SUS** y **Likert**.  
+
+Finalmente, en los experimentos de estabilidad y transmisión (**MQTT/WebSocket**), se mantiene un monitoreo continuo de **cinco días** para observar patrones sostenidos de pérdida de paquetes y reconexiones.  
+
+Estas decisiones buscan **maximizar la confiabilidad de los datos recolectados**, **minimizar el margen de error** y asegurar que las conclusiones obtenidas representen de forma precisa el comportamiento del sistema bajo condiciones operativas reales y controladas.
+
+<a id="8-2-6-methods-selection"></a>
+### 8.2.6. Methods Selection
+
+El presente apartado describe los métodos y técnicas seleccionados para la **validación experimental de las hipótesis planteadas**.  
+El propósito es garantizar que la recolección y análisis de datos se realicen de manera **sistemática, controlada y reproducible**, permitiendo evaluar el impacto de las intervenciones aplicadas en el sistema IoT tanto desde el punto de vista técnico como de experiencia de usuario.  
+
+Los métodos elegidos combinan **enfoques cuantitativos** (medición de rendimiento y desempeño) y **cualitativos** (evaluación de percepción, comprensión y satisfacción).  
+Esta combinación permite obtener una visión integral del comportamiento del sistema bajo diferentes condiciones de uso y carga.
+
+| Método | Aplicación en el Proyecto IoT | Propósito principal |
+|---------|-------------------------------|----------------------|
+| **Monitoreo de rendimiento automatizado** | Uso de Lighthouse CI, OpenTelemetry (OTLP) y Grafana Cloud dashboards integrados al pipeline GitHub Actions para recolectar métricas de tiempo de carga, latencia, CPU y estabilidad. | Obtener datos objetivos, continuos y reproducibles sobre el rendimiento técnico. |
+| **Pruebas de usabilidad (SUS)** | Aplicación de la encuesta System Usability Scale (SUS) posterior a la interacción con el dashboard IoT (Google Forms, 15 participantes). | Evaluar la facilidad de uso, comprensión y satisfacción percibida (H2). |
+| **Observación directa y pruebas de tareas** | Supervisión del comportamiento del usuario al realizar tareas específicas, como interpretar métricas o activar dispositivos desde el dashboard. | Identificar dificultades de comprensión y validar la efectividad de las mejoras de interfaz. |
+| **Encuestas de percepción y feedback** | Formularios Google Forms con escalas Likert (1–5) y NPS (0–10) para medir fluidez percibida y satisfacción general, cuyos resultados se integran manualmente en Grafana Cloud. | Complementar los datos técnicos con información subjetiva de experiencia (H3). |
+| **Análisis estadístico descriptivo y comparativo** | Cálculo de promedios, desviaciones estándar y diferencias porcentuales entre versiones base y experimental. En casos aplicables, se aplicará la prueba t de Student (p < 0.05) para determinar significancia. | Confirmar la validez estadística y la confiabilidad de los resultados obtenidos. |
+
+Todos los métodos **cuantitativos** se ejecutan de forma automatizada dentro del pipeline **CI/CD**, mientras que los métodos **cualitativos** se desarrollan mediante observación y encuestas post-evaluación, garantizando la trazabilidad de los datos en un entorno híbrido de medición.  
+
+Este enfoque metodológico combina la **validez interna** (control experimental y repetibilidad técnica) con la **validez externa** (evaluación de usuarios reales), asegurando que las conclusiones obtenidas reflejen tanto el comportamiento del sistema como la experiencia percibida de sus usuarios bajo condiciones reales de operación.
+
+
+<a id="8-2-7-data-analytics"></a>
+### 8.2.7. Data Analytics: Goals, KPIs and Metrics Selection
+
+El presente apartado detalla los **objetivos analíticos, indicadores clave de desempeño (KPIs)** y las métricas visualizadas en el entorno de observabilidad implementado con **Grafana Cloud**, **Prometheus**, **OpenTelemetry (OTLP)**, **Lighthouse CI** y **RedLine13**.  
+Las siguientes figuras muestran la integración real de los tableros analíticos utilizados para monitorear el rendimiento, estabilidad y experiencia del usuario del sistema IoT, evidenciando cómo cada panel se alinea con los KPIs.  
+El propósito de esta sección no es mostrar resultados finales, sino demostrar la capacidad analítica y trazabilidad del entorno experimental previo a la ejecución de los experimentos.
+
+---
+
+#### **KPI 1 – Performance Técnico**
+
+**Dashboard CI/CD Observability – GitHub Actions (Better)**  
+Este panel representa la integración del pipeline de **GitHub Actions** con **OpenTelemetry**, enviando datos en formato OTLP hacia **Grafana Cloud** para su visualización.  
+El dashboard muestra indicadores clave como `ci_build_duration_seconds`, `ci_step_value` y `ci_metric_push_total`, los cuales reflejan la duración, consistencia y éxito de los flujos CI/CD utilizados durante las pruebas experimentales.  
+Los valores observados demuestran una **estabilidad total del pipeline**, con builds completados sin errores y una duración uniforme por fase.  
+Este comportamiento es esencial, ya que garantiza que los resultados de rendimiento medidos en los experimentos no se vean alterados por fallos en el proceso de despliegue.  
+Además, permite correlacionar el rendimiento del sistema con la eficiencia del pipeline DevOps, alineando métricas de desarrollo continuo con indicadores operativos del producto.  
+<br>
+<img src="Images/CICDObservability.png">
+<br>
+
+**Dashboard Frontend KPIs – Playwright + Lighthouse**  
+Este tablero combina la evaluación automatizada de rendimiento frontend mediante **Lighthouse CI** y pruebas end-to-end con **Playwright**.  
+Los indicadores `frontend_update_time_ms`, `cpu_usage_percent` y `lighthouse_score` son recolectados en cada ejecución del pipeline CI y enviados al sistema de observabilidad mediante OTLP.  
+En la vista del panel se aprecian **tiempos medios de renderizado inferiores a 50 ms** y un **Lighthouse Score constante de 100 puntos**, lo que demuestra una **óptima eficiencia de carga y renderizado** del dashboard Angular.  
+La integración directa con Grafana permite analizar de manera continua la evolución del rendimiento, identificar posibles degradaciones y cuantificar el impacto de las optimizaciones implementadas (lazy loading, RxJS optimizado).  
+Este tablero es el núcleo del **KPI1**, evidenciando el vínculo entre métricas instrumentadas y mejoras tangibles en la experiencia de respuesta del sistema.  
+<br>
+<img src="Images/FrontendKPIs.png">
+<br>
+
+**Auditoría de Rendimiento Lighthouse – Landing Page**  
+La auditoría automatizada de **PageSpeed Insights (Lighthouse)** permite obtener una evaluación detallada del rendimiento del sitio web de la plataforma IoT.  
+El informe muestra un **puntaje global de rendimiento de 82**, con valores sobresalientes en **accesibilidad (89)** y **SEO (91)**.  
+Los tiempos medidos —**First Contentful Paint (0.7 s)**, **Speed Index (1.2 s)** y **Largest Contentful Paint (2.1 s)**— evidencian una experiencia de carga rápida y estable.  
+El **Total Blocking Time (220 ms)** y el **Cumulative Layout Shift (0.036)** confirman que el dashboard se renderiza de forma progresiva y sin saltos visuales, garantizando una interacción fluida desde los primeros instantes de uso.  
+<br>
+<img src="Images/Lighthouse1.png">
+<br>
+<img src="Images/Lighthouse2.png">
+<br>
+<img src="Images/Lighthouse3.png">
+<br>
+
+---
+
+#### **KPI 2 – Usabilidad y Comprensión**
+
+**Dashboard UX – Tiempo Real**  
+El panel **UX–Tiempo Real** visualiza los indicadores `end_to_end_latency_ms` y `perceived_fluidity_score`, integrando métricas técnicas y perceptuales en un mismo entorno.  
+Estos valores representan la relación entre la latencia total del sistema —desde la captura del dato IoT hasta su visualización en el dashboard— y la percepción subjetiva de fluidez reportada por los usuarios (escala Likert 1–5).  
+
+El sistema reporta un **tiempo promedio de latencia de 278 ms** y un **puntaje de fluidez de 100/100**, lo que evidencia una **sincronía efectiva entre la capa técnica y la percepción del usuario final**.  
+La integración de métricas objetivas y subjetivas en Grafana Cloud permite no solo medir la capacidad del sistema en términos de tiempo real, sino también comprender cómo dichas mejoras técnicas impactan la experiencia de uso, validando así la pertinencia de las métricas UX como variables dependientes dentro del experimento.  
+<br>
+<img src="Images/TiempoReal.png">
+<br>
+
+---
+
+#### **KPI 3 – Percepción de Tiempo Real y Fluidez**
+
+**Dashboard Exp-08 · Analysis (UX + CI/CD)**  
+Este tablero actúa como un panel consolidado que correlaciona métricas de rendimiento técnico, comportamiento de usuario y observabilidad CI/CD.  
+En él se visualizan parámetros como `end_to_end_latency`, `update_time`, `lighthouse_score` y `perceived_fluidity`, todos ellos actualizados en tiempo real y normalizados para comparación directa entre la versión base (v1.0) y la versión experimental (v1.1).  
+
+El dashboard muestra que la infraestructura de observabilidad implementada es capaz de **centralizar métricas de diferentes fuentes (frontend, backend, UX y CI/CD)**, permitiendo una interpretación integral de la eficiencia y la experiencia del sistema IoT.  
+Su función principal dentro del diseño experimental es ofrecer una visión holística del impacto de las intervenciones aplicadas, consolidando la evidencia cuantitativa y cualitativa bajo un mismo punto de monitoreo.  
+<br>
+<img src="Images/DashboardGen.png">
+<br>
+
+---
+
+#### **KPI 4 – Confiabilidad del Sistema**
+
+**Pruebas de Carga – RedLine13 (Landing Page)**  
+Esta figura muestra el reporte de carga aplicado a la página inicial del sistema, ejecutado en **RedLine13** con 10 usuarios concurrentes.  
+El **percentil 95 se ubicó en 0.06 s**, sin errores de conexión ni páginas fallidas, y con un **uso promedio de CPU del 54 %**.  
+Estos resultados confirman la **resiliencia del servidor backend** y la eficiencia del manejo de peticiones HTTP bajo condiciones controladas, validando la estabilidad del entorno antes de las pruebas experimentales.  
+<br>
+<img src="Images/RedLine1.png">
+<br>
+<img src="Images/RedLine2.png">
+<br>
+<img src="Images/RedLine3.png">
+<br>
+
+**Pruebas de Carga – RedLine13 (WebApp Principal)**  
+En la aplicación principal se midieron endpoints críticos (`GET /patient`, `GET /support` y `POST /login`) durante un minuto de prueba sostenida.  
+Los resultados registran un **percentil 95 de 1.61 s** y un **uso máximo de CPU del 86 %**, sin errores por solicitud.  
+Este comportamiento demuestra que el sistema puede mantener **rendimiento estable con cargas moderadas**, y que la latencia promedio se mantiene dentro de los umbrales definidos (≤ 1.5 s).  
+Estos datos, junto con las métricas del **broker MQTT** y **WebSocket** capturadas en Grafana, conforman la evidencia del **KPI 4** sobre confiabilidad y estabilidad operativa.  
+<br>
+<img src="Images/RedLine4.png">
+<br>
+<img src="Images/RedLine5.png">
+<br>
+<img src="Images/RedLine6.png">
+<br>
+
+
+
+
+
+
 # Conclusiones
 El desarrollo del proyecto TukunTech permitió integrar de manera exitosa una solución tecnológica orientada al monitoreo y cuidado de la salud, combinando dispositivos IoT, aplicaciones móviles y web, y servicios en la nube bajo un modelo SaaS. A lo largo del proceso se aplicaron principios de usabilidad, accesibilidad, arquitectura de información y diseño responsivo, asegurando que pacientes, familiares, cuidadores y administradores puedan interactuar con la plataforma de forma sencilla y confiable.
 

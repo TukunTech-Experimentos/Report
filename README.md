@@ -5545,6 +5545,91 @@ Estos datos, junto con las métricas del **broker MQTT** y **WebSocket** captura
 <img src="Images/RedLine6.png">
 <br>
 
+<a id="8-2-8-web-and-mobile-tracking-plan"></a>
+### 8.2.8. Web and Mobile Tracking Plan
+
+El presente apartado describe el **plan de seguimiento y monitoreo (tracking plan)** implementado para capturar de forma automática los datos generados durante la ejecución de los experimentos en las versiones web y móvil del sistema IoT.  
+El objetivo es asegurar que todas las métricas definidas en el diseño experimental se recolecten de manera **continua, precisa y trazable**, manteniendo la integridad del sistema y sin afectar el rendimiento general de la aplicación.  
+
+El plan de tracking se estructura en cinco niveles de observación:
+1. Interacciones de usuario en el dashboard web (nivel frontend).  
+2. Comportamiento técnico del sistema (nivel backend e infraestructura).  
+3. Eventos de comunicación IoT entre sensores, broker y servidor.  
+4. Monitoreo del pipeline CI/CD en GitHub Actions.  
+5. Seguimiento de experiencia del usuario mediante métricas perceptuales (SUS, NPS, fluidez).  
+
+Cada nivel utiliza herramientas integradas dentro del ecosistema de observabilidad (**Grafana Cloud + Prometheus + OpenTelemetry + Lighthouse CI + RedLine13**), garantizando visibilidad completa del comportamiento del sistema y sus usuarios.
+
+---
+
+| Nivel | Evento / Métrica Registrada | Herramienta o Servicio | Frecuencia de Recolección | Formato / Almacenamiento | Uso Analítico |
+|--------|------------------------------|-------------------------|----------------------------|--------------------------|----------------|
+| **Frontend (Web Angular)** | `frontend_update_time_ms`, `lighthouse_score`, `cpu_usage_percent` | Lighthouse CI + OpenTelemetry Exporter integrados al pipeline GitHub Actions | En cada build del CI/CD | Registros OTLP (JSON) en Grafana Cloud | Evaluar el **KPI1 – Rendimiento técnico** del dashboard Angular |
+|  | Interacción con tooltips de ayuda contextual y clics en vistas clave | Angular EventEmitter + OTLP custom metrics | En cada evento de usuario | Series temporales en Grafana Cloud (dashboard Exp-08) | Medir comprensión y adopción de la ayuda contextual (**KPI2**) |
+|  | Finalización de tareas o acciones de usuario | Angular Logger + OpenTelemetry spans | Por sesión activa | Logs JSON estructurados | Analizar tasa de éxito en tareas críticas de uso del sistema |
+| **Backend (Node.js / API)** | `end_to_end_latency_ms`, `request_duration_seconds` | OpenTelemetry Node.js SDK + Prometheus Collector | Cada solicitud API | Métricas OTLP → Grafana Cloud | Medir eficiencia de procesamiento y latencia (**KPI1**, **KPI3**) |
+|  | Estado del servidor (`cpu_usage_percent`, `memory_usage_mb`) | Prometheus Node Exporter | Cada 30 s | Time series en Grafana Cloud | Validar estabilidad bajo carga (**KPI4**) |
+|  | Errores HTTP y reconexiones | Express Middleware + OTLP Error Metrics | En tiempo real | JSON / Logs automáticos en Grafana Explore | Identificar fallas y patrones de error |
+| **IoT Layer (MQTT / WebSocket)** | Paquetes enviados / recibidos y tasa de pérdida (`mqtt_packet_loss_percent`) | Mosquitto Broker Logs + OTLP Collector | Cada 3 s | JSON / Series en Grafana Cloud | Evaluar confiabilidad de transmisión y pérdida de datos (**KPI4**) |
+|  | Latencia sensor–servidor | Node.js Listener + OpenTelemetry spans | Por mensaje recibido | OTLP export (JSON) | Analizar percepción de tiempo real (**KPI3**) |
+| **Usuarios (UX Tracking)** | Resultados de encuestas SUS, Likert y NPS | Google Forms + DataStudio / Sheets | Al finalizar cada sesión de prueba | CSV / Google Sheets | Medir comprensión, fluidez percibida y satisfacción (**KPI2**, **KPI5**) |
+| **Pipeline (CI/CD)** | Resultados de ejecución (`ci_build_duration_seconds`, `ci_step_value`) y análisis de calidad | GitHub Actions + Workflow Metrics.yml + OpenTelemetry | En cada commit y despliegue | JSON / Dashboard “CI/CD Observability” en Grafana | Integrar métricas DevOps con KPIs experimentales |
+
+---
+
+#### **Análisis y flujo de observación**
+
+El sistema de tracking implementado permite la **trazabilidad completa de eventos desde el sensor físico hasta la percepción del usuario**.
+
+En el flujo de monitoreo:
+- Las métricas **frontend y backend** se recolectan mediante *OpenTelemetry Exporters*, enviando datos OTLP a Grafana Cloud.  
+- Las **pruebas de rendimiento y estrés** se integran mediante *RedLine13* y *Lighthouse CI*, cuyos resultados se exportan al pipeline como reportes JSON correlacionados con los KPIs.  
+- Los **eventos de experiencia de usuario (UX)** se recogen mediante formularios SUS y NPS, cuyas métricas promedio se ingresan manualmente al dashboard “Exp-08” para mantener la comparabilidad.  
+- Finalmente, todos los datos convergen en el **dashboard Exp-08 Analysis (UX + CI/CD)**, donde se visualiza el impacto conjunto de las intervenciones técnicas y perceptuales.
+
+<a id="8-3-experimentation"></a>
+## 8.3. Experimentation
+
+En esta etapa se presentan los **experimentos ejecutados**, mostrando los resultados obtenidos a partir de la aplicación de las mejoras propuestas en el sistema IoT.  
+Cada experimento fue diseñado en base al plan establecido en la **sección 8.2** y se realizó bajo condiciones controladas, manteniendo la misma infraestructura, número de dispositivos IoT y entorno de red.  
+
+El propósito de esta fase es **comparar los resultados entre la versión base y la versión experimental**, evidenciando si las hipótesis definidas fueron confirmadas o refutadas.  
+Para cada caso se incluye una descripción breve de la pregunta experimental, el análisis de datos obtenidos y la conclusión parcial de la hipótesis evaluada.
+
+
+<a id="8-3-1-to-be-user-stories"></a>
+### 8.3.1. To-Be User Stories
+
+Esta sección presenta las nuevas **historias de usuario (To-Be User Stories)** derivadas de los resultados obtenidos en la fase de experimentación.  
+Estas historias reflejan las mejoras validadas y las necesidades detectadas a partir de la retroalimentación de los usuarios y los hallazgos de los experimentos, incorporándose al backlog del sistema IoT para su implementación en las próximas iteraciones.  
+
+El objetivo es asegurar que los **aprendizajes obtenidos se traduzcan en acciones concretas de desarrollo**, mejorando de manera continua la funcionalidad, la usabilidad y la estabilidad del producto.
+
+| Epic / Story ID | Título | Descripción | Criterios de Aceptación |
+|------------------|---------|--------------|--------------------------|
+| **US104** | **Carga diferida del Dashboard (Lazy Loading)** | Como operador del sistema deseo que los módulos del dashboard se carguen bajo demanda para reducir los tiempos de carga y mejorar la fluidez de la aplicación. | Dado que el usuario inicia sesión en el sistema, cuando accede al dashboard principal entonces los módulos visibles se cargan dinámicamente y el tiempo total de carga no supera los 2 segundos. |
+| **US105** | **Vista de Ayuda Contextual** | Como usuario nuevo deseo visualizar una guía interactiva y tooltips explicativos en el dashboard para comprender fácilmente el significado de cada métrica IoT. | Dado que el usuario accede por primera vez al dashboard, cuando inicia sesión entonces el sistema muestra automáticamente una vista de ayuda contextual y permite recorrer las explicaciones de cada indicador. |
+| **US106** | **Configuración del Intervalo de Actualización** | Como administrador deseo poder modificar el intervalo de actualización del backend desde el panel de control para ajustar la frecuencia de actualización de datos según la carga del sistema. | Dado que el usuario tiene rol de administrador, cuando accede al panel de configuración del sistema entonces puede seleccionar un intervalo entre 1 s y 3 s y los cambios se aplican de inmediato. |
+| **US107** | **Notificaciones de Estado de Dispositivo** | Como operador deseo recibir alertas visuales cuando un dispositivo IoT pierda conexión para tomar acciones inmediatas ante fallas o desconexiones. | Dado que el sistema detecta la pérdida de conexión de un sensor, cuando ocurre el evento entonces se muestra una alerta visual en el dashboard y el registro queda almacenado en el log de alertas. |
+| **US108** | **Monitoreo en Tiempo Real del Sistema** | Como administrador deseo visualizar indicadores globales de rendimiento, latencia y estado del servidor en tiempo real para evaluar la estabilidad del sistema IoT. | Dado que el sistema está operativo, cuando el usuario accede al panel de monitoreo entonces se muestran métricas de CPU, latencia y uptime actualizadas cada 30 segundos. |
+
+<a id="8-3-2-to-be-product-backlog"></a>
+### 8.3.2. To-Be Product Backlog
+
+El siguiente backlog presenta la **planificación priorizada de las nuevas historias de usuario** generadas a partir de los resultados de la fase de experimentación.  
+Cada historia ha sido valorada en función de su impacto en el sistema, **complejidad técnica** y **esfuerzo estimado (story points)** según la escala estándar (1–8).  
+
+El propósito de este backlog es servir como **guía de implementación para las siguientes iteraciones del proyecto**, garantizando la evolución continua del sistema IoT.
+
+| # Orden | User Story ID | Título | Descripción | Story Points (1 / 2 / 3 / 5 / 8) |
+|----------|----------------|---------|--------------|-----------------------------------|
+| **1** | **US104** | **Carga diferida del Dashboard (Lazy Loading)** | Como operador del sistema deseo que los módulos del dashboard se carguen bajo demanda para reducir los tiempos de carga y mejorar la fluidez de la aplicación. | **8** |
+| **2** | **US105** | **Vista de Ayuda Contextual** | Como usuario nuevo deseo visualizar una guía interactiva y tooltips explicativos en el dashboard para comprender fácilmente el significado de cada métrica IoT. | **5** |
+| **3** | **US106** | **Configuración del Intervalo de Actualización** | Como administrador deseo poder modificar el intervalo de actualización del backend desde el panel de control para ajustar la frecuencia de actualización de datos según la carga del sistema. | **5** |
+| **4** | **US107** | **Notificaciones de Estado de Dispositivo** | Como operador deseo recibir alertas visuales cuando un dispositivo IoT pierda conexión para tomar acciones inmediatas ante fallas o desconexiones. | **3** |
+| **5** | **US108** | **Monitoreo en Tiempo Real del Sistema** | Como administrador deseo visualizar indicadores globales de rendimiento, latencia y estado del servidor en tiempo real para evaluar la estabilidad del sistema IoT. | **3** |
+
+
 
 
 

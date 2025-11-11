@@ -5630,13 +5630,19 @@ El propósito de este backlog es servir como **guía de implementación para las
 | **5** | **US108** | **Monitoreo en Tiempo Real del Sistema** | Como administrador deseo visualizar indicadores globales de rendimiento, latencia y estado del servidor en tiempo real para evaluar la estabilidad del sistema IoT. | **3** |
 
 
+# Avance de Conclusiones
 
+El proyecto ha alcanzado un nivel de madurez técnica y metodológica que evidencia la aplicación efectiva del enfoque **Experiment-Driven Development (EDD)** dentro del ciclo DevOps implementado.  
+A través de la integración de herramientas como **Grafana Cloud, Prometheus, OpenTelemetry, RedLine13 y Lighthouse CI**, se logró construir un entorno de observabilidad completo que permitió validar hipótesis experimentales de manera controlada, reproducible y basada en evidencia empírica.
 
+Los resultados obtenidos hasta esta etapa confirman mejoras significativas en tres dimensiones clave:
 
+- **Rendimiento técnico:** La instrumentación del frontend y backend mostró reducciones sostenidas en los tiempos de actualización del dashboard (≤ 1.5 s) y un uso de CPU estable (< 70 %), validando la efectividad del lazy loading y la optimización de RxJS.
+- **Percepción y usabilidad:** Los usuarios reportaron mayor comprensión de métricas y fluidez percibida (≥ 4/5), lo que demuestra que la introducción de vistas de ayuda contextual y la mejora visual del dashboard impactan positivamente en la experiencia de uso.
+- **Estabilidad y confiabilidad:** Los experimentos con MQTT y WebSocket reflejaron pérdidas mínimas (< 2 %), consolidando la robustez de la comunicación IoT bajo condiciones controladas.
 
+En términos metodológicos, el equipo demostró coherencia entre la **planificación experimental**, la **ejecución controlada de pruebas** y el **monitoreo continuo del sistema**.  
+El pipeline CI/CD implementado no solo automatiza la entrega y despliegue, sino que además facilita la recolección de datos en tiempo real, integrando métricas DevOps con indicadores de usabilidad y rendimiento.
 
-# Conclusiones
-El desarrollo del proyecto TukunTech permitió integrar de manera exitosa una solución tecnológica orientada al monitoreo y cuidado de la salud, combinando dispositivos IoT, aplicaciones móviles y web, y servicios en la nube bajo un modelo SaaS. A lo largo del proceso se aplicaron principios de usabilidad, accesibilidad, arquitectura de información y diseño responsivo, asegurando que pacientes, familiares, cuidadores y administradores puedan interactuar con la plataforma de forma sencilla y confiable.
-
-La implementación de la Landing Page, el Frontend Web, la Aplicación Móvil Android y el Backend RESTful demostró la viabilidad técnica del sistema, garantizando comunicación en tiempo real mediante Firebase Cloud Messaging, almacenamiento seguro en Aiven PostgreSQL y despliegues eficientes en Render. Asimismo, el uso de metodologías ágiles como Scrum permitió organizar las tareas en sprints, facilitando la colaboración del equipo y asegurando entregas incrementales de valor.
-
+Finalmente, los aprendizajes obtenidos en esta fase servirán como base para el **análisis posterior (Capítulo 8.4)**, donde se interpretarán los resultados experimentales y se re-priorizará el backlog de preguntas.  
+El proyecto mantiene una trayectoria sólida hacia su validación final, con evidencias cuantitativas y cualitativas que sustentan la mejora continua del sistema IoT.

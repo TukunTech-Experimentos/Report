@@ -4992,127 +4992,124 @@ class ErrorsSystemTest {
 
 <a id="7-1-continuous-integration"></a>
 ## 7.1. Continuous Integration
+
 <a id="7-1-1-tools-and-practices"></a>
-### 7.1.1. Tools and Practices.
+### 7.1.1. Tools and Practices
 
-Para TukunTech, utilizamos herramientas como Jenkins, GitHub Actions y Travis CI para implementar Integración Continua (CI). Estas herramientas permiten automatizar la integración de cambios al repositorio de código de forma continua, ejecutando pruebas automáticamente y asegurando que el código siempre esté en un estado funcional antes de ser integrado.
-Herramientas:
-- Jenkins: Utilizado para configurar pipelines de CI que se ejecutan cada vez que un desarrollador sube un cambio al repositorio. Jenkins ejecuta pruebas automáticas y valida la compilación del proyecto.
+Para TukunTech, implementamos la Integración Continua (CI) utilizando GitHub Actions como herramienta principal, complementada con Playwright y Lighthouse CI para validar el rendimiento y la calidad de cada build antes de su integración. El objetivo es garantizar que cada commit subido al repositorio pase por un flujo automatizado de pruebas, análisis y validación de métricas técnicas y de experiencia de usuario.
 
+**Herramientas:**
+- **GitHub Actions:** Orquesta todo el pipeline de CI/CD. Cada push o pull request activa un workflow que ejecuta pruebas automáticas, mide tiempos de carga del frontend y envía las métricas a Grafana Cloud mediante OTLP (OpenTelemetry Protocol).
+- **Playwright:** Automatiza pruebas E2E en el frontend para validar rutas críticas del sistema (/dashboard/patient, /support, /vital-signs, etc.) y mide *frontend_nav_ms*, *frontend_action_ms* y *frontend_update_time_ms*.
+- **Lighthouse CI:** Evalúa rendimiento y accesibilidad del frontend (*lighthouse_score*) y exporta resultados a Grafana Cloud.
+- **SonarQube (opcional):** Analiza el código estáticamente para detectar vulnerabilidades y malas prácticas.
+- **Grafana Cloud + Prometheus:** Almacena las métricas enviadas desde GitHub Actions para análisis en dashboards.
 
-- GitHub Actions: Integra GitHub con pipelines de CI/CD para garantizar que las pruebas y el despliegue se gestionen de manera continua.
-
-
-- Travis CI: Utilizado para verificar la calidad del código, ejecutar pruebas y realizar despliegues automáticos al entorno de staging.
-
-
-Prácticas de CI:
-- Automatización de pruebas: Cada vez que un desarrollador sube código nuevo, se ejecutan pruebas unitarias y de integración para garantizar que las nuevas modificaciones no rompan las funcionalidades existentes.
-
-
-- Revisión continua de código: Utilizamos Pull Requests para revisar el código antes de ser integrado a la rama principal, asegurando calidad y consistencia.
+**Prácticas de CI:**
+- **Automatización total del pipeline:** Cada cambio en *main* o *develop* ejecuta procesos automáticos de build, pruebas y envío de métricas.
+- **Validación de rendimiento en CI:** El pipeline evalúa tiempos de carga, fluidez visual y puntaje Lighthouse para evitar regresiones de UX.
+- **Integración con observabilidad:** Las métricas *frontend_* se envían como series de tiempo a Grafana para correlacionar builds con rendimiento.
+- **Revisión por Pull Requests:** Se requiere revisión por pares antes de fusionar cambios en la rama principal.
 
 
 <a id="7-1-2-build-test-suite-pipeline-components"></a>
-### 7.1.2. Build & Test Suite Pipeline Components.
+### 7.1.2. Build & Test Suite Pipeline Components
 
 El pipeline de construcción y pruebas de TukunTech se divide en varios componentes que garantizan que el código esté libre de errores antes de su integración al entorno de producción:
-1. Componente de Construcción (Build Component):
-  - El código fuente se compila y empaqueta automáticamente cada vez que se integra un nuevo cambio al repositorio.
-  - Utilizamos Maven y Gradle para gestionar las dependencias y crear la aplicación.
 
+1. **Build Component**
+   - Compila la aplicación Angular y el backend Spring Boot.
+   - Valida dependencias y empaqueta artefactos.
 
-2. Componente de Pruebas Unitarias (Unit Test Component):
-  - Se ejecutan pruebas unitarias mediante JUnit y Mockito para asegurar que cada módulo del software funcione de manera independiente.
+2. **E2E & Performance Tests (Playwright)**
+   - Ejecuta pruebas de navegación del frontend.
+   - Mide *frontend_nav_ms*, *frontend_action_ms*, *frontend_update_time_ms*.
 
-3. Componente de Pruebas de Integración (Integration Test Component):
-  - Se realizan pruebas de integración para verificar que las diferentes partes del sistema interactúan correctamente. Estas pruebas se gestionan mediante Selenium y Cucumber.
+3. **Lighthouse Performance Test**
+   - Corre Lighthouse CI autenticado.
+   - Obtiene *lighthouse_score* en vistas principales.
 
+4. **Static Analysis (SonarQube)**
+   - Realiza análisis estático del código para detectar errores y vulnerabilidades.
 
-4. Componente de Análisis Estático (Static Analysis Component):
-  - SonarQube se integra al pipeline para realizar un análisis estático del código, buscando errores de estilo, vulnerabilidades de seguridad y problemas de calidad del código.
-
-
-5. Componente de Despliegue (Deployment Component):
-  - Después de pasar todas las pruebas, el código es desplegado automáticamente en un entorno de pruebas (staging) usando Docker y Kubernetes.
+5. **OTLP Metrics Export**
+   - Envía todas las métricas generadas del pipeline a Grafana Cloud vía OTLP.
 
 
 <a id="7-2-continuous-delivery"></a>
 ## 7.2. Continuous Delivery
+
 <a id="7-2-1-tools-and-practices"></a>
-### 7.2.1. Tools and Practices.
+### 7.2.1. Tools and Practices
 
-Para TukunTech, implementamos Entrega Continua (CD) utilizando Jenkins y CircleCI como herramientas clave para automatizar el proceso de despliegue. Estas herramientas permiten que cualquier cambio aprobado se despliegue automáticamente en los entornos de staging y producción sin intervención manual.<br>
-<img src="Images/ToolsPractices1.png">
-<br>
-Herramientas:
-- Jenkins: Se configura para hacer despliegues automáticos cada vez que un cambio pasa todas las pruebas.
+En TukunTech, la Entrega Continua (CD) se implementó con GitHub Actions y contenedores Docker, eliminando la dependencia de Jenkins. Cada build exitoso genera artefactos versionados listos para desplegarse en staging o producción mediante flujos automatizados.
 
+**Herramientas:**
+- **GitHub Actions:** Coordina los pipelines de entrega continua mediante archivos *deploy.yml* o *release.yml*.
+- **Docker:** Cada microservicio se construye como imagen Docker para garantizar entornos idénticos.
+- **Netlify:** Despliega automáticamente el frontend; cada commit en *main* publica una nueva versión.
+- **Grafana Cloud:** Observa métricas post-despliegue como latencia, Lighthouse y fluidez.
 
-- Docker: Utilizamos Docker para empaquetar la aplicación en contenedores, lo que facilita el despliegue en diferentes entornos.
-
-
-- Kubernetes: Nos permite gestionar el ciclo de vida de las aplicaciones y realizar despliegues de manera escalable.
-
-
-Prácticas de CD:
-- Despliegue Automatizado: Cada vez que un cambio pasa las pruebas, se despliega automáticamente en el entorno de staging y producción.
-
-
-- Despliegue Gradual: Los cambios se despliegan en etapas para asegurar que no afecten a toda la base de usuarios. Utilizamos canary releases y blue-green deployments para minimizar riesgos.
+**Prácticas de CD:**
+- **Despliegue automatizado desde CI:** Cada build aprobado se despliega a staging o producción según la rama.
+- **Despliegue gradual:** Netlify y los contenedores backend se despliegan gradualmente verificando métricas de salud.
+- **Validación post-despliegue:** Se ejecutan verificaciones automáticas y se publican en el panel “Deployment Health”.
 
 
 <a id="7-2-2-stages-deployment-pipeline-components"></a>
-### 7.2.2. Stages Deployment Pipeline Components.
+### 7.2.2. Stages Deployment Pipeline Components
 
-El pipeline de despliegue de TukunTech está dividido en múltiples etapas para asegurar que cada componente se despliegue correctamente sin afectar el servicio. Estas etapas son:
-1. Desarrollo: En esta etapa, los desarrolladores realizan cambios en el código. Los cambios son verificados y probados localmente antes de ser integrados al repositorio.
+El pipeline de despliegue de TukunTech está dividido en múltiples etapas:
 
+1. **Build & Test (CI)**
+   - Ejecutado en GitHub Actions.
+   - Incluye compilación, test unitarios, Playwright y Lighthouse.
 
-2. Integración Continua: Aquí se realiza la integración de todos los cambios a través del pipeline de CI, donde se ejecutan las pruebas unitarias y de integración.
+2. **Staging Deploy**
+   - Despliegue automático en Netlify (frontend) y Docker (backend).
 
+3. **Monitoring & Metrics Export**
+   - Envía métricas *frontend_* y *backend_* a Grafana Cloud.
 
-3. Pruebas en Staging: En esta etapa, el código es desplegado automáticamente en un entorno de staging para realizar pruebas de aceptación de usuario (UAT) y validación del sistema.
+4. **Manual Promotion to Production**
+   - Un workflow manual promueve la imagen a producción tras validación.
 
-
-4. Despliegue en Producción: Después de pasar las pruebas de staging, el código es desplegado automáticamente en el entorno de producción. Utilizamos Kubernetes para orquestar el despliegue y escalar las aplicaciones según sea necesario.
 
 <a id="7-3-continuous-deployment"></a>
-## 7.3. Continuous deployment
+## 7.3. Continuous Deployment
+
 <a id="7-3-1-tools-and-practices"></a>
-### 7.3.1. Tools and Practices.
+### 7.3.1. Tools and Practices
 
-En TukunTech, aplicamos Despliegue Continuo (CD) para garantizar que los cambios sean desplegados automáticamente en producción sin intervención manual. Esto asegura una entrega más rápida y frecuente de nuevas funcionalidades.
-Herramientas:
-- Docker: Para asegurar que todos los entornos de desarrollo, staging y producción sean consistentes.
+TukunTech aplica Despliegue Continuo mediante GitHub Actions, integrándose con Grafana Cloud para validar automáticamente la estabilidad del sistema antes de liberar versiones a producción.
 
+**Herramientas:**
+- **GitHub Actions (CDP):** Ejecuta el flujo completo push → build → test → deploy con validación de performance.
+- **Docker Hub:** Hospeda imágenes del backend y frontend.
+- **Grafana Cloud + Prometheus:** Monitorea rendimiento post-despliegue (*frontend_ux_ms*, *lighthouse_score*, *frontend_update_time_ms*).
+- **Netlify y AWS Lambda:** Frontend desplegado en Netlify; algunas funciones backend se ejecutan en Lambda.
 
-- Kubernetes: Se utiliza para gestionar el despliegue en producción, automatizando el escalado y la gestión de contenedores.
+**Prácticas de CD:**
+- **Despliegue 24/7:** Cada push en *main* se libera a producción si supera todas las pruebas.
+- **Monitoreo post-despliegue:** Grafana analiza métricas como *end_to_end_latency_ms* y *perceived_fluidity_score*.
+- **Rollback automático:** Si las métricas exceden umbrales (ej. latencia > 2s), GitHub Actions ejecuta un rollback.
 
-
-- AWS Lambda: En algunos casos, utilizamos AWS Lambda para realizar tareas de backend sin servidores, reduciendo costos y aumentando la eficiencia.
-
-
-Prácticas de CD:
-- Despliegue 24/7: Cada vez que un cambio es validado y aprobado, se despliega automáticamente en producción, garantizando que los usuarios siempre tengan la última versión del producto.
-
-
-- Monitoreo Post-Despliegue: Utilizamos herramientas de monitoreo como Prometheus y Grafana para asegurar que el sistema funcione correctamente después de cada despliegue y para detectar rápidamente cualquier problema.
 
 <a id="7-3-2-production-deployment-pipeline-components"></a>
-### 7.3.2. Production Deployment Pipeline Components.
+### 7.3.2. Production Deployment Pipeline Components
 
-El pipeline de despliegue en producción se compone de varias fases críticas:
-1. Despliegue en Entorno de Staging: Después de pasar las pruebas automatizadas, el código es desplegado primero en el entorno de staging, que replica la infraestructura de producción.
+1. **Despliegue en Staging**
+   - Se activa automáticamente tras el build.
+   - Usa imágenes Docker y frontend en Netlify.
 
+2. **Pruebas Post-Despliegue**
+   - Ejecuta tests E2E con Playwright para validar estabilidad y performance.
 
-2. Validación de UAT (User Acceptance Testing): Los usuarios clave validan el funcionamiento del sistema en staging antes de que el código sea liberado a producción.
+3. **Promoción a Producción**
+   - Si las métricas están dentro de los umbrales, la release se promueve automáticamente.
 
-
-3. Despliegue Automático a Producción: Después de la validación, el código se despliega automáticamente en producción. Utilizamos blue-green deployments para reducir el tiempo de inactividad y minimizar los riesgos.
-
-
-4. Monitoreo en Producción: Una vez en producción, el sistema es monitoreado constantemente. Si se detecta un error crítico, se activa automáticamente un rollback para revertir al último estado funcional.
+4. **Monitoreo y Observabilidad**
+   - Grafana Cloud muestra en tiempo real el impacto de cada despliegue y genera alertas ante regresiones.
 
 
 <a id="8-experiment-driven-development"></a>

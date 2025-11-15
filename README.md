@@ -5069,7 +5069,8 @@ Como resultado de esta verificación, el equipo logró mantener un código claro
 6.2.2. Reviews
 
 <a id="6-3-validation-interviews"></a>
-6.3. Validation Interviews.
+6.3. Validation Interviews.<
+<br>
 <a id="6-3-1-diseno-de-entrevistas"></a>
 6.3.1. Diseño de Entrevistas.
 
@@ -5114,6 +5115,7 @@ Bloque 5: Satisfacción general y mejoras
 
 <a id="6-3-2-registro-de-entrevistas"></a>
 6.3.2. Registro de Entrevistas.
+<br>
 <a id="6-3-3-evaluaciones-segun-heuristicas"></a>
 6.3.3. Evaluacionessegún heurísticas.
 
@@ -5233,11 +5235,13 @@ Esto refuerza la sensación de control, transparencia y confianza del usuario so
 
 <a id="6-4-auditoria-de-experiencias-de-usuario"></a>
 6.4. Auditoría de Experiencias de Usuario.
+<br>
 <a id="6-4-1-auditoria-realizada"></a>
 6.4.1. Auditoría realizada.
+<br>
 <a id="6-4-1-1-informacion-del-grupo-auditado"></a>
 6.4.1.1. Información del grupo auditado.
-
+<br>
 STARTUP:
 - Vacow Team
 
@@ -5273,8 +5277,10 @@ INTEGRANTES DEL EQUIPO:
 
 <a id="6-4-2-auditoria-recibida"></a>
 6.4.2. Auditoría recibida.
+<br>
 <a id="6-4-2-1-informacion-del-grupo-auditor"></a>
 6.4.2.1. Información del grupo auditor.
+<br>
 
 STARTUP:
 - Vacow Team

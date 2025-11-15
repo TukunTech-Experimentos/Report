@@ -5114,7 +5114,37 @@ Bloque 5: Satisfacción general y mejoras
 - En una escala del 1 al 5, ¿cómo calificarías tu experiencia general con la aplicación?
 
 <a id="6-3-2-registro-de-entrevistas"></a>
-6.3.2. Registro de Entrevistas.
+6.3.2. Registro de Entrevistas.<br>
+| Campo             | Detalle |
+|-------------------|---------|
+| *Segmento*      | Familiares y cuidadores |
+| *Nombre*        | Carmen |
+| *Apellidos*     | Pedemonte |
+| *Edad*          | 54 |
+| *Distrito*      | Surco |
+| *URL*           | [Video](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBFW5hREBblQYnpuvXlXXEjAYSm40dEuKXQSJ-oWj7dOtQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=nl4SV6)|
+| *Duración*      | 10:16 |
+| *Resumen*       | La entrevistada es una cuidadora que desea una aplicación que permita detectar anormalidades en sus pacientes y brindar una solución de prediagnóstico. Está familiarizada con tecnologías, ya que ha usado aplicaciones para su rutina de marcapasos. Considera importante un buen diseño y sugiere incluir una opción de contraste para mejorar la lectura. Destaca que la aplicación es intuitiva y accesible para todo tipo de usuarios. Valora especialmente el monitoreo en tiempo real, que considera la funcionalidad más importante. |
+| *Personalidad*  | Orientada a la solución, pragmática, familiarizada con tecnología y enfocada en la usabilidad y eficiencia visual. |
+| *Marcas*        | Herramientas fiables que actúen como asistente de prediagnóstico. Diseño amigable, intuitivo y accesible, con enfoque en alto contraste. |
+| *Dispositivos*  | Smartphone, tablet y computadora. |
+| *Flujos principales* | - Detección proactiva de anormalidades.<br>- Recepción inmediata de sugerencias o prediagnósticos.<br>- Monitoreo en tiempo real.<br>- Interacción con un diseño intuitivo y legible (incluye contraste).<br>- Acceso claro y rápido a datos desde dispositivos digitales. |
+
+| Campo             | Detalle |
+|-------------------|---------|
+| *Segmento*      | Pacientes |
+| *Nombre*        | Luis |
+| *Apellidos*     | Carcamo |
+| *Edad*          | 26 |
+| *Distrito*      | Surco |
+| *URL*           | [Video](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBw4mg0HT0kRq-BAwczOXszAYBHB7u6OD3tJ315qGgvPAQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=dD1Vds) |
+| *Duración*      | 12:25 |
+| *Resumen*       | El entrevistado es un ingeniero mecatrónico con arritmias que requiere monitoreo frecuente. Ha usado aplicaciones de lectura de pulso, pero desconfía de su precisión. Busca una app confiable, con registro mensual detallado y que garantice que sus valores se encuentren dentro de rangos normales. Considera sencillo el uso de aplicaciones y valora un diseño intuitivo y simple, con buena legibilidad. Para él, el monitoreo diario y la certeza de la normalidad de sus valores son esenciales. |
+| *Personalidad*  | Analítico, exigente con la precisión de datos y tecnológicamente experto. Prioriza la confianza en la información médica. |
+| *Marcas*        | Herramientas de alta fiabilidad, asistente de prediagnóstico, diseño intuitivo y accesible, con opciones de contraste. |
+| *Dispositivos*  | Smartphone y laptop. |
+| *Flujos principales* | - Monitoreo diario de signos vitales.<br>- Obtención de valores precisos y confiables.<br>- Registro histórico mensual.<br>- Interfaz simple, intuitiva y legible.<br>- Alertas que indiquen si los valores son habituales. |
+
 <br>
 <a id="6-3-3-evaluaciones-segun-heuristicas"></a>
 6.3.3. Evaluacionessegún heurísticas.

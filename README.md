@@ -5069,7 +5069,7 @@ Como resultado de esta verificación, el equipo logró mantener un código claro
 6.2.2. Reviews
 
 <a id="6-3-validation-interviews"></a>
-6.3. Validation Interviews.<
+6.3. Validation Interviews.
 <br>
 <a id="6-3-1-diseno-de-entrevistas"></a>
 6.3.1. Diseño de Entrevistas.

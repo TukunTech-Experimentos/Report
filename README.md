@@ -86,6 +86,19 @@
    <br>
 
 </div>
+   <br>
+
+   <br>
+
+   <br>
+
+   <br>
+
+   <br>
+
+   <br>
+
+
 
 # Registro de Versiones del Informe
 
@@ -121,6 +134,11 @@ URL del repositorio para el proyecto: [Link](https://github.com/TukunTech-Experi
 |---------------------|---------------------|--------------|
 | Reconoce responsabilidad <br> ética y profesional en <br> situaciones de ingeniería <br> de software. | **Maraza Pedemonte Erick**<br>TP1: Participó en el desarrollo del backend, asegurando una estructura sólida, segura y coherente con los requerimientos del sistema.<br><br>**Agama Espinoza Eric Fabrizio**<br>TP1: Supervisó la documentación técnica y la integración del contenido en la landing page, garantizando la veracidad y ética en la presentación de información.<br><br>**Palomares Chavez Adriana Giovanna**<br>TP1: Contribuyó en la programación del frontend web, aplicando principios de diseño limpio y accesible para los usuarios.<br><br>**Soto Zorrilla Oscar Eduardo**<br>TP1: Trabajó en la conexión entre el backend y la interfaz web, velando por la coherencia funcional y la seguridad de los datos.<br><br>**Jave Chang Alejandro Manuel**<br>TP1: Diseñó y ajustó la interfaz visual de la landing page, priorizando la experiencia del usuario y la identidad visual del proyecto. | **TP1:** El equipo mantuvo un enfoque ético y profesional durante el desarrollo web. Cada integrante asumió responsabilidades técnicas específicas, garantizando la calidad del código, la seguridad de la información y la accesibilidad del sitio. El trabajo conjunto reflejó compromiso, organización y respeto por los principios de la ingeniería de software. |
 | Emite juicios informados <br> considerando el impacto <br> de las soluciones de ingeniería <br> de software en contextos <br> globales, económicos, <br> ambientales y sociales. | **Maraza Pedemonte Erick**<br>TP1: Analizó la eficiencia del backend para optimizar recursos del servidor y reducir el impacto económico del despliegue.<br><br>**Agama Espinoza Eric Fabrizio**<br>TP1: Evaluó la claridad del contenido en la landing page para fomentar la comprensión y el acceso equitativo a la información del sistema.<br><br>**Palomares Chavez Adriana Giovanna**<br>TP1: Consideró la adaptabilidad del diseño web a distintos dispositivos, promoviendo inclusión digital y sostenibilidad.<br><br>**Soto Zorrilla Oscar Eduardo**<br>TP1: Propuso mejoras técnicas para garantizar una arquitectura escalable y eficiente, con menor consumo de recursos.<br><br>**Jave Chang Alejandro Manuel**<br>TP1: Diseñó interfaces visuales que facilitan la interacción, reduciendo brechas tecnológicas y mejorando la usabilidad para diversos perfiles de usuario. | **TP1:** El equipo analizó el impacto de sus decisiones técnicas en términos de sostenibilidad, accesibilidad y eficiencia. Las soluciones desarrolladas consideraron tanto la optimización de recursos como la inclusión de los usuarios, promoviendo un sistema web funcional, responsable y socialmente consciente. |
+
+| Criterio Específico | Acciones Realizadas | Conclusiones |
+|---------------------|---------------------|--------------|
+| Reconoce responsabilidad <br> ética y profesional en <br> situaciones de ingeniería <br> de software. | **Maraza Pedemonte Erick**<br>TB2: Implementó pruebas unitarias e integración sobre las entidades centrales del sistema, garantizando la consistencia funcional y evitando la propagación de errores en el flujo principal.<br><br>**Agama Espinoza Eric Fabrizio**<br>TB2: Diseñó y ejecutó el proceso de validación mediante entrevistas, asegurando la correcta documentación, consentimiento y resguardo ético de la información recopilada.<br><br>**Palomares Chavez Adriana Giovanna**<br>TB2: Realizó auditorías de experiencia de usuario con base en heurísticas, manteniendo un enfoque profesional para detectar problemas de usabilidad y accesibilidad.<br><br>**Soto Zorrilla Oscar Eduardo**<br>TB2: Ejecutó análisis estático del código, verificando cumplimiento de estándares, seguridad y buenas prácticas de desarrollo.<br><br>**Jave Chang Alejandro Manuel**<br>TB2: Documentó y organizó los procesos del pipeline CI/CD, manteniendo prácticas éticas en el manejo de información sensible y configuraciones del entorno. | **TB2:** El equipo demostró profesionalismo al ejecutar actividades de validación, auditoría, pruebas y análisis estático. Las acciones realizadas aseguraron calidad técnica, respeto por la ética en la documentación de usuarios y coherencia en los estándares del proyecto. En conjunto, se evidenció compromiso responsable y buenas prácticas en la verificación, validación y despliegue del sistema. |
+| Emite juicios informados <br> considerando el impacto <br> de las soluciones de ingeniería <br> de software en contextos <br> globales, económicos, <br> ambientales y sociales. | **Maraza Pedemonte Erick**<br>TB2: Analizó los resultados de pruebas unitarias e integración para evaluar la mantenibilidad y escalabilidad futura del sistema, evitando sobrecostos y asegurando sostenibilidad técnica.<br><br>**Agama Espinoza Eric Fabrizio**<br>TB2: Interpretó los resultados de entrevistas de validación para identificar necesidades reales de los usuarios y su impacto social, proponiendo mejoras orientadas a la inclusión y accesibilidad.<br><br>**Palomares Chavez Adriana Giovanna**<br>TB2: Evaluó los hallazgos de la auditoría UX considerando su efecto en la experiencia del usuario y en la adopción del sistema por distintos perfiles demográficos.<br><br>**Soto Zorrilla Oscar Eduardo**<br>TB2: Analizó métricas del análisis estático para identificar riesgos técnicos y de seguridad, considerando su impacto económico y operativo en el ciclo de vida del producto.<br><br>**Jave Chang Alejandro Manuel**<br>TB2: Evaluó la configuración del pipeline DevOps para garantizar despliegues eficientes, rápidos y con menor impacto ambiental y económico en infraestructura. | **TB2:** El equipo basó sus decisiones en evidencia proveniente de pruebas, entrevistas, auditorías y métricas. Esto permitió emitir juicios informados que consideraron eficiencia técnica, reducción de costos, sostenibilidad, inclusión social y mejora continua del producto. Las acciones del grupo mostraron un entendimiento integral del impacto global de la ingeniería de software en contextos reales. |
 
 
 

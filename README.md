@@ -4987,6 +4987,316 @@ class ErrorsSystemTest {
 ```
 <img src="Images/SystemTests3.png">
 
+<a id="6-2-static-testing-verification"></a>
+# 6.2. Static testing & Verification
+
+El proceso de verificación estática en el proyecto TukunTech se enfocó en garantizar la calidad técnica del código antes de su ejecución, identificando errores de estructura, estilo o coherencia a nivel de repositorio.
+ Dado que el equipo aplicó metodologías ágiles (Scrum) y una gestión de código basada en GitFlow, la verificación se integró dentro del flujo de trabajo, permitiendo detectar y corregir inconsistencias de manera continua durante los sprints.
+El enfoque adoptado fue colaborativo y manual, combinando revisiones por pares en Pull Requests dentro de GitHub, junto con la inspección del código fuente y la validación del cumplimiento de las convenciones establecidas.
+ Esta práctica se complementó con la integración continua en GitHub Actions, la cual permitió comprobar la compilación y despliegue del proyecto en entornos de prueba antes de su publicación final en Render y GitHub Pages.
+
+<img src="Images/Statictesting.png">
+
+<a id="6-2-1-static-code-analysis"></a>
+# 6.2.1. Static Code Analysis
+
+El análisis estático se realizó sobre los componentes principales del sistema:
+- Backend: desarrollado en Spring Boot, con revisión de endpoints REST, manejo de errores, uso correcto de códigos HTTP y documentación con Swagger UI.
+- Frontend web: implementado en Angular, priorizando la legibilidad del código y la modularización por componentes.
+- Aplicación móvil: desarrollada en Flutter, siguiendo buenas prácticas de estructura y reutilización de widgets.
+- Firmware IoT (ESP32): verificado a nivel de lógica de sensado, envío de datos a la nube y control de LEDs.
+
+El análisis no se apoyó en herramientas automatizadas externas, sino en una revisión estática manual, ejecutada por los propios desarrolladores mediante peer reviews y validación cruzada de los commits.
+ Cada integrante del equipo verificó la coherencia de las funciones, la semántica de las variables y la correcta comunicación entre capas, asegurando que el código fuese entendible y mantenible a largo plazo.
+Además, las revisiones de los Pull Requests en GitHub se emplearon como punto de control estático.
+
+<a id="6-2-1-1-coding-standard-code-conventions"></a>
+# 6.2.1.1. Coding standard & Code conventions.
+
+Durante el desarrollo de TukunTech, se adoptaron convenciones de codificación para garantizar uniformidad, claridad y mantenibilidad. Estas convenciones se aplicaron tanto al firmware IoT como a las aplicaciones web y móviles.
+Principales prácticas aplicadas:
+- Uso de nombres de variables y funciones claros y semánticos, que describen su propósito dentro del código.
+- Respuestas JSON estructuradas y estandarizadas en el backend, incluyendo atributos como errorCode y message, con el uso correcto de códigos HTTP (200, 400, 404, 500).
+- Inclusión de paginación y filtros en los endpoints de listas para optimizar las consultas.
+- Manejo centralizado de errores, devolviendo mensajes uniformes a las interfaces de usuario.
+- Documentación del API mediante Swagger UI, desplegada junto al backend para asegurar trazabilidad y comprensión de las rutas.
+- Modularización del código, dividiendo la lógica en controladores, servicios y repositorios, evitando duplicidad.
+- En el frontend, uso de componentes reutilizables, siguiendo una estructura jerárquica clara y estilos consistentes definidos con CSS.
+
+Estas convenciones fueron revisadas de forma manual durante los code reviews, asegurando la alineación del código con las prácticas de ingeniería de software adoptadas en el proyecto.
+
+<img src="Images/Codingstandard.png">
+
+<a id="6-2-1-2-code-quality-code-security"></a>
+6.2.1.2. Code Quality & Code Security.
+
+La calidad del código se garantizó mediante revisiones iterativas y control de versiones continuo, supervisando que cada nueva funcionalidad cumpla con las convenciones y no introduzca errores en los componentes ya integrados.
+Aspectos de calidad aplicados:
+- Revisión de estructura y modularidad del código en cada commit antes de fusionar ramas.
+- Control de versiones mediante GitHub y GitFlow, asegurando trazabilidad y orden en los cambios.
+- Uso de CI/CD con GitHub Actions, para verificar la correcta compilación del sistema antes de cada despliegue.
+- Documentación técnica clara de cada endpoint y componente.
+Aspectos de seguridad aplicados:
+- Uso de Render y Aiven con certificados SSL para proteger la comunicación entre el backend y la base de datos.
+- Control de acceso mediante roles y validación de las peticiones API.
+- Cumplimiento de buenas prácticas en la gestión de datos sensibles, especialmente en el almacenamiento de registros de signos vitales.
+- Implementación de políticas de privacidad y protección de datos alineadas con los estándares del curso y la naturaleza del sistema IoT.
+
+Como resultado de esta verificación, el equipo logró mantener un código claro, estructurado y coherente, garantizando la estabilidad del sistema en sus distintos componentes antes de proceder con las pruebas dinámicas.
+
+<img src="Images/CodeQuality.png">
+
+<a id="6-2-2-reviews"></a>
+6.2.2. Reviews
+
+<a id="6-3-validation-interviews"></a>
+6.3. Validation Interviews.
+<a id="6-3-1-diseno-de-entrevistas"></a>
+6.3.1. Diseño de Entrevistas.
+
+El propósito de las entrevistas de validación es evaluar la experiencia real de los usuarios al interactuar con la aplicación Tukuntech, identificando percepciones, dificultades y oportunidades de mejora relacionadas con la usabilidad, accesibilidad, diseño visual, rendimiento y comprensión de la información.
+Cada entrevista se desarrolla de forma semiestructurada, permitiendo tanto respuestas abiertas como observación directa del comportamiento del participante al utilizar la aplicación.
+Las preguntas se organizan en cinco bloques temáticos, comenzando con una contextualización del entrevistado y continuando con la exploración de la experiencia de uso, diseño y satisfacción.
+Bloque 1: Contextualización del entrevistado
+- ¿Podrías indicar tu edad, ocupación y nivel de familiaridad con el uso de aplicaciones móviles o web?
+- ¿Qué tipo de dispositivo utilizas con mayor frecuencia (smartphone, laptop, tablet)?
+- ¿Has usado antes alguna aplicación relacionada con salud, monitoreo o bienestar? Si es así, ¿cuál?
+- ¿Con qué frecuencia utilizas aplicaciones que requieren inicio de sesión o registro?
+- ¿Qué esperas encontrar en una aplicación enfocada en el monitoreo de signos vitales?
+Bloque 2: Acceso y navegación inicial
+- ¿El proceso de registro e inicio de sesión fue sencillo de completar?
+- ¿Los mensajes de error o validación fueron claros cuando ingresaste datos incorrectos?
+- ¿Pudiste identificar rápidamente las opciones del menú principal (por ejemplo: Monitoreo, Reportes, Perfil, Soporte)?
+- ¿Cómo describirías la organización general de la aplicación? ¿Te resultó intuitiva o confusa?
+- ¿Hubo alguna pantalla o paso que te generó dudas sobre qué hacer a continuación?
+Bloque 3: Uso de funcionalidades principales
+- ¿Pudiste visualizar correctamente tus signos vitales en tiempo real?
+- ¿Consideras que los valores de frecuencia cardíaca, oxigenación y temperatura se presentan de forma clara y legible?
+- ¿Los gráficos o reportes diarios te ayudaron a interpretar tus resultados fácilmente?
+- ¿Las alertas automáticas ante valores anormales se muestran con suficiente claridad y explicación?
+- ¿Tuviste algún problema al generar o visualizar reportes diarios o históricos?
+- ¿El flujo para enviar o consultar tickets de soporte fue claro y coherente?
+- ¿Percibiste diferencia en las funciones disponibles según tu tipo de usuario (paciente, cuidador, administrador)?
+Bloque 4: Diseño visual, accesibilidad y desempeño
+- ¿El tamaño del texto, botones e íconos es adecuado para tu comodidad visual?
+- ¿La combinación de colores y contraste te facilitó la lectura y comprensión de la información?
+- ¿El diseño visual mantiene coherencia entre las distintas pantallas?
+- ¿La aplicación responde con rapidez al realizar acciones (guardar, actualizar, eliminar datos)?
+- ¿Encontraste algún mensaje o icono que no comprendieras fácilmente?
+- ¿Sientes que la app sería usable por personas con poca experiencia tecnológica?
+- ¿La aplicación incluye elementos que consideras inclusivos o accesibles (por ejemplo, lenguaje claro, retroalimentación visual)?
+Bloque 5: Satisfacción general y mejoras
+- ¿Qué parte de la aplicación te resultó más útil o práctica?
+- ¿Qué elemento te pareció menos intuitivo o confuso?
+- ¿Qué funcionalidad agregarías o mejorarías en futuras versiones?
+- ¿Consideras que Tukuntech te ayudaría a monitorear mejor tu salud o la de tus pacientes?
+- ¿Recomendarías esta aplicación a otros usuarios? ¿Por qué?
+- En una escala del 1 al 5, ¿cómo calificarías tu experiencia general con la aplicación?
+
+<a id="6-3-2-registro-de-entrevistas"></a>
+6.3.2. Registro de Entrevistas.
+<a id="6-3-3-evaluaciones-segun-heuristicas"></a>
+6.3.3. Evaluacionessegún heurísticas.
+
+UX Heuristics & Principles Evaluation Usability – Inclusive Design – Information Architecture
+CARRERA: Ingeniería de Software
+CURSO: Desarrollo de Soluciones IoT
+SECCIÓN: 7491
+PROFESORES: Robles Fernández, Ivan
+AUDITOR: TechProStartup Team
+CLIENTE(S): Usuarios finales (pacientes, cuidadores y administradores del sistema)
+SITE o APP A EVALUAR:
+Tukuntech – Plataforma de Monitoreo de Signos Vitales IoT
+TAREAS A EVALUAR:
+El alcance de esta evaluación incluye la revisión de la usabilidad y experiencia de usuario en las siguientes tareas clave dentro de la aplicación ón Tukuntech:
+1. Registro de un nuevo usuario.
+2. Inicio de sesión en la aplicación.
+3. Visualización de signos vitales en tiempo real.
+4. Generación y revisión de reportes diarios.
+5. Recepción y lectura de alertas automáticas.
+6. Actualización del perfil del usuario.
+7. Asignación y desasignación de pacientes (rol cuidador).
+8. Envío y seguimiento de tickets de soporte.
+9. Cierre de sesión y navegación general.
+
+No están incluidas en esta versión las siguientes tareas:
+- Integración de dispositivos IoT externos no homologados.
+- Acceso mediante aplicaciones móviles nativas (evaluación pendiente).
+ESCALA DE SEVERIDAD:
+
+| Nivel | Descripción |
+|------------|-----------|
+| 1. | Problema superficial: ocurre raramente y no impide el uso. Se corrige si hay tiempo disponible. |
+| 2. | Problema menor: puede dificultar algunas tareas. Se recomienda corregir en la siguiente iteración. |
+| 3. | Problema mayor: ocurre con frecuencia o genera confusión. Debe corregirse con prioridad alta. |
+| 4. | Problema crítico: impide la continuidad de uso o genera riesgo funcional. Debe resolverse antes del despliegue. |
+
+TABLA RESUMEN:
+| Nivel | Problema | Escala de severidad | Heurística / Principio violado |
+|------------|-----------|-------------|--------------|
+| 1 | No se muestra confirmación visual tras actualizar el perfil. | 2 | Usability: Visibilidad del estado del sistema |
+| 2 | Falta de unidades en los gráficos de reportes diarios. | 2 | Information Architecture: Is it understandable? |
+| 3 | Ausencia de botón “Volver” en algunas vistas del monitoreo. | 3 | Usability: Libertad y control del usuario |
+| 4 | Mensajes de error genéricos al iniciar sesión. | 3 | Usability: Prevención y recuperación de errores |
+| 5 | Carga lenta de perfil (>4 s). | 3 | Usability: Eficiencia y rendimiento |
+| 6 | No hay indicador visual de sesión activa. | 2 | Usability: Visibilidad del estado del sistema |
+
+DESCRIPCIÓN DE PROBLEMAS
+PROBLEMA #1: No se muestra confirmación visual tras actualizar el perfil
+Severidad: 2
+Heurística violada: Usability – Visibilidad del estado del sistema
+Descripción:
+Cuando el usuario actualiza sus datos personales en la sección Perfil, los cambios se guardan correctamente, pero no se muestra ninguna notificación o mensaje de confirmación. Esto genera incertidumbre sobre si la acción fue exitosa.
+
+<img src="Images/Evaluacionesheuristicas1.png">
+
+Recomendación:
+Agregar una notificación visual tipo toast o modal con el mensaje “Cambios guardados correctamente” y un ícono de confirmación verde.
+
+PROBLEMA #2: Falta de unidades en los gráficos de reportes diarios
+Severidad: 2
+Heurística violada: Information Architecture – Is it understandable?
+Descripción:
+Los gráficos de reporte diario muestran valores numéricos sin especificar unidades, lo que puede generar confusión sobre si se trata de °C, bpm o %.
+
+<img src="Images/Evaluacionesheuristicas2.png">
+
+Recomendación:
+Incluir etiquetas visibles con las unidades correspondientes y un texto de ayuda bajo el gráfico para mayor claridad.
+
+PROBLEMA #3: Ausencia de botón “Volver” en algunas vistas del monitoreo
+Severidad: 3
+Heurística violada: Usability – Libertad y control del usuario
+Descripción:
+En algunas pantallas de detalle del monitoreo, el usuario no tiene una opción para regresar al panel anterior, lo que lo obliga a usar el navegador o cerrar sesión.
+
+<img src="Images/Evaluacionesheuristicas3.png">
+
+Recomendación:
+Añadir un botón “Volver” en todas las vistas de flujo secundario para mantener consistencia en la navegación.
+
+PROBLEMA #4: Mensajes de error genéricos al iniciar sesión
+Severidad: 3
+Heurística violada: Usability – Prevención y recuperación de errores
+Descripción:
+Cuando se ingresan credenciales incorrectas, la aplicación muestra un mensaje genérico “Errores de validacion”, sin indicar si el problema es el correo o la contraseña.
+
+<img src="Images/Evaluacionesheuristicas4.png">
+
+Recomendación:
+Mostrar mensajes específicos, como “El correo o la contraseña ingresada no son correctos”, y usar íconos visuales para retroalimentación inmediata.
+
+
+
+
+
+PROBLEMA #5: Carga lenta del perfil de usuario (>4 segundos)
+Severidad: 3
+Heurística violada: Usability – Eficiencia y rendimiento del sistema
+Descripción:
+Durante la validación, se evidenció que la vista de Perfil de usuario tarda entre 4 y 6 segundos en mostrar la información tras iniciar sesión.
+Durante ese tiempo no se visualiza ningún indicador de carga, generando incertidumbre y la percepción de que el sistema podría estar fallando o desconectado.
+Recomendación:
+Optimizar la solicitud al endpoint /api/v1/profiles/me aplicando estrategias de lazy loading y reducción de payloads JSON.
+Agregar un spinner de carga o skeleton loader visible hasta que los datos se rendericen completamente.
+Esto mejorará la percepción de velocidad y aumentará la confianza del usuario en la aplicación.
+
+PROBLEMA #6: No hay indicador visual de sesión activa
+Severidad: 2
+Heurística violada: Usability – Visibilidad del estado del sistema
+Descripción:
+El sistema no muestra un elemento visible que confirme que la sesión del usuario está activa.
+En caso de inactividad prolongada, la sesión expira y redirige al inicio de sesión sin advertencia previa. Esto provoca pérdida de información y confusión, especialmente para cuidadores que gestionan múltiples pacientes.
+Recomendación:
+Incorporar un indicador de sesión activa en el encabezado o menú lateral (por ejemplo, el nombre del usuario y su rol).
+Agregar un mensaje de advertencia de expiración (“Tu sesión expirará en 1 minuto”) antes del cierre automático.
+Esto refuerza la sensación de control, transparencia y confianza del usuario sobre su estado dentro del sistema.
+
+<a id="6-4-auditoria-de-experiencias-de-usuario"></a>
+6.4. Auditoría de Experiencias de Usuario.
+<a id="6-4-1-auditoria-realizada"></a>
+6.4.1. Auditoría realizada.
+<a id="6-4-1-1-informacion-del-grupo-auditado"></a>
+6.4.1.1. Información del grupo auditado.
+
+STARTUP:
+- Vacow Team
+
+INTEGRANTES DEL EQUIPO:
+- Saldaña Liberato, Rodrigo	Código: U202215623
+- Macavilca Quispe, Ian		Código: U202121325
+- Rojas Velasquez, Maycol	Código: U202219984
+- Espinoza Cueva, Stephano	Código: U202218590
+- Paucar Meneses, Jeremy	Código: U201919449
+
+
+<a id="6-4-1-2-cronograma-de-auditoria-realizada"></a>
+6.4.1.2. Cronograma de auditoría realizada.
+
+| Actividad de auditoría realizada | Fecha  | Hora  | Realizado por |
+| --- | --- | --- | --- |
+| Envío de solicitud de información y artefactos por email | 2025/11/09 | 11:35 | Alejandro Manuel Jave Chang |
+| Recepción de información y artefactos por email | 2025/11/10 | 06:20 | Alejandro Manuel Jave Chang |
+| Ejecución del proceso de auditoría | 2025/11/10 | 06:31 | Alejandro Manuel Jave Chang |
+| Elaboración del informe de auditoría | 2025/11/10 | 07:11 | Maraza Pedemonte Erick, Palomares Chavez Adriana Giovanna, Soto Zorrilla Oscar Eduardo, Agama Espinoza Eric Fabrizio, Jave Chang Alejandro Manuel |
+| Envío del informe de auditoría | 2025/11/10 | 08:22 | Maraza Pedemonte Erick, Palomares Chavez Adriana Giovanna, Soto Zorrilla Oscar Eduardo, Agama Espinoza Eric Fabrizio, Jave Chang Alejandro Manuel |
+
+<a id="6-4-1-3-contenido-de-auditoria-realizada"></a>
+6.4.1.3. Contenido de auditoría realizada.
+
+| # | Problema | Escala de severidad | Heurística/Principio violada(o) |
+| --- | --- | --- | --- |
+| 1 | Algunos iconos son poco claros con lo que intentan representar (ej: icono de gestión y bovinos) sería conveniente utilizar iconos que permitan identificar fácil y rápidamente la función de la aplicación. | 2 | Information Architecture: Is it understandable? |
+| 2 | No hay coherencia entre algunos iconos, por ejemplo se utilizan dos iconos diferentes para representar vacunas, una jeringa y un botiquín en pantallas diferentes. | 2 | Information Architecture: Is it understandable? |
+| 3 | La paleta de colores está sobrecargada en la pantalla Personal, el botón Agregar es azul cuando en otras pantallas los botones son de color verde | 1 | Information Architecture: Is it understandable? |
+| 4 | La paleta de colores presenta problemas de contraste en elementos clave, como texto sobre fondos de verde lima y crema, lo que dificulta la legibilidad para usuarios con discapacidades visuales o en condiciones de iluminación variable. | 2 | Information Architecture: Is it understandable? |
+| 5 | La navegación en la versión móvil carece de consistencia entre secciones, con menús inferiores en algunas pantallas y laterales en otras, lo que puede confundir al usuario. | 2 | Information Architecture: Is it understandable? |
+
+<a id="6-4-2-auditoria-recibida"></a>
+6.4.2. Auditoría recibida.
+<a id="6-4-2-1-informacion-del-grupo-auditor"></a>
+6.4.2.1. Información del grupo auditor.
+
+STARTUP:
+- Vacow Team
+
+INTEGRANTES DEL EQUIPO:
+- Saldaña Liberato, Rodrigo	Código: U202215623
+- Macavilca Quispe, Ian		Código: U202121325
+- Rojas Velasquez, Maycol	Código: U202219984
+- Espinoza Cueva, Stephano	Código: U202218590
+- Paucar Meneses, Jeremy	Código: U201919449
+
+<a id="6-4-2-2-cronograma-de-auditoria-recibida"></a>
+6.4.2.2. Cronograma de auditoría recibida.
+
+| Actividad de auditoría realizada | Fecha  | Hora  | Realizado por |
+| --- | --- | --- | --- |
+| Recepción de solicitud de información y artefactos por email | 2025/11/06 | 07:51 | Alejandro Manuel Jave Chang |
+| Envío de información y artefactos por email | 2025/11/09  | 11:45 | Alejandro Manuel Jave Chang |
+| Recepción del informe de auditoría | 2025/11/10 | 06:11 | Alejandro Manuel Jave Chang |
+| Ejecución de modificaciones para subsanar hallazgos de auditoría. | 2025/11/11 | 10:00 | Maraza Pedemonte Erick, Palomares Chavez Adriana Giovanna, Soto Zorrilla Oscar Eduardo, Agama Espinoza Eric Fabrizio, Jave Chang Alejandro Manuel |
+
+<a id="6-4-2-3-contenido-de-auditoria-recibida"></a>
+6.4.2.3. Contenido de auditoría recibida.
+
+| # | Observación relacionada a la APP | Severidad | Principio relacionado |
+| --- | --- | --- | --- |
+| 1 | La app se basa en colores para representar el estado del paciente, podría ser útil acompañar este indicador con una breve leyenda textual debajo para reforzar significado. | 2 | Reconocer antes que recordar |
+| 2 | Sería beneficioso incluir un "estado previo reciente" al lado del estado actual para facilitar comparación rápida. | 2 | Contexto de uso |
+| 3 | El flujo de navegación entre pantallas podría incluir un indicador visual del paso actual (por ejemplo: "inicio / histórico") para orientar mejor al usuario. | 1 | Mapeo conceptual |
+| 4 | En el historial sería útil resaltar valores fuera de rango para priorizar atención visual inmediata. | 3 | Visibilidad de información crítica |
+| 5 | La pantalla principal podría incluir un acceso directo al historial de alertas sin tener que pasar por más pantallas. | 2 | Minimizar esfuerzo del usuario |
+
+<a id="6-4-2-4-resumen-de-modificaciones-para-subsanar-hallazgos"></a>
+6.4.2.4. Resumen de modificaciones para subsanar hallazgos
+
+- Adición de leyendas textuales en indicadores de color: Se incorporaron breves descripciones textuales debajo de los indicadores de estado basados en colores (verde para normal, azul para advertencia, rojo para alerta), como "Estado Normal: Signos vitales estables", para reforzar el significado y reducir la dependencia exclusiva en el reconocimiento visual, abordando el hallazgo de necesidad de recordar antes que reconocer.
+
+- Incorporación de comparación con estado previo: En la pantalla principal de monitoreo, se añadió una sección de "Estado Previo Reciente" al lado del estado actual, permitiendo una comparación rápida, subsanando el problema de falta de contexto de uso para facilitar evaluaciones comparativas.
+- Resaltado de valores fuera de rango en el histórico: En la vista de histórico de signos vitales, se aplicaron estilos visuales como negrita y color rojo para valores anormales, priorizando la atención inmediata y mejorando la visibilidad de información crítica, resolviendo el hallazgo de falta de énfasis en datos fuera de norma.
+- Acceso directo al histórico de alertas: Se agregó un botón de acceso rápido en la pantalla principal que lleva directamente a la sección relevante sin pasos intermedios, minimizando el esfuerzo del usuario y optimizando la eficiencia en escenarios de uso frecuente, atendiendo la observación sobre navegación innecesariamente prolongada.
+
 <a id="capitulo-vii-devops-practices"></a>
 # Capítulo VII: DevOps Practices
 
@@ -5110,6 +5420,67 @@ TukunTech aplica Despliegue Continuo mediante GitHub Actions, integrándose con 
 
 4. **Monitoreo y Observabilidad**
    - Grafana Cloud muestra en tiempo real el impacto de cada despliegue y genera alertas ante regresiones.
+
+<a id="7-4-continuous-monitoring"></a>
+# 7.4. Continuous Monitoring
+<a id="7-4-1-tools-and-practices"></a>
+# 7.4.1. Tools and Practices
+
+Para el monitoreo continuo del sistema se emplearon diversas herramientas y buenas prácticas que permiten verificar el correcto funcionamiento del backend, el dispositivo IoT y las aplicaciones cliente.
+- Render: Plataforma utilizada para el despliegue en la nube. Permite supervisar el estado del servicio, visualizar logs en tiempo real, revisar fallos de ejecución y mantener un historial de despliegues exitosos.
+
+- Swagger (OpenAPI): Integrado en el backend para documentar y probar los endpoints de la API. Su interfaz permite validar el comportamiento de los servicios desde un entorno web.
+
+- Postman / Thunder Client: Usados para realizar pruebas periódicas automatizadas de los endpoints críticos y validar tiempos de respuesta.
+
+- Firebase Console: Monitorea el tráfico y la integridad de la base de datos en tiempo real.
+
+- Logs de Servidor (Winston / Console): Permiten registrar los eventos clave, errores y métricas de rendimiento del sistema.
+
+<img src="Images/ToolsPractices.png">
+
+Estas prácticas permiten detectar errores tempranamente y asegurar la estabilidad del sistema desplegado.
+
+<a id="7-4-2-monitoring-pipeline-components"></a>
+# 7.4.2. Monitoring Pipeline Components
+
+El pipeline de monitoreo del sistema TukunTech se compone de los siguientes elementos principales:
+1. IoT Device Layer: El dispositivo físico basado en ESP32 y sensor óptico mide los signos vitales del paciente y envía los datos a la nube.
+
+2. Backend API (Render): Recibe los datos, los procesa y los almacena en Firebase. Render proporciona información sobre disponibilidad, logs y errores de ejecución.
+
+3. Database Layer (Firebase): Supervisa la escritura/lectura de datos y genera alertas ante posibles fallos de conexión.
+
+4. Frontend (Web/App): Permite a los usuarios visualizar las métricas en tiempo real y comprobar el estado del sistema.
+
+Este pipeline permite mantener una supervisión constante del flujo de datos y del correcto funcionamiento de los servicios.
+
+<a id="7-4-3-alerting-pipeline-components"></a>
+# 7.4.3. Alerting Pipeline Components
+
+El pipeline de alertas está diseñado para detectar anomalías tanto técnicas como médicas, generando notificaciones inmediatas hacia los actores correspondientes.
+- Alertas técnicas: Render genera notificaciones automáticas por correo ante fallos de despliegue, errores en el servidor o interrupciones del servicio.
+
+- Alertas de monitoreo IoT: Si el dispositivo detecta valores fuera de rango o pérdida de conexión, envía señales al backend, que las registra y clasifica según su severidad.
+
+- Alertas funcionales (TukunTech): El sistema emplea un esquema de tres niveles visuales:
+  - Verde: Condición leve → recomendación de relajación.
+  - Azul: Condición crítica → recordatorio de medicación.
+  - Rojo: Emergencia → aviso inmediato a familiares o cuidadores.
+
+De esta manera, el pipeline combina la observación técnica del sistema con la vigilancia médica preventiva del paciente.
+
+<a id="7-4-4-notification-pipeline-components"></a>
+# 7.4.4. Notification Pipeline Components.
+
+El pipeline de notificaciones garantiza que tanto los usuarios finales reciban información oportuna sobre las condiciones críticas del paciente.
+- Notificaciones al usuario: La aplicación móvil y web muestran alertas visuales y mensajes claros que indican la gravedad del estado (verde, azul o rojo).
+
+- Notificaciones push y por correo: Se envían automáticamente a familiares y cuidadores ante alertas de nivel crítico.
+
+- Registro de eventos: Todos los eventos de notificación quedan guardados en la base de datos para su posterior análisis.
+
+Este pipeline permite mantener una comunicación constante y efectiva entre el sistema, los usuarios.
 
 
 <a id="8-experiment-driven-development"></a>

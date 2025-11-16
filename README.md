@@ -5086,6 +5086,14 @@ Como resultado de esta verificación, el equipo logró mantener un código claro
 <a id="6-2-2-reviews"></a>
 6.2.2. Reviews
 
+En este apartado se describen las revisiones realizadas durante el proceso de desarrollo para garantizar la calidad, coherencia y seguridad del sistema Tukuntech. Se aplicaron revisiones manuales y automáticas del código, centradas en verificar estructuración modular, cumplimiento de estándares de codificación, y buenas prácticas de seguridad. También se incluyeron peer reviews mediante pull requests y análisis estático con herramientas como SonarQube.<br>
+
+Se revisaron tanto el backend desarrollado en Spring Boot, el frontend en Angular, las aplicaciones móviles en Flutter y el firmware IoT, asegurando la correcta implementación, legibilidad, y consistencia en la arquitectura. Se cuidó la documentación técnica y las especificaciones RESTful, así como el manejo adecuado de errores y políticas de autenticación y autorización.<br>
+
+Estas revisiones permitieron identificar y corregir potenciales defectos tempranamente, asegurar la integración continua y la calidad técnica global del producto antes de las pruebas dinámicas y la puesta en producción.<br>
+
+Este enfoque de revisión y aseguramiento de calidad refleja una práctica colaborativa e integral facilitando la entrega de un sistema robusto y alineado con las mejores prácticas de ingeniería de software.<br>
+
 <a id="6-3-validation-interviews"></a>
 6.3. Validation Interviews.
 <br>

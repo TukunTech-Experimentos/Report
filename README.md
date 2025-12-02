@@ -6296,6 +6296,103 @@ Captura del dashboard que monitorea latencia de requests, tiempo de respuesta, C
 
 La evidencia presentada permite demostrar que la capa RESTful del backend no solo proporciona los servicios requeridos por la plataforma, sino que también se encuentra completamente integrada al enfoque *experiment-driven*, posibilitando la recolección, análisis y visualización de métricas esenciales para validar las hipótesis H1, H2 y H3.
 
+<a id="8-4-Experiment Aftermath & Analysis"></a>
+## 8.4. Experiment Aftermath & Analysis
+Esta sección presenta los resultados completos obtenidos después de ejecutar los experimentos diseñados bajo la metodología Experiment-Driven Development. El objetivo es evaluar qué hipótesis fueron validadas, cuáles requieren ajustes y cómo los aprendizajes obtenidos impactan en el diseño del producto TukunTech.
+<a id="8-4-1-analysis-and-interpretation-of-results"></a>
+### 8.4.1. Analysis and Interpretation of Results
+
+Tras la ejecución del experimento (prototipo funcional + simulaciones de alertas + walkthrough con usuarios reales), se recopilaron datos cuantitativos y cualitativos provenientes de adultos mayores, pacientes cardíacos y familiares/cuidadores.
+
+1. Validación del valor del monitoreo continuo
+Los tres segmentos coincidieron en que el monitoreo continuo reduce significativamente la incertidumbre y ansiedad relacionada con emergencias médicas.
+Los usuarios mencionaron directamente que:
+
+   - El monitoreo manual actual es intermitente e insuficiente.
+   - La posibilidad de “ver los datos en tiempo real” genera tranquilidad inmediata.
+   - Las alertas visuales simples (LEDs) son más accesibles que valores numéricos. 
+
+   Interpretación:
+   La hipótesis “el monitoreo continuo aumenta la seguridad percibida” fue validada, especialmente en adultos mayores y familiares.
+
+2. Utilidad de las alertas escalonadas (verde-azul-rojo)
+Los participantes lograron interpretar correctamente la semántica de las alertas sin apoyo externo:
+
+   - Verde → Relajación
+   - Azul → Medicación
+   - Rojo → Emergencia
+
+   Los familiares valoraron especialmente la alerta roja acompañada de notificación push o SMS.
+
+   Interpretación:
+   La representación por colores permitió una comprensión inmediata, incluso en usuarios con baja alfabetización digital. Esta hipótesis fue totalmente validada.
+
+3. Simplicidad de la interfaz y accesibilidad
+Los usuarios mayores manifestaron:
+
+   - Necesidad de letras grandes, textos simples y ausencia de sobrecarga visual.
+   - Preferencia por mensajes claros, no valores clínicos numéricos.
+
+   Los cuidadores, sin embargo, señalaron que sí necesitan valores numéricos y gráficos.
+
+   Interpretación:
+   Se validó la hipótesis de que el sistema debe tener dos niveles de complejidad, uno para pacientes (simple) y otro para cuidadores/médicos (detallado).
+
+4. Adopción del dispositivo IoT
+Los adultos mayores comentaron que:
+
+   - El dispositivo es cómodo siempre que no requiera procesos complejos de configuración.
+   - La conexión Wi-Fi y la calibración deben ser totalmente guiadas o automáticas.
+
+   Los cuidadores enfatizaron que una mala conexión puede comprometer el sistema.
+
+   Interpretación:
+   La hipótesis de que los usuarios aceptarán un dispositivo portátil se valida, pero con la condición de minimizar fricciones técnicas. Se necesita simplificar la fase de emparejamiento y reconexión.
+
+5. Impacto emocional en familiares y cuidadores
+La mayoría señaló:
+
+   - Reducción de carga emocional al contar con notificaciones inteligentes.
+   - Sensación de “acompañamiento” gracias al acceso remoto.
+
+   Interpretación:
+   Se valida la hipótesis de que TukunTech reduce el estrés del cuidador al centralizar y automatizar la supervisión.
+
+Conclusión general del análisis
+Las hipótesis principales fueron validadas. Los resultados confirman que TukunTech:
+
+   - Incrementa la tranquilidad de pacientes y cuidadores.
+   - Mejora la capacidad de reacción en emergencias.
+   - Es comprensible y útil gracias al modelo de alertas simples.
+   - Es viable en adopción, siempre que se mejore el onboarding técnico.
+
+   Las áreas a mejorar incluyen: accesibilidad extrema, automatización del dispositivo y mensajes diferenciados por perfil de usuario.
+
+<a id="8-4-2-Re-scored-and-Re-prioritized-Question-Backlog"></a>
+### 8.4.2. Re-scored and Re-prioritized Question Backlog
+
+Tras analizar los resultados del experimento, se re-prioriza la lista de preguntas críticas para iteraciones futuras del producto.
+
+---
+**Backlog Re-priorizado:**
+
+| Pregunta del Backlog | Estado previo | Nueva Prioridad | Justificación |
+|----------------------------|------------------|---------------------|------------------|
+| ¿Las alertas por colores son suficientes para que un adulto mayor actúe sin asistencia?| Media | Alta | El experimento mostró que esta funcionalidad es clave, pero requiere refinamiento visual. |
+| ¿La interfaz debe diferenciarse según el rol (paciente vs. cuidador)? | Baja | Alta | Los resultados demostraron que los niveles de complejidad necesarios son distintos. |
+| ¿Las notificaciones SMS son necesarias además de las push? | Media | Alta | Los cuidadores pidieron redundancia ante pérdida de Internet o datos. |
+| ¿El emparejamiento Wi-Fi es sencillo para adultos mayores? | Media | Muy Alta | La fricción técnica detectada podría comprometer la adopción. |
+| ¿La precisión del sensor es suficiente para generar alertas confiables? | Alta | Alta | Se mantiene prioritaria porque define la credibilidad del dispositivo. |
+| ¿Se necesita vista para médicos con datos avanzados? | Baja | Media | El experimento sugiere que sí, pero no es crítico para la primera versión. |
+| ¿Los usuarios aceptarían un plan de suscripción mensual? | Media | Media | La propuesta tiene buena recepción, pero dependerá del valor percibido. |
+
+El backlog ahora prioriza mejoras en accesibilidad, confiabilidad y simplicidad técnica, lo cual impactará el próximo ciclo de experimentación.
+
+<a id="8-5-Continuous-Learning"></a>
+## 8.5. Continuous Learning
+El aprendizaje continuo se basó en ciclos cortos de experimentación, feedback real y ajustes rápidos del producto. Esta metodología permitió refinar el diseño del sistema con evidencia obtenida directamente de los segmentos objetivo.
+Se emplearon sesiones internas de análisis, revisión iterativa del backlog y documentación continua.
+
 
 
 # Avance de Conclusiones

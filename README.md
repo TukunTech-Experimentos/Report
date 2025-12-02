@@ -6063,44 +6063,111 @@ En el flujo de monitoreo:
 <a id="8-3-experimentation"></a>
 ## 8.3. Experimentation
 
-En esta etapa se presentan los **experimentos ejecutados**, mostrando los resultados obtenidos a partir de la aplicación de las mejoras propuestas en el sistema IoT.  
-Cada experimento fue diseñado en base al plan establecido en la **sección 8.2** y se realizó bajo condiciones controladas, manteniendo la misma infraestructura, número de dispositivos IoT y entorno de red.  
+En esta etapa se presentan los experimentos ejecutados de acuerdo con el plan definido en la sección 8.2. Cada experimento fue implementado en un entorno controlado utilizando la misma infraestructura de red, el mismo conjunto de dispositivos IoT y una versión estandarizada del dashboard. El objetivo es comparar la versión base del sistema con las versiones experimentales y obtener evidencia empírica que permita confirmar o refutar las hipótesis planteadas.
 
-El propósito de esta fase es **comparar los resultados entre la versión base y la versión experimental**, evidenciando si las hipótesis definidas fueron confirmadas o refutadas.  
-Para cada caso se incluye una descripción breve de la pregunta experimental, el análisis de datos obtenidos y la conclusión parcial de la hipótesis evaluada.
+Los experimentos ejecutados se alinean directamente con las hipótesis del estudio:
+
+- **H1:** Evaluación del impacto de *lazy loading* y optimización de suscripciones RxJS sobre el rendimiento del frontend.  
+- **H2:** Evaluación del efecto de la ayuda contextual sobre la comprensión y usabilidad.  
+- **H3:** Evaluación del impacto de la reducción del intervalo de actualización sobre la percepción de inmediatez y la estabilidad del sistema.
+
+Durante los experimentos, se recolectaron datos automáticamente mediante telemetría integrada en el pipeline CI/CD, permitiendo almacenar tiempos de actualización, eventos de interacción, métricas de comprensión, latencia y estado del servidor. Estos datos constituyen la base para el análisis presentado en la sección 8.4.
+
+La experimentación constituye así el puente entre el diseño experimental y la toma de decisiones, asegurando que los aprendizajes obtenidos se traduzcan en mejoras verificadas para el sistema IoT.
+
 
 
 <a id="8-3-1-to-be-user-stories"></a>
 ### 8.3.1. To-Be User Stories
 
 Esta sección presenta las nuevas **historias de usuario (To-Be User Stories)** derivadas de los resultados obtenidos en la fase de experimentación.  
-Estas historias reflejan las mejoras validadas y las necesidades detectadas a partir de la retroalimentación de los usuarios y los hallazgos de los experimentos, incorporándose al backlog del sistema IoT para su implementación en las próximas iteraciones.  
+Estas historias reflejan las mejoras validadas y las necesidades detectadas a partir de la retroalimentación de los usuarios y los hallazgos de los experimentos, incorporándose al backlog del sistema IoT para su implementación en las próximas iteraciones.
 
 El objetivo es asegurar que los **aprendizajes obtenidos se traduzcan en acciones concretas de desarrollo**, mejorando de manera continua la funcionalidad, la usabilidad y la estabilidad del producto.
 
 | Epic / Story ID | Título | Descripción | Criterios de Aceptación |
 |------------------|---------|--------------|--------------------------|
-| **US104** | **Carga diferida del Dashboard (Lazy Loading)** | Como operador del sistema deseo que los módulos del dashboard se carguen bajo demanda para reducir los tiempos de carga y mejorar la fluidez de la aplicación. | Dado que el usuario inicia sesión en el sistema, cuando accede al dashboard principal entonces los módulos visibles se cargan dinámicamente y el tiempo total de carga no supera los 2 segundos. |
-| **US105** | **Vista de Ayuda Contextual** | Como usuario nuevo deseo visualizar una guía interactiva y tooltips explicativos en el dashboard para comprender fácilmente el significado de cada métrica IoT. | Dado que el usuario accede por primera vez al dashboard, cuando inicia sesión entonces el sistema muestra automáticamente una vista de ayuda contextual y permite recorrer las explicaciones de cada indicador. |
-| **US106** | **Configuración del Intervalo de Actualización** | Como administrador deseo poder modificar el intervalo de actualización del backend desde el panel de control para ajustar la frecuencia de actualización de datos según la carga del sistema. | Dado que el usuario tiene rol de administrador, cuando accede al panel de configuración del sistema entonces puede seleccionar un intervalo entre 1 s y 3 s y los cambios se aplican de inmediato. |
-| **US107** | **Notificaciones de Estado de Dispositivo** | Como operador deseo recibir alertas visuales cuando un dispositivo IoT pierda conexión para tomar acciones inmediatas ante fallas o desconexiones. | Dado que el sistema detecta la pérdida de conexión de un sensor, cuando ocurre el evento entonces se muestra una alerta visual en el dashboard y el registro queda almacenado en el log de alertas. |
-| **US108** | **Monitoreo en Tiempo Real del Sistema** | Como administrador deseo visualizar indicadores globales de rendimiento, latencia y estado del servidor en tiempo real para evaluar la estabilidad del sistema IoT. | Dado que el sistema está operativo, cuando el usuario accede al panel de monitoreo entonces se muestran métricas de CPU, latencia y uptime actualizadas cada 30 segundos. |
+| **US104** | **Carga diferida del Dashboard (Lazy Loading)** | Como operador del sistema deseo que los módulos del dashboard se carguen bajo demanda para mejorar la fluidez de la aplicación y evitar cargas innecesarias al iniciar sesión. | **Given** que el usuario inicia sesión, **when** accede al dashboard principal, **then** los módulos visibles se cargan dinámicamente.<br>**Given** que el usuario navega entre secciones, **when** accede a un módulo no cargado previamente, **then** este se carga de forma diferida sin interrumpir la interacción. |
+| **US105** | **Vista de Ayuda Contextual** | Como usuario nuevo deseo visualizar una guía interactiva y tooltips explicativos para comprender fácilmente el significado de cada métrica IoT. | **Given** que el usuario accede por primera vez al dashboard, **when** inicia la sesión, **then** se muestra una vista de ayuda con explicaciones generales.<br>**Given** un indicador específico, **when** el usuario interactúa con el ícono de ayuda, **then** aparece un tooltip contextual explicando su significado. |
+| **US106** | **Configuración del Intervalo de Actualización** | Como administrador deseo poder modificar el intervalo de actualización del backend para ajustar la frecuencia de actualización de datos según la carga del sistema. | **Given** que el usuario tiene rol de administrador, **when** accede al panel de configuración, **then** puede seleccionar un intervalo de actualización entre las opciones disponibles.<br>**Given** que el usuario guarda los cambios, **when** se actualiza el intervalo, **then** el sistema aplica la configuración sin requerir reinicio. |
+
 
 <a id="8-3-2-to-be-product-backlog"></a>
 ### 8.3.2. To-Be Product Backlog
 
 El siguiente backlog presenta la **planificación priorizada de las nuevas historias de usuario** generadas a partir de los resultados de la fase de experimentación.  
-Cada historia ha sido valorada en función de su impacto en el sistema, **complejidad técnica** y **esfuerzo estimado (story points)** según la escala estándar (1–8).  
+Cada historia ha sido valorada en función de su impacto en el sistema, **complejidad técnica** y **esfuerzo estimado (story points)** según la escala estándar (1–8).
 
 El propósito de este backlog es servir como **guía de implementación para las siguientes iteraciones del proyecto**, garantizando la evolución continua del sistema IoT.
 
 | # Orden | User Story ID | Título | Descripción | Story Points (1 / 2 / 3 / 5 / 8) |
 |----------|----------------|---------|--------------|-----------------------------------|
-| **1** | **US104** | **Carga diferida del Dashboard (Lazy Loading)** | Como operador del sistema deseo que los módulos del dashboard se carguen bajo demanda para reducir los tiempos de carga y mejorar la fluidez de la aplicación. | **8** |
+| **1** | **US104** | **Carga diferida del Dashboard (Lazy Loading)** | Como operador del sistema deseo que los módulos del dashboard se carguen bajo demanda para mejorar la fluidez y evitar cargas innecesarias al iniciar sesión. | **8** |
 | **2** | **US105** | **Vista de Ayuda Contextual** | Como usuario nuevo deseo visualizar una guía interactiva y tooltips explicativos en el dashboard para comprender fácilmente el significado de cada métrica IoT. | **5** |
 | **3** | **US106** | **Configuración del Intervalo de Actualización** | Como administrador deseo poder modificar el intervalo de actualización del backend desde el panel de control para ajustar la frecuencia de actualización de datos según la carga del sistema. | **5** |
-| **4** | **US107** | **Notificaciones de Estado de Dispositivo** | Como operador deseo recibir alertas visuales cuando un dispositivo IoT pierda conexión para tomar acciones inmediatas ante fallas o desconexiones. | **3** |
-| **5** | **US108** | **Monitoreo en Tiempo Real del Sistema** | Como administrador deseo visualizar indicadores globales de rendimiento, latencia y estado del servidor en tiempo real para evaluar la estabilidad del sistema IoT. | **3** |
+
+<a id="8-3-3-pipeline-supported"></a>
+### 8.3.3. Pipeline-supported, Experiment-Driven To-Be Software Platform Lifecycle
+
+Esta sección describe el ciclo de vida de la plataforma en su versión *To-Be*, soportado por un pipeline CI/CD que habilita la ejecución de experimentos y la recolección automática de métricas. El objetivo es que cada cambio relacionado con las hipótesis definidas pueda desplegarse, monitorearse y evaluarse de manera controlada y trazable.
+
+El pipeline se implementa sobre **GitHub Actions** tanto para el backend (`tukun-tech-back`) como para el frontend (`tukun-tech-front`), utilizando flujos de trabajo específicos:
+
+- En el repositorio **backend**:
+  - `backend-ci`: compila, ejecuta pruebas y valida la calidad básica del servicio antes de cualquier despliegue.
+  - `Measuring frontend times`: ejecuta escenarios que permiten medir tiempos de respuesta asociados a las vistas y expone resultados como métricas de rendimiento.
+  - `Send CI metrics to Grafana Cloud (OTLP)`: publica métricas de las ejecuciones de CI hacia Grafana Cloud utilizando el protocolo **OTLP**, permitiendo visualizar tiempos, estados y frecuencia de ejecuciones.
+
+- En el repositorio **frontend**:
+  - `Send UX Metrics to Grafana`: envía métricas de interacción y uso (por ejemplo, eventos de navegación o carga de vistas experimentales) hacia Grafana, integrándose con **Prometheus** como fuente de datos para análisis posterior.
+
+A partir de estos workflows, el ciclo de vida experimental sigue las siguientes etapas principales:
+
+1. **Desarrollo y versionamiento experimental**  
+   - Cada hipótesis se implementa en una rama específica (por ejemplo: `experiment/h1-lazy-loading`, `experiment/h2-help-tooltips`, `experiment/h3-polling-interval`), manteniendo aisladas las variantes experimentales respecto a la rama principal.
+
+2. **Integración continua (CI)**  
+   - Los cambios en ramas experimentales disparan los workflows de GitHub Actions (`backend-ci`, pruebas de frontend), asegurando que las variantes se construyan y validen automáticamente antes de pasar a entornos de prueba.
+
+3. **Despliegue controlado a entornos base y experimental**  
+   - Una vez superada la fase de CI, las versiones base y experimental se despliegan en entornos diferenciados, permitiendo comparar comportamiento sin afectar el entorno productivo.
+
+4. **Instrumentación y telemetría**  
+   - Los workflows `Measuring frontend times`, `Send CI metrics to Grafana Cloud (OTLP)` y `Send UX Metrics to Grafana` envían métricas técnicas (tiempos de respuesta, errores, latencia) y métricas de uso/UX hacia **Grafana**, donde se integran con **Prometheus** para su almacenamiento y consulta.
+
+5. **Monitoreo y análisis de resultados**  
+   - Los dashboards en Grafana permiten comparar la versión base y las versiones experimentales en términos de rendimiento, estabilidad y uso, sirviendo como insumo directo para el análisis presentado en la sección 8.4.
+
+Este pipeline soportado por GitHub Actions, Grafana, OTLP y Prometheus constituye el núcleo del *Experiment-Driven Software Platform Lifecycle*, ya que conecta el trabajo de desarrollo con la recolección sistemática de evidencia empírica, facilitando que cada decisión de diseño o arquitectura pueda ser validada mediante datos reales y reproducibles.
+
+
+<a id="8-3-3-1-to-be-sprint-backlogs"></a>
+### 8.3.3.1. To-Be Sprint Backlogs
+
+El siguiente Sprint Backlog agrupa todos los *work-items* necesarios para implementar la versión experimental del sistema IoT. Este sprint integra las tareas asociadas a las hipótesis H1, H2 y H3, así como la instrumentación requerida para recolectar métricas mediante el pipeline CI/CD descrito en la sección 8.3.3.  
+Todas las tareas se encuentran completadas.
+
+---
+
+**Work-Item / Task**
+
+| Id | Title | Description | Estimation (hours) | Assigned To | Status |
+|----|--------|-------------|---------------------|--------------|--------|
+| W1 | Implement lazy loading | Integrar carga diferida en los módulos principales del dashboard según experimento H1. | 6 | **Oscar** | **Done** |
+| W2 | Optimize RxJS subscriptions | Refactorizar suscripciones para reducir renders innecesarios y mejorar rendimiento. | 5 | **Erick** | **Done** |
+| W3 | Frontend instrumentation | Añadir medición automática de tiempos de carga con workflow “Measuring frontend times”. | 4 | **Erick** | **Done** |
+| W4 | OTLP CI metrics export | Configurar flujo “Send CI metrics to Grafana Cloud (OTLP)” en GitHub Actions. | 3 | **Alejandro** | **Done** |
+| W5 | Design contextual help | Diseñar estructura y contenido de la vista de ayuda contextual (H2). | 4 | **Adriana** | **Done** |
+| W6 | Implement contextual tooltips | Incorporar tooltips en los indicadores y gráficos principales. | 5 | **Oscar** | **Done** |
+| W7 | UX metrics tracking | Registrar eventos de interacción con tooltips y vista de ayuda; integrar workflow “Send UX Metrics to Grafana”. | 4 | **Adriana** | **Done** |
+| W8 | Polling interval configuration | Implementar parámetro configurable del intervalo de actualización del backend (H3). | 5 | **Fabrizio** | **Done** |
+| W9 | Backend latency metrics | Registrar latencia, CPU y tiempos de respuesta mediante Prometheus. | 4 | **Fabrizio** | **Done** |
+| W10 | Grafana dashboard (H1-H2-H3) | Crear panel consolidado para visualizar rendimiento, interacciones UX y latencia/carga. | 4 | **Alejandro** | **Done** |
+| W11 | Experimental branches | Crear ramas `experiment/h1`, `experiment/h2`, `experiment/h3` y flujo de deploy controlado. | 2 | **Erick** | **Done** |
+| W12 | Integration testing | Validar funcionamiento combinado del frontend y backend experimental. | 4 | **Oscar** | **Done** |
+
+
+
 
 
 # Avance de Conclusiones

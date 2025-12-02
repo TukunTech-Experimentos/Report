@@ -6166,7 +6166,135 @@ Todas las tareas se encuentran completadas.
 | W11 | Experimental branches | Crear ramas `experiment/h1`, `experiment/h2`, `experiment/h3` y flujo de deploy controlado. | 2 | **Erick** | **Done** |
 | W12 | Integration testing | Validar funcionamiento combinado del frontend y backend experimental. | 4 | **Oscar** | **Done** |
 
+<a id="8-3-3-2-landing-page-evidence"></a>
+### 8.3.3.2. Implemented To-Be Landing Page Evidence
 
+La *To-Be Landing Page* corresponde al punto de entrada de la plataforma TukunTech en su versión experimental. Se trata de una página estática desarrollada con HTML, CSS y JavaScript, cuyo propósito principal es presentar el concepto del sistema de monitoreo IoT y dirigir al usuario hacia el dashboard Web donde se ejecutan los experimentos definidos en este proyecto.
+
+La landing cumple dos objetivos específicos dentro del ciclo de vida *experiment-driven*:
+
+- **Comunicar el contexto del experimento**: introduce al usuario en la propuesta de valor de TukunTech y en la existencia de una versión experimental de la plataforma orientada a pruebas de rendimiento, usabilidad y percepción de tiempo real.
+- **Centralizar el acceso al dashboard experimental**: mediante un botón destacado que redirige al frontend Web implementado en Angular, donde se encuentran las funcionalidades asociadas a las hipótesis H1, H2 y H3, así como la instrumentación conectada al pipeline CI/CD, Grafana y Prometheus.
+
+La landing no implementa lógica de telemetría propia; sin embargo, forma parte del flujo de navegación que conduce al usuario hacia la aplicación Web experimental, que sí está integrada con los mecanismos de medición descritos en las secciones anteriores.
+
+A continuación, se presenta la evidencia de la implementación:
+
+- **Imagen 1. Vista de la To-Be Landing Page.**  
+  Captura de la landing Page en el navegador, mostrando el encabezado de TukunTech, el mensaje que indica que forma parte de la versión experimental de la plataforma y el botón “Ir al Dashboard Experimental”.
+
+<img src="Images/tobeLanding1.png">
+<br>
+
+- **Imagen 2. Código fuente de la Landing Page.**  
+  Captura del archivo `index.html` (o equivalente) en el repositorio del proyecto, donde se observa la estructura de la landing y el enlace que dirige al dashboard experimental, confirmando que se trata de una implementación propia y no de una maqueta aislada.
+<img src="Images/tobeLanding2.png">
+<br>
+
+Esta evidencia permite demostrar que la To-Be Landing Page ha sido implementada y se encuentra alineada al flujo de experimentación del sistema, actuando como puerta de entrada a la plataforma Web donde se validan las hipótesis planteadas.
+
+<a id="8-3-3-3-frontend-web-evidence"></a>
+### 8.3.3.3. Implemented To-Be Frontend-Web Application Evidence
+
+La aplicación Web frontend constituye el principal punto de interacción del usuario con la plataforma experimental de TukunTech. Esta capa fue desarrollada en Angular e integra las funcionalidades definidas en las To-Be User Stories (US104, US105 y US106), alineadas con las hipótesis H1, H2 y H3:
+
+- **US104 / H1 – Carga diferida del Dashboard (Lazy Loading):** optimización de rendimiento mediante carga bajo demanda de módulos y componentes.
+- **US105 / H2 – Vista de Ayuda Contextual:** incorporación de ayudas visuales y tooltips para mejorar la comprensión de métricas.
+- **US106 / H3 – Configuración del Intervalo de Actualización:** capacidad de ajustar la frecuencia de actualización de datos según la carga del sistema.
+
+Además, el frontend se encuentra integrado con el pipeline CI/CD y la capa de observabilidad, permitiendo medir tiempos de carga, interacciones de usuario y métricas de uso que posteriormente son analizadas en Grafana y Prometheus.
+
+A continuación, se presenta la evidencia de la implementación de la aplicación Web frontend.
+
+---
+
+**Imagen 1. Dashboard Web experimental con módulos de monitoreo IoT.**  
+Vista principal del dashboard implementado en Angular, mostrando gráficos, indicadores de sensores y componentes visuales utilizados durante los experimentos de rendimiento y percepción de tiempo real.
+
+<img src="Images/tobeWeb1.jpg">
+<br>
+
+---
+
+**Imagen 2. Evidencia de lazy loading en módulos del dashboard.**  
+Captura de la navegación entre secciones del dashboard (por ejemplo, módulos de dispositivos, alertas o métricas globales), donde se observa que los módulos se cargan de forma diferida. Esta evidencia puede apoyarse en la pestaña *Network* o en el registro de chunks cargados dinámicamente, demostrando la aplicación de lazy loading alineada con H1.
+
+<img src="Images/tobeWeb2.png">
+<br>
+
+---
+
+**Imagen 3. Implementación de ayuda contextual y tooltips.**  
+Vista de la interfaz donde se muestran tooltips y/o elementos de ayuda contextual asociados a métricas IoT (por ejemplo, temperatura, humedad, estado del dispositivo). La captura debe evidenciar íconos de ayuda o textos emergentes que explican el significado de los indicadores, en cumplimiento de la US105 y la hipótesis H2.
+
+<img src="Images/tobeWeb3.png">
+<br>
+
+---
+
+
+**Imagen 4. Integración del frontend con el pipeline CI/CD.**  
+Captura del repositorio frontend (por ejemplo, `tukun-tech-front`) mostrando los workflows de GitHub Actions asociados a la aplicación Web, tales como medición de tiempos o envío de métricas hacia Grafana. Esta evidencia permite conectar el frontend con el ciclo de vida soportado por el pipeline descrito en la sección 8.3.3.
+
+<img src="Images/tobeWeb4.png">
+<br>
+
+---
+
+Las evidencias presentadas demuestran que la aplicación Web frontend no solo implementa las funcionalidades definidas en las To-Be User Stories, sino que también se encuentra integrada al enfoque *experiment-driven*, permitiendo ejecutar los experimentos de rendimiento, usabilidad y percepción de tiempo real definidos en el capítulo 8.
+
+
+<a id="8-3-3-5-backend-evidence"></a>
+### 8.3.3.5. Implemented To-Be RESTful API and/or Serverless Backend Evidence
+
+El backend de TukunTech constituye el núcleo lógico y operativo de la plataforma experimental. Esta capa fue desarrollada bajo un enfoque modular y expone un conjunto de endpoints RESTful que permiten:
+
+- gestionar los datos provenientes de los dispositivos IoT,
+- proporcionar servicios al dashboard Web y a la aplicación móvil,
+- habilitar la configuración experimental del sistema (por ejemplo, el intervalo de actualización),
+- registrar métricas y eventos para su posterior análisis en Grafana y Prometheus.
+
+El backend está integrado con un pipeline CI/CD basado en GitHub Actions, el cual ejecuta pruebas, despliega versiones instrumentadas y envía métricas técnicas mediante OTLP hacia Grafana Cloud. Asimismo, expone endpoints específicos utilizados en los experimentos de rendimiento, usabilidad y percepción de tiempo real descritos en los apartados anteriores.
+
+A continuación se presenta la evidencia de la implementación.
+
+---
+
+#### **Imagen 1. Estructura del proyecto backend.**  
+Captura del repositorio que muestra la arquitectura del backend (controllers, services, modules), incluyendo los módulos responsables de telemetría y configuración del sistema.
+
+<img src="Images/tobeBack1.png">
+<br>
+
+---
+
+
+
+#### **Imagen 2. Workflow de GitHub Actions del backend.**  
+Captura del pipeline `backend-ci` o equivalente, evidenciando la integración continua y los procesos automáticos utilizados para construir, probar e instrumentar la versión experimental del backend.
+
+<img src="Images/tobeBack2.png">
+<br>
+
+---
+
+#### **Imagen 3. Envío de métricas del backend hacia Grafana (OTLP).**  
+Evidencia del workflow encargado de enviar métricas técnicas del backend hacia Grafana Cloud mediante OTLP. La captura debe mostrar la ejecución del workflow y la transmisión de eventos exitosos.
+
+<img src="Images/tobeBack3.png">
+<br>
+
+---
+
+#### **Imagen 4. Panel de métricas del backend en Grafana.**  
+Captura del dashboard que monitorea latencia de requests, tiempo de respuesta, CPU y otros indicadores derivados de Prometheus y OTLP. Este panel se utiliza durante los experimentos para comparar la versión base con la versión experimental.
+
+<img src="Images/CICDObservability.png">
+<br>
+
+---
+
+La evidencia presentada permite demostrar que la capa RESTful del backend no solo proporciona los servicios requeridos por la plataforma, sino que también se encuentra completamente integrada al enfoque *experiment-driven*, posibilitando la recolección, análisis y visualización de métricas esenciales para validar las hipótesis H1, H2 y H3.
 
 
 

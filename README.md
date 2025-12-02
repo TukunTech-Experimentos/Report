@@ -5723,94 +5723,48 @@ El diseño experimental se construye siguiendo los principios del ciclo de apren
 
 <a id="8-2-1-hypotheses"></a>
 
-## 8.2.1. Hypotheses
+## 8.2.1. Hypotheses (Null & Alternative Hypotheses)
 
-La presente sección define las hipótesis experimentales derivadas del *Question Backlog* establecido en la fase de planificación.  
-Cada hipótesis se formula de manera científica, incorporando explícitamente su **hipótesis nula (H0)** y **hipótesis alternativa (H1)**, así como las relaciones entre **variable independiente** y **variable dependiente**.  
-Estas hipótesis orientarán el proceso de diseño experimental, la medición sistemática y la validación estadística en fases posteriores.
-
----
-
-## H1 – Rendimiento Técnico (Lazy Loading + RxJS Optimization)
-
-### **Hipótesis Nula (H0₁)**  
-No existe diferencia significativa en el tiempo promedio de actualización del dashboard entre la versión base y la versión que incorpora *lazy loading* y optimización de suscripciones RxJS.
-
-### **Hipótesis Alternativa (H1₁)**  
-La implementación de *lazy loading* junto con la optimización de suscripciones RxJS mejora significativamente el tiempo de actualización del dashboard respecto a la versión base.
-
-### **Variable Independiente**  
-- Estrategia de carga y suscripción del frontend (lazy loading + optimización RxJS)
-
-### **Variable Dependiente**  
-- Tiempo promedio de actualización  
-- Indicadores de rendimiento del frontend (por ejemplo, Lighthouse Performance Score)
-
-### **Dimensión Evaluada**  
-- Rendimiento técnico
-
-### **Indicador Esperado**  
-- Evidencia empírica de menor tiempo de actualización y mejoras observables en los indicadores de rendimiento.
+A continuación se presentan las hipótesis nulas y alternativas asociadas a los tres experimentos definidos.  
+La estructura sigue el estándar institucional: cada hipótesis se formula en términos estadísticos, considerando pruebas bidireccionales y sin establecer umbrales cuantitativos estrictos.
 
 ---
 
-## H2 – Usabilidad y Comprensión (Ayuda Contextual + Tooltips)
+### Hipótesis 1: Optimización de Rendimiento (Lazy Loading + RxJS)
 
-### **Hipótesis Nula (H0₂)**  
-No existe diferencia significativa en la comprensión de las métricas IoT ni en la percepción de usabilidad entre la interfaz actual y la interfaz que incorpora ayuda contextual y tooltips explicativos.
+**H₀ (Hipótesis Nula).**  
+No existen diferencias estadísticamente significativas en el tiempo de actualización del dashboard entre la versión base y la versión que incorpora *lazy loading* y optimización de suscripciones RxJS.  
+(p > 0.05)
 
-### **Hipótesis Alternativa (H1₂)**  
-La incorporación de ayuda contextual y tooltips mejora la comprensión de las métricas IoT y la percepción de usabilidad respecto a la versión base.
-
-### **Variable Independiente**  
-- Inclusión del módulo de ayuda contextual (ayuda visual + tooltips)
-
-### **Variable Dependiente**  
-- Nivel de comprensión de métricas  
-- Percepción de usabilidad (por ejemplo, SUS o valoración subjetiva)
-
-### **Dimensión Evaluada**  
-- Usabilidad y comprensión
-
-### **Indicador Esperado**  
-- Evidencia de una mayor comprensión de las métricas y mejor percepción de facilidad de uso.
+**H₁ (Hipótesis Alternativa).**  
+Existen diferencias estadísticamente significativas en el tiempo de actualización del dashboard entre la versión base y la versión con *lazy loading* y optimización de suscripciones RxJS.  
+(p ≤ 0.05)
 
 ---
 
-## H3 – Percepción de Tiempo Real (Reducción del Polling Interval)
+### Hipótesis 2: Comprensión y Usabilidad (Ayuda Contextual + Tooltips)
 
-### **Hipótesis Nula (H0₃)**  
-Reducir el intervalo de actualización del backend no produce cambios significativos en la percepción de inmediatez ni en la fluidez percibida por el usuario.
+**H₀ (Hipótesis Nula).**  
+La incorporación de ayuda contextual y tooltips no produce diferencias estadísticamente significativas en la comprensión de métricas ni en la percepción de usabilidad respecto a la versión base del dashboard.  
+(p > 0.05)
 
-### **Hipótesis Alternativa (H1₃)**  
-Reducir el intervalo de actualización del backend mejora la percepción de inmediatez y fluidez del sistema sin comprometer la estabilidad o la carga del servidor.
-
-### **Variable Independiente**  
-- Intervalo de actualización del backend (polling interval)
-
-### **Variable Dependiente**  
-- Latencia promedio  
-- Carga del servidor  
-- Fluidez percibida
-
-### **Dimensión Evaluada**  
-- Percepción de inmediatez
-
-### **Indicador Esperado**  
-- Evidencia de menor latencia percibida, mayor fluidez y mantenimiento de una carga del servidor dentro de niveles aceptables.
+**H₁ (Hipótesis Alternativa).**  
+Existen diferencias estadísticamente significativas en la comprensión de métricas y/o percepción de usabilidad al comparar la versión con ayuda contextual y tooltips frente a la versión base.  
+(p ≤ 0.05)
 
 ---
 
-## Análisis general
+### Hipótesis 3: Percepción de Tiempo Real (Intervalo de Actualización)
 
-Cada hipótesis responde a un área de mejora identificada en el diagnóstico inicial del sistema IoT:
+**H₀ (Hipótesis Nula).**  
+No existen diferencias estadísticamente significativas en la percepción de inmediatez, fluidez o latencia percibida del sistema al reducir el intervalo de actualización del backend.  
+(p > 0.05)
 
-- **H1** analiza el impacto de optimizaciones del frontend sobre la eficiencia de actualización y el rendimiento técnico.  
-- **H2** se enfoca en la usabilidad y en cómo la información complementaria mejora la comprensión del usuario.  
-- **H3** evalúa la relación entre la frecuencia de actualización, la percepción de inmediatez y la estabilidad del sistema.
+**H₁ (Hipótesis Alternativa).**  
+Existen diferencias estadísticamente significativas en la percepción de inmediatez, fluidez o latencia percibida del sistema al reducir el intervalo de actualización del backend.  
+(p ≤ 0.05)
 
-Estas hipótesis permiten estructurar experimentos rigurosos, comparativos y replicables, manteniendo flexibilidad para interpretar los resultados sin depender de umbrales cuantitativos estrictos.
-
+---
 
 
 <a id="8-2-2-domain-business-metrics"></a>

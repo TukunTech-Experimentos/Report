@@ -5722,25 +5722,95 @@ El diseño experimental se construye siguiendo los principios del ciclo de apren
 
 
 <a id="8-2-1-hypotheses"></a>
-### 8.2.1. Hypotheses
+
+## 8.2.1. Hypotheses
 
 La presente sección define las hipótesis experimentales derivadas del *Question Backlog* establecido en la fase de planificación.  
-Cada hipótesis busca comprobar, mediante evidencia empírica, el impacto que las mejoras propuestas generan sobre el desempeño del sistema IoT.  
+Cada hipótesis se formula de manera científica, incorporando explícitamente su **hipótesis nula (H0)** y **hipótesis alternativa (H1)**, así como las relaciones entre **variable independiente** y **variable dependiente**.  
+Estas hipótesis orientarán el proceso de diseño experimental, la medición sistemática y la validación estadística en fases posteriores.
 
-En concordancia con la rúbrica institucional, se establecen las relaciones entre **variables independientes** (intervenciones aplicadas) y **dependientes** (resultados medibles), considerando aspectos de rendimiento, usabilidad y percepción de tiempo real.  
-Estas hipótesis orientarán el proceso de diseño experimental, la recolección de datos y la validación de resultados en fases posteriores.
+---
 
-| ID | Hipótesis (formulación científica) | Variable Independiente | Variable Dependiente | Dimensión Evaluada | Indicador Esperado |
-|----|------------------------------------|------------------------|----------------------|--------------------|--------------------|
-| **H1** | Si se implementa lazy loading en los módulos Angular y se optimizan las suscripciones RxJS, entonces el tiempo promedio de actualización del dashboard disminuirá al menos un 30%, porque se reducirá el número de operaciones de renderizado y la carga innecesaria de componentes. | Estrategia de carga y suscripción en el frontend (Angular) | Tiempo medio de actualización (ms), Lighthouse Performance Score | Rendimiento técnico | Disminución ≥ 30% en tiempo de actualización; Lighthouse ≥ 80. |
-| **H2** | Si se implementa una vista de ayuda contextual y tooltips explicativos, entonces la comprensión de las métricas IoT aumentará al menos un 20%, porque los usuarios contarán con una guía visual que mejora la interpretación de los indicadores del sistema. | Inclusión del módulo de ayuda contextual | Nivel de comprensión de métricas (%), Puntuación SUS | Usabilidad y comprensión | Incremento ≥ 20% en comprensión; SUS ≥ 80. |
-| **H3** | Si se reduce el intervalo de actualización del backend de 3 s a 1.5 s, entonces la percepción de “tiempo real” del sistema aumentará, porque los datos se reflejarán más rápidamente sin afectar el rendimiento del servidor. | Intervalo de actualización (polling interval) | Latencia promedio (ms), Carga del servidor (%), Fluidez percibida | Percepción de inmediatez | Latencia ≤ 1.5 s; CPU < 70%; Fluidez ≥ 4/5. |
+## H1 – Rendimiento Técnico (Lazy Loading + RxJS Optimization)
 
-**Análisis general**  
-Cada hipótesis responde a un área de mejora identificada en el diagnóstico inicial del sistema IoT:  
-- **H1** aborda el rendimiento técnico del frontend y su eficiencia en la visualización de datos en tiempo real.  
-- **H2** se enfoca en la usabilidad y la comprensión del usuario ante los indicadores ambientales.  
-- **H3** evalúa la fluidez y confiabilidad del sistema en la comunicación entre dispositivos IoT y dashboard.
+### **Hipótesis Nula (H0₁)**  
+No existe diferencia significativa en el tiempo promedio de actualización del dashboard entre la versión base y la versión que incorpora *lazy loading* y optimización de suscripciones RxJS.
+
+### **Hipótesis Alternativa (H1₁)**  
+La implementación de *lazy loading* junto con la optimización de suscripciones RxJS mejora significativamente el tiempo de actualización del dashboard respecto a la versión base.
+
+### **Variable Independiente**  
+- Estrategia de carga y suscripción del frontend (lazy loading + optimización RxJS)
+
+### **Variable Dependiente**  
+- Tiempo promedio de actualización  
+- Indicadores de rendimiento del frontend (por ejemplo, Lighthouse Performance Score)
+
+### **Dimensión Evaluada**  
+- Rendimiento técnico
+
+### **Indicador Esperado**  
+- Evidencia empírica de menor tiempo de actualización y mejoras observables en los indicadores de rendimiento.
+
+---
+
+## H2 – Usabilidad y Comprensión (Ayuda Contextual + Tooltips)
+
+### **Hipótesis Nula (H0₂)**  
+No existe diferencia significativa en la comprensión de las métricas IoT ni en la percepción de usabilidad entre la interfaz actual y la interfaz que incorpora ayuda contextual y tooltips explicativos.
+
+### **Hipótesis Alternativa (H1₂)**  
+La incorporación de ayuda contextual y tooltips mejora la comprensión de las métricas IoT y la percepción de usabilidad respecto a la versión base.
+
+### **Variable Independiente**  
+- Inclusión del módulo de ayuda contextual (ayuda visual + tooltips)
+
+### **Variable Dependiente**  
+- Nivel de comprensión de métricas  
+- Percepción de usabilidad (por ejemplo, SUS o valoración subjetiva)
+
+### **Dimensión Evaluada**  
+- Usabilidad y comprensión
+
+### **Indicador Esperado**  
+- Evidencia de una mayor comprensión de las métricas y mejor percepción de facilidad de uso.
+
+---
+
+## H3 – Percepción de Tiempo Real (Reducción del Polling Interval)
+
+### **Hipótesis Nula (H0₃)**  
+Reducir el intervalo de actualización del backend no produce cambios significativos en la percepción de inmediatez ni en la fluidez percibida por el usuario.
+
+### **Hipótesis Alternativa (H1₃)**  
+Reducir el intervalo de actualización del backend mejora la percepción de inmediatez y fluidez del sistema sin comprometer la estabilidad o la carga del servidor.
+
+### **Variable Independiente**  
+- Intervalo de actualización del backend (polling interval)
+
+### **Variable Dependiente**  
+- Latencia promedio  
+- Carga del servidor  
+- Fluidez percibida
+
+### **Dimensión Evaluada**  
+- Percepción de inmediatez
+
+### **Indicador Esperado**  
+- Evidencia de menor latencia percibida, mayor fluidez y mantenimiento de una carga del servidor dentro de niveles aceptables.
+
+---
+
+## Análisis general
+
+Cada hipótesis responde a un área de mejora identificada en el diagnóstico inicial del sistema IoT:
+
+- **H1** analiza el impacto de optimizaciones del frontend sobre la eficiencia de actualización y el rendimiento técnico.  
+- **H2** se enfoca en la usabilidad y en cómo la información complementaria mejora la comprensión del usuario.  
+- **H3** evalúa la relación entre la frecuencia de actualización, la percepción de inmediatez y la estabilidad del sistema.
+
+Estas hipótesis permiten estructurar experimentos rigurosos, comparativos y replicables, manteniendo flexibilidad para interpretar los resultados sin depender de umbrales cuantitativos estrictos.
+
 
 
 <a id="8-2-2-domain-business-metrics"></a>

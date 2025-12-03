@@ -2369,23 +2369,91 @@ De esta forma, el diseño orientado a objetos proporciona la base para construir
 ### 4.9.1. Class Diagrams.
 A continuación se presenta el diagrama de clases de TukunTech, el cual permite una representación visual fundamental en la programación orientada a objetos, utilizada para ilustrar la estructura estática de nuestro sistema. Este tipo de diagrama permite visualizar las clases que componen el sistema, sus atributos, métodos, y las relaciones que existen entre ellas, como asociaciones, herencia y composiciones.
 
-<a id="4-9-2-class-dictionary"></a>
-### 4.9.2. Class Dictionary.
-Pacientes: Representa a los pacientes registrados en el sistema de monitoreo. Esta entidad almacena la información personal básica como nombre, apellido, DNI, edad y género, junto con datos médicos iniciales (línea base de frecuencia cardíaca y saturación de oxígeno). Además, incluye información de contacto de emergencia y detalles opcionales como seguro de salud o alergias relevantes.
+<div align="center">
+<img src="Images/ClassDiagram.png" alt="Segmento 1" />
+</div>
 
-Cuidadores / Familiares: Contiene información de las personas responsables del paciente (familiares, cuidadores o tutores). Incluye datos personales, número de contacto, relación con el paciente y preferencias de notificación (push, SMS o correo). Esta clase es fundamental para gestionar las alertas en tiempo real y asegurar que alguien actúe de inmediato frente a un evento crítico.
+### 4.9.2. Class Dictionary
 
-Alertas: Representa las notificaciones generadas automáticamente por el sistema cuando los signos vitales superan umbrales definidos (verde, azul o roja). Cada alerta está vinculada a un paciente, incluye la fecha y hora de ocurrencia, el tipo de alerta, el canal de notificación utilizado y el estado (pendiente, atendida, descartada). Permite rastrear la efectividad de las respuestas y medir indicadores como tiempo de reacción.
+---
 
-SignosVitales:  Almacena los datos capturados por los dispositivos IoT en distintos momentos. Registra parámetros clave como frecuencia cardíaca (bpm) y saturación de oxígeno (SpO₂), con su marca de tiempo exacta. Estos registros están asociados a un paciente específico y son la base para generar gráficas históricas, estadísticas de salud y alertas.
+## **Pacientes**
+Representa a las personas monitoreadas por el sistema.  
+Incluye información personal (**nombre, apellidos, DNI, edad, género**), datos clínicos base (**frecuencia cardíaca base, SpO₂ base, temperatura base**), información de contacto de emergencia y detalles médicos complementarios como **alergias**, **seguro de salud**, **grupo sanguíneo** o **antecedentes importantes**.  
+Es la entidad central del sistema, ya que todas las lecturas, alertas, sesiones y acciones se relacionan con un paciente.
 
-Sesiones de Monitoreo:  Gestiona los periodos de tiempo en que un paciente está siendo monitoreado de forma activa. Incluye inicio y fin de sesión, el dispositivo asignado, y los eventos (lecturas, alertas, acciones) ocurridos durante la misma. Facilita el análisis de desempeño y adherencia al monitoreo.
+---
 
-Acciones del Usuario: Registra las respuestas de cuidadores o médicos frente a una alerta (ej. “Notificación vista”, “Paciente atendido”, “Alerta descartada”). Cada acción queda asociada a una alerta y a un usuario, permitiendo calcular métricas como tiempo de reacción o efectividad de la respuesta.
+## **Cuidadores / Familiares**
+Contiene los datos de las personas responsables del cuidado del paciente.  
+Incluye **nombre, relación con el paciente, número de contacto**, información relevante para emergencias y **preferencias de notificación** (push, SMS, correo).  
+Es fundamental para la recepción y respuesta a alertas en tiempo real, asegurando que alguien pueda actuar durante un evento crítico.
 
-Tratamientos y Recomendaciones: Permite registrar las indicaciones o planes de acción definidos por los médicos en base a los datos recogidos (ej. ajustes en medicación, recomendaciones de control). Se vinculan a pacientes y a eventos específicos de salud, asegurando trazabilidad entre el monitoreo y las decisiones clínicas.
+---
 
-Exámenes / Reportes: Incluye los reportes generados a partir del sistema, ya sean automáticos (estadísticas de signos vitales, tendencias) o ingresados manualmente (exámenes médicos externos). Cada registro contiene tipo de reporte, fecha, resultados y asociación a un paciente.
+## **Dispositivos**
+Representa los dispositivos IoT asignados a los pacientes.  
+Incluye **identificador del dispositivo, número de serie, tipo de sensor, estado (activo, inactivo, mantenimiento), fecha de última sincronización** y la relación directa con el paciente.  
+Es el origen de los datos captados para el sistema (signos vitales).
+
+---
+
+## **Signos Vitales**
+Almacena los valores capturados por el dispositivo IoT en intervalos de tiempo específicos.  
+Registra **frecuencia cardíaca (bpm)**, **saturación de oxígeno (SpO₂)**, **temperatura corporal**, y la **marca de tiempo exacta** de la lectura.  
+Cada registro está vinculado a una **sesión de monitoreo** y a un **dispositivo**, y puede desencadenar alertas si los valores se salen de los umbrales definidos.
+
+---
+
+## **Sesiones de Monitoreo**
+Agrupa los periodos durante los cuales un paciente está siendo monitoreado activamente.  
+Incluye **fecha y hora de inicio**, **fecha de fin**, **estado de la sesión**, **dispositivo utilizado**, y referencias a todos los eventos generados durante ese periodo (**lecturas, alertas, acciones del usuario**).  
+Permite analizar la adherencia del paciente, detectar patrones y evaluar la continuidad del monitoreo.
+
+---
+
+## **Alertas**
+Representa los eventos críticos generados cuando las lecturas superan los umbrales establecidos.  
+Incluye **tipo de alerta**, **nivel de severidad** (verde, azul, roja), **mensaje**, **momento en que ocurrió**, **canal de notificación utilizado** y **estado de la alerta** (pendiente, atendida, descartada).  
+Cada alerta está asociada a un **paciente**, una **sesión de monitoreo**, y opcionalmente al **signo vital que la originó**.  
+Sirve para medir métricas clave como el **tiempo de reacción** y la **efectividad de respuesta**.
+
+---
+
+## **Acciones del Usuario**
+Registra las actividades realizadas por cuidadores, operadores o médicos en respuesta a las alertas.  
+Incluye **acción realizada** (notificación vista, contacto al paciente, llamada a emergencias, alerta descartada, etc.), **fecha y hora**, notas opcionales y la relación con la **alerta correspondiente**.  
+Permite calcular métricas como el **tiempo de respuesta**, la trazabilidad de atención y el cumplimiento de protocolos.
+
+---
+
+## **Tratamientos y Recomendaciones**
+Representa las indicaciones médicas asignadas al paciente, derivadas del monitoreo o de una evaluación clínica.  
+Incluye **descripción del tratamiento**, **fecha de inicio**, **fecha de término**, profesional responsable y relación con **eventos clínicos previos** (alertas o tendencias detectadas).  
+Permite mantener trazabilidad entre la información recolectada y las decisiones terapéuticas.
+
+---
+
+## **Exámenes / Reportes**
+Incluye reportes generados por el sistema o ingresados manualmente por un profesional.  
+Contiene **tipo de reporte** (estadística, tendencia, examen externo), **fecha de realización**, **resumen de resultados** y adjuntos o enlaces relevantes.  
+Se utiliza para análisis clínico más profundo y como respaldo para evaluaciones médicas periódicas.
+
+---
+
+## **Usuarios**
+Representa a todos los actores humanos del sistema: administradores, operadores, familiares, cuidadores y médicos.  
+Incluye **datos personales, credenciales de acceso, rol asignado** y preferencias de notificación.  
+Controla la autorización y el acceso a la información del sistema.
+
+---
+
+## **Roles**
+Define los roles disponibles en el sistema (ej. **Administrador, Operador, Familiar, Médico**).  
+Determina los permisos de cada tipo de usuario, asegurando que solo puedan acceder a la información y funciones permitidas por su rol.
+
+---
+
 
 
 <a id="4-10-database-design"></a>

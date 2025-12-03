@@ -6587,9 +6587,54 @@ El aprendizaje continuo se basó en ciclos cortos de experimentación, feedback 
 Se emplearon sesiones internas de análisis, revisión iterativa del backlog y documentación continua.
 
 <a id="8-5-1-shareback-session-artifacts-learning-workflow"></a>
+### 8.5.1. Shareback Session Artifacts: Learning Workflow
+
+El proceso de aprendizaje continuo en TukunTech se formaliza a través de las **Shareback Sessions**, reuniones estratégicas donde el equipo comparte, analiza y documenta los hallazgos obtenidos durante la experimentación. Este flujo de trabajo asegura que cada decisión de diseño y desarrollo esté respaldada por evidencia empírica.
+
+#### **Flujo de Aprendizaje (Learning Workflow)**
+
+El ciclo de aprendizaje sigue cuatro etapas iterativas:
+
+1.  **Recolección de Evidencia:**
+    *   *Cuantitativa:* Datos de telemetría exportados desde Grafana (tiempos de carga, tasas de error, uso de CPU).
+    *   *Cualitativa:* Grabaciones de entrevistas, notas de observación y resultados de encuestas SUS/NPS.
+
+2.  **Síntesis y Análisis:**
+    *   El equipo cruza los datos técnicos con la percepción del usuario para identificar patrones (ej. "la latencia baja mejora la confianza en la alerta").
+
+3.  **Shareback Session (Sesión de Intercambio):**
+    *   Presentación de resultados ante el equipo y stakeholders.
+    *   Debate sobre si *Perseverar* (mantener la funcionalidad), *Pivotar* (cambiar el enfoque) o *Matar* (eliminar la característica).
+
+4.  **Actualización de Artefactos:**
+    *   Se refina el *Product Backlog*, se actualizan los prototipos y se generan nuevas *Experiment Cards*.
+
+#### **Artefactos Generados**
+
+Como resultado de estas sesiones, se producen los siguientes documentos vivos:
+
+*   **Reporte de Validación de Hipótesis:** Un documento que resume qué hipótesis (H1, H2, H3) fueron validadas y con qué nivel de confianza.
+*   **Dashboard de Métricas de Impacto:** Capturas del estado "Antes" y "Después" de los KPIs clave en Grafana.
+*   **Matriz de Feedback de Usuario:** Clasificación de comentarios en "Elogios", "Problemas Críticos" y "Sugerencias", utilizada para priorizar las *To-Be User Stories*.
+
+---
 
 <a id="8-6-to-be-software-platform-pre-launch"></a>
+## 8.6. To-Be Software Platform Pre-launch
+
+La plataforma "To-Be" representa la versión evolucionada de TukunTech, lista para una fase de pre-lanzamiento o piloto extendido. Esta versión integra todas las optimizaciones técnicas (lazy loading, arquitectura reactiva) y mejoras de usabilidad (alertas semánticas, ayuda contextual) validadas durante el capítulo 8.
+
+El sistema se encuentra en un estado de madurez suficiente para ser desplegado en un entorno controlado con usuarios reales por un periodo prolongado.
+
 <a id="8-6-1-about-the-product-intro-video"></a>
+### 8.6.1. About-the-Product Intro Video
+
+
+**Video Promocional:**
+
+[TukunTech Intro Video](https://youtu.be/aDi4bli_ZV8)
+
+---
 
 # Avance de Conclusiones
 

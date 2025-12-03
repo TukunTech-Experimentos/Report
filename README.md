@@ -6458,7 +6458,8 @@ entre pantallas y la claridad de las nuevas notificaciones de estado de conexió
 | **Distrito**      | Surco |
 | **URL**           | [Video](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBw4mg0HT0kRq-BAwczOXszAYBHB7u6OD3tJ315qGgvPAQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=dD1Vds) |
 | **Duración**      | 12:25 |
-| **Resumen**       | El entrevistado es un ingeniero mecatrónico con arritmias que requiere monitoreo frecuente. Ha usado aplicaciones de lectura de pulso, pero desconfía de su precisión. Busca una app confiable, con registro mensual detallado y que garantice que sus valores se encuentren dentro de rangos normales. Considera sencillo el uso de aplicaciones y valora un diseño intuitivo y simple, con buena legibilidad. Para él, el monitoreo diario y la certeza de la normalidad de sus valores son esenciales. |
+| **Resumen**       | El entrevistado, quien previamente dudaba de la precisión de otras aplicaciones, interactuó con la versión optimizada del dashboard. Reportó una mejora notable en la fluidez de los datos,indicando que la actualización es casi inmediata
+y superando sus expectativas de "tiempo real". Destacó que el registro histórico mensual detallado cumple con su necesidad de certidumbre sobre sus valores habituales. Concluyó que el diseño simple, sumado a la confianza generada por la velocidad y el detalle de los datos, resuelve su principal punto de dolor: la incertidumbre sobre la exactitud de la medición. |
 | **Personalidad**  | Analítico, exigente con la precisión de datos y tecnológicamente experto. Prioriza la confianza en la información médica. |
 | **Marcas**        | Herramientas de alta fiabilidad, asistente de prediagnóstico, diseño intuitivo y accesible, con opciones de contraste. |
 | **Dispositivos**  | Smartphone y laptop. |

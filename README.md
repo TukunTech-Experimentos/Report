@@ -6632,7 +6632,7 @@ El sistema se encuentra en un estado de madurez suficiente para ser desplegado e
 
 **Video Promocional:**
 
-[TukunTech Intro Video](https://youtu.be/aDi4bli_ZV8)
+[https://youtu.be/aDi4bli_ZV8](https://youtu.be/aDi4bli_ZV8)
 
 ---
 

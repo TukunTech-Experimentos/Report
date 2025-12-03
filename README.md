@@ -1,4 +1,4 @@
-<div align="center">
+   <div align="center">
    <div>
 
    <br>
@@ -6447,7 +6447,7 @@ entre pantallas y la claridad de las nuevas notificaciones de estado de conexió
 | **Marcas**        | Herramientas fiables que actúen como asistente de prediagnóstico. Diseño amigable, intuitivo y accesible, con enfoque en alto contraste. |
 | **Dispositivos**  | Smartphone, tablet y computadora. |
 | **Flujos principales** | - Detección proactiva de anormalidades.<br>- Recepción inmediata de sugerencias o prediagnósticos.<br>- Monitoreo en tiempo real.<br>- Interacción con un diseño intuitivo y legible (incluye contraste).<br>- Acceso claro y rápido a datos desde dispositivos digitales. |
-| <img src="Images/validacion2.png">|
+| |<img src="Images/validacion2.png">|
 
 | Campo             | Detalle |
 |-------------------|---------|

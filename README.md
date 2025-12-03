@@ -6319,15 +6319,13 @@ El backend está integrado con un pipeline CI/CD basado en GitHub Actions, el cu
 
 A continuación se presenta la evidencia de la implementación.
 
----
+
 
 #### **Imagen 1. Estructura del proyecto backend.**  
 Captura del repositorio que muestra la arquitectura del backend (controllers, services, modules), incluyendo los módulos responsables de telemetría y configuración del sistema.
 
 <img src="Images/tobeBack1.png">
 <br>
-
----
 
 
 
@@ -6337,7 +6335,7 @@ Captura del pipeline `backend-ci` o equivalente, evidenciando la integración co
 <img src="Images/tobeBack2.png">
 <br>
 
----
+
 
 #### **Imagen 3. Envío de métricas del backend hacia Grafana (OTLP).**  
 Evidencia del workflow encargado de enviar métricas técnicas del backend hacia Grafana Cloud mediante OTLP. La captura debe mostrar la ejecución del workflow y la transmisión de eventos exitosos.
@@ -6345,7 +6343,6 @@ Evidencia del workflow encargado de enviar métricas técnicas del backend hacia
 <img src="Images/tobeBack3.png">
 <br>
 
----
 
 #### **Imagen 4. Panel de métricas del backend en Grafana.**  
 Captura del dashboard que monitorea latencia de requests, tiempo de respuesta, CPU y otros indicadores derivados de Prometheus y OTLP. Este panel se utiliza durante los experimentos para comparar la versión base con la versión experimental.
@@ -6353,9 +6350,126 @@ Captura del dashboard que monitorea latencia de requests, tiempo de respuesta, C
 <img src="Images/CICDObservability.png">
 <br>
 
----
+
 
 La evidencia presentada permite demostrar que la capa RESTful del backend no solo proporciona los servicios requeridos por la plataforma, sino que también se encuentra completamente integrada al enfoque *experiment-driven*, posibilitando la recolección, análisis y visualización de métricas esenciales para validar las hipótesis H1, H2 y H3.
+
+
+### 8.3.3.6. Team Collaboration Insights
+
+Durante este sprint, el equipo centró su trabajo en el desarrollo del Backend del sistema. Se implementaron los servicios necesarios para gestionar los datos médicos, además de optimizar la arquitectura para garantizar estabilidad y eficiencia. Todos los integrantes involucrados participaron activamente mediante contribuciones de código, revisiones técnicas y mejoras continuas dentro del repositorio de GitHub. A continuación, se presenta la captura correspondiente a la colaboración del equipo. El equipo trabajó de manera conjunta en la Web App, enfocándose en la construcción del dashboard, la visualización de métricas y la integración con el Backend. Se realizaron ajustes en la interfaz, mejoras en la estructura del código y revisiones colaborativas para asegurar coherencia entre todos los componentes del sistema.Se implementaron los servicios necesarios para gestionar los datos médicos, además de optimizar la arquitectura para garantizar estabilidad y eficiencia. Todos los integrantes involucrados participaron activamente mediante contribuciones de código, revisiones técnicas y mejoras continuas dentro del repositorio de GitHub.
+<img src="Images/webbackcomit.png">
+
+Durante este sprint, el equipo también avanzó significativamente en el desarrollo de la Mobile App. Se construyeron las pantallas principales, se integraron las funciones de monitoreo en tiempo real y se conectó la aplicación con los servicios del Backend. El equipo colaboró constantemente mediante commits, ajustes visuales y pruebas de usabilidad para asegurar una experiencia fluida. La siguiente captura refleja la actividad y el aporte de los miembros en esta parte del proyecto.
+<img src="Images/comitmovil.png">
+
+el equipo centró su trabajo en documentar y estandarizar los servicios de la API Edge, responsables de procesar la información proveniente del dispositivo ESP32. Se definieron de manera precisa los contratos para la transmisión de datos biométricos como temperatura, frecuencia cardíaca y saturación de oxígeno (SpO₂), garantizando su correcta entrega hacia el Backend principal. Las contribuciones de los miembros del equipo evidencian un esfuerzo colaborativo para asegurar la calidad, coherencia y estabilidad del flujo de datos en esta capa del sistema.
+<img src="Images/comitedge.png">
+
+
+Finalmente se avanzó en la documentación de los servicios responsables de recibir e integrar los datos biométricos procesados desde la API Edge, asegurando la correcta interacción con los microservicios de Profiles, Reports y Monitoring. Las contribuciones registradas reflejan la dedicación al mejorar la arquitectura, estandarizar los contratos de servicio y preparar la plataforma para un flujo de datos más robusto y confiable. A continuación, se presenta la captura correspondiente a la colaboración en el área de Backend durante este sprint.
+<img src="Images/comitiot.png">
+
+<h3>8.3.4. To-Be Validation Interviews</h3>
+
+<h3>8.3.4.1. Diseño de Entrevistas</h3>
+
+El propósito de las entrevistas de validación es **evaluar la experiencia real de los usuarios al interactuar con la aplicación Tukuntech**, identificando percepciones, dificultades y oportunidades de mejora relacionadas con la **usabilidad, accesibilidad, diseño visual, rendimiento y comprensión de la información**.
+
+Cada entrevista se desarrolla de forma **semiestructurada**, permitiendo tanto respuestas abiertas como la observación directa del comportamiento del participante al utilizar la aplicación.  
+Las preguntas se organizan en **cinco bloques temáticos**, comenzando con una contextualización del entrevistado y continuando con la exploración de la experiencia de uso, diseño y satisfacción.
+
+---
+
+<h4>Bloque 1: Contextualización del entrevistado</h4>
+
+1. ¿Podrías indicar tu edad, ocupación y nivel de familiaridad con el uso de aplicaciones móviles o web?  
+2. ¿Qué tipo de dispositivo utilizas con mayor frecuencia (smartphone, laptop, tablet)?  
+3. ¿Has usado antes alguna aplicación relacionada con salud, monitoreo o bienestar? Si es así, ¿cuál?  
+4. ¿Con qué frecuencia utilizas aplicaciones que requieren inicio de sesión o registro?  
+5. ¿Qué esperas encontrar en una aplicación enfocada en el monitoreo de signos vitales?  
+
+---
+
+<h4>Bloque 2: Acceso y navegación inicial</h4>
+
+1. ¿El proceso de registro e inicio de sesión fue sencillo de completar?  
+2. ¿Los mensajes de error o validación fueron claros cuando ingresaste datos incorrectos?  
+3. ¿Pudiste identificar rápidamente las opciones del menú principal (por ejemplo: Monitoreo, Reportes, Perfil, Soporte)?  
+4. ¿Cómo describirías la organización general de la aplicación? ¿Te resultó intuitiva o confusa?  
+5. ¿Hubo alguna pantalla o paso que te generó dudas sobre qué hacer a continuación?  
+
+---
+
+<h4>Bloque 3: Uso de funcionalidades principales</h4>
+
+1. ¿Pudiste visualizar correctamente tus signos vitales en tiempo real?  
+2. ¿Consideras que los valores de frecuencia cardíaca, oxigenación y temperatura se presentan de forma clara y legible?  
+3. ¿Los gráficos o reportes diarios te ayudaron a interpretar tus resultados fácilmente?  
+4. ¿Las alertas automáticas ante valores anormales se muestran con suficiente claridad y explicación?  
+5. ¿Tuviste algún problema al generar o visualizar reportes diarios o históricos?  
+6. ¿El flujo para enviar o consultar tickets de soporte fue claro y coherente?  
+7. ¿Percibiste diferencia en las funciones disponibles según tu tipo de usuario (paciente, cuidador, administrador)?  
+
+---
+
+<h4>Bloque 4: Diseño visual, accesibilidad y desempeño</h4>
+
+1. ¿El tamaño del texto, botones e íconos es adecuado para tu comodidad visual?  
+2. ¿La combinación de colores y contraste te facilitó la lectura y comprensión de la información?  
+3. ¿El diseño visual mantiene coherencia entre las distintas pantallas?  
+4. ¿La aplicación responde con rapidez al realizar acciones (guardar, actualizar, eliminar datos)?  
+5. ¿Encontraste algún mensaje o icono que no comprendieras fácilmente?  
+6. ¿Sientes que la app sería usable por personas con poca experiencia tecnológica?  
+7. ¿La aplicación incluye elementos que consideras inclusivos o accesibles (por ejemplo, lenguaje claro, retroalimentación visual)?  
+
+---
+
+<h4>Bloque 5: Satisfacción general y mejoras</h4>
+
+1. ¿Qué parte de la aplicación te resultó más útil o práctica?  
+2. ¿Qué elemento te pareció menos intuitivo o confuso?  
+3. ¿Qué funcionalidad agregarías o mejorarías en futuras versiones?  
+4. ¿Consideras que Tukuntech te ayudaría a monitorear mejor tu salud o la de tus pacientes?  
+5. ¿Recomendarías esta aplicación a otros usuarios? ¿Por qué?  
+6. En una escala del 1 al 5, ¿cómo calificarías tu experiencia general con la aplicación?  
+
+
+
+<h3>8.3.4.2. Registro de Entrevistas.</h3>
+
+| Campo             | Detalle |
+|-------------------|---------|
+| **Segmento**      | Familiares y cuidadores |
+| **Nombre**        | Carmen |
+| **Apellidos**     | Pedemonte |
+| **Edad**          | 54 |
+| **Distrito**      | Surco |
+| **URL**           | [Video](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBFW5hREBblQYnpuvXlXXEjAYSm40dEuKXQSJ-oWj7dOtQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=nl4SV6)|
+| **Duración**      | 10:16 |
+| **Resumen**       | La entrevistada es una cuidadora que desea una aplicación que permita detectar anormalidades en sus pacientes y brindar una solución de prediagnóstico. Está familiarizada con tecnologías, ya que ha usado aplicaciones para su rutina de marcapasos. Considera importante un buen diseño y sugiere incluir una opción de contraste para mejorar la lectura. Destaca que la aplicación es intuitiva y accesible para todo tipo de usuarios. Valora especialmente el monitoreo en tiempo real, que considera la funcionalidad más importante. |
+| **Personalidad**  | Orientada a la solución, pragmática, familiarizada con tecnología y enfocada en la usabilidad y eficiencia visual. |
+| **Marcas**        | Herramientas fiables que actúen como asistente de prediagnóstico. Diseño amigable, intuitivo y accesible, con enfoque en alto contraste. |
+| **Dispositivos**  | Smartphone, tablet y computadora. |
+| **Flujos principales** | - Detección proactiva de anormalidades.<br>- Recepción inmediata de sugerencias o prediagnósticos.<br>- Monitoreo en tiempo real.<br>- Interacción con un diseño intuitivo y legible (incluye contraste).<br>- Acceso claro y rápido a datos desde dispositivos digitales. |
+
+| Campo             | Detalle |
+|-------------------|---------|
+| **Segmento**      | Pacientes |
+| **Nombre**        | Luis |
+| **Apellidos**     | Carcamo |
+| **Edad**          | 26 |
+| **Distrito**      | Surco |
+| **URL**           | [Video](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBw4mg0HT0kRq-BAwczOXszAYBHB7u6OD3tJ315qGgvPAQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=dD1Vds) |
+| **Duración**      | 12:25 |
+| **Resumen**       | El entrevistado es un ingeniero mecatrónico con arritmias que requiere monitoreo frecuente. Ha usado aplicaciones de lectura de pulso, pero desconfía de su precisión. Busca una app confiable, con registro mensual detallado y que garantice que sus valores se encuentren dentro de rangos normales. Considera sencillo el uso de aplicaciones y valora un diseño intuitivo y simple, con buena legibilidad. Para él, el monitoreo diario y la certeza de la normalidad de sus valores son esenciales. |
+| **Personalidad**  | Analítico, exigente con la precisión de datos y tecnológicamente experto. Prioriza la confianza en la información médica. |
+| **Marcas**        | Herramientas de alta fiabilidad, asistente de prediagnóstico, diseño intuitivo y accesible, con opciones de contraste. |
+| **Dispositivos**  | Smartphone y laptop. |
+| **Flujos principales** | - Monitoreo diario de signos vitales.<br>- Obtención de valores precisos y confiables.<br>- Registro histórico mensual.<br>- Interfaz simple, intuitiva y legible.<br>- Alertas que indiquen si los valores son habituales. |
+
+
+
 
 <a id="8-4-Experiment Aftermath & Analysis"></a>
 ## 8.4. Experiment Aftermath & Analysis

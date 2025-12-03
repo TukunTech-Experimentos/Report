@@ -293,6 +293,18 @@ URL del repositorio para el proyecto: [Link](https://github.com/TukunTech-Experi
     - [8.3. Experimentation](#8-3-experimentation)
       - [8.3.1. To-Be User Stories](#8-3-1-to-be-user-stories)
       - [8.3.2. To-Be Product Backlog](#8-3-2-to-be-product-backlog)
+      - [8.3.3. Pipeline-supported, Experiment-Driven To-Be Software Platform Lifecycle](#8-3-3-pipeline-supported)
+        - [8.3.3.1. To-Be Sprint Backlogs](#8-3-3-1-to-be-sprint-backlogs)
+        - [8.3.3.2. Implemented To-Be Landing Page Evidence](#8-3-3-2-landing-page-evidence)
+        - [8.3.3.3. Implemented To-Be Frontend-Web Application Evidence](#8-3-3-3-frontend-web-evidence)
+        - [8.3.3.5. Implemented To-Be RESTful API and/or Serverless Backend Evidence](#8-3-3-5-backend-evidence)
+    - [8.4. Experiment Aftermath & Analysis](#8-4-experiment-aftermath-analysis)
+      - [8.4.1. Analysis and Interpretation of Results](#8-4-1-analysis-and-interpretation-of-results)
+      - [8.4.2. Re-scored and Re-prioritized Question Backlog](#8-4-2-Re-scored-and-Re-prioritized-Question-Backlog)
+    - [8.5. Continuous Learning](#8-5-Continuous-Learning)
+      - [8.5.1. Shareback Session Artifacts: Learning Workflow](#8-5-1-shareback-session-artifacts-learning-workflow)
+    - [8.6. To-Be Software Platform Pre-launch](#8-6-to-be-software-platform-pre-launch)
+      - [8.6.1. About-the-Product Intro Video](#8-6-1-about-the-product-intro-video)
 
 <a id="capitulo-i-introduccion"></a>
 # Capítulo I: Introducción
@@ -6357,7 +6369,7 @@ Captura del dashboard que monitorea latencia de requests, tiempo de respuesta, C
 
 La evidencia presentada permite demostrar que la capa RESTful del backend no solo proporciona los servicios requeridos por la plataforma, sino que también se encuentra completamente integrada al enfoque *experiment-driven*, posibilitando la recolección, análisis y visualización de métricas esenciales para validar las hipótesis H1, H2 y H3.
 
-<a id="8-4-Experiment Aftermath & Analysis"></a>
+<a id="8-4-experiment-aftermath-analysis"></a>
 ## 8.4. Experiment Aftermath & Analysis
 Esta sección presenta los resultados completos obtenidos después de ejecutar los experimentos diseñados bajo la metodología Experiment-Driven Development. El objetivo es evaluar qué hipótesis fueron validadas, cuáles requieren ajustes y cómo los aprendizajes obtenidos impactan en el diseño del producto TukunTech.
 <a id="8-4-1-analysis-and-interpretation-of-results"></a>
@@ -6454,7 +6466,10 @@ El backlog ahora prioriza mejoras en accesibilidad, confiabilidad y simplicidad 
 El aprendizaje continuo se basó en ciclos cortos de experimentación, feedback real y ajustes rápidos del producto. Esta metodología permitió refinar el diseño del sistema con evidencia obtenida directamente de los segmentos objetivo.
 Se emplearon sesiones internas de análisis, revisión iterativa del backlog y documentación continua.
 
+<a id="8-5-1-shareback-session-artifacts-learning-workflow"></a>
 
+<a id="8-6-to-be-software-platform-pre-launch"></a>
+<a id="8-6-1-about-the-product-intro-video"></a>
 
 # Avance de Conclusiones
 

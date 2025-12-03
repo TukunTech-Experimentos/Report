@@ -6393,69 +6393,44 @@ Finalmente se avanzó en la documentación de los servicios responsables de reci
 
 <h3>8.3.4.1. Diseño de Entrevistas</h3>
 
-El propósito de las entrevistas de validación es **evaluar la experiencia real de los usuarios al interactuar con la aplicación Tukuntech**, identificando percepciones, dificultades y oportunidades de mejora relacionadas con la **usabilidad, accesibilidad, diseño visual, rendimiento y comprensión de la información**.
-
-Cada entrevista se desarrolla de forma **semiestructurada**, permitiendo tanto respuestas abiertas como la observación directa del comportamiento del participante al utilizar la aplicación.  
-Las preguntas se organizan en **cinco bloques temáticos**, comenzando con una contextualización del entrevistado y continuando con la exploración de la experiencia de uso, diseño y satisfacción.
-
+El diseño de la entrevista busca comparar la experiencia anterior con las nuevas mejoras. Las preguntas validan directamente las historias de usuario del To-Be Product Backlog.
+A. Objetivos de la Validación
+Validar Velocidad: Confirmar si la aplicación se siente más rápida y fluida al cargar los datos (US104 y US106).
+Evaluar Comprensión: Verificar si las nuevas ayudas facilitan el entendimiento de los datos médicos sin necesidad de preguntar a otros (US105).
+Confirmar Seguridad: Validar si el usuario nota y entiende cuando el dispositivo pierde conexión (US107).
+B. Segmentos Objetivo
+Segmento 1 (Pacientes Cardíacos): Para validar la sensación de seguridad.
+Segmento 2 (Familiares y Cuidadores): Para evaluar la velocidad de los datos y las alertas de conexión.
+C. Guía de Preguntas (Script Simplificado)
+Estas preguntas están diseñadas para ser conversacionales y fáciles de entender:
 ---
-
-<h4>Bloque 1: Contextualización del entrevistado</h4>
-
-1. ¿Podrías indicar tu edad, ocupación y nivel de familiaridad con el uso de aplicaciones móviles o web?  
-2. ¿Qué tipo de dispositivo utilizas con mayor frecuencia (smartphone, laptop, tablet)?  
-3. ¿Has usado antes alguna aplicación relacionada con salud, monitoreo o bienestar? Si es así, ¿cuál?  
-4. ¿Con qué frecuencia utilizas aplicaciones que requieren inicio de sesión o registro?  
-5. ¿Qué esperas encontrar en una aplicación enfocada en el monitoreo de signos vitales?  
-
+Bloque 1: Velocidad y Fluidez (Validación de US104 y US106) Queremos saber si notan la mejora en el rendimiento.
+"¿Siente que la aplicación carga rápido al abrirla o le toca esperar mucho?"
+"¿Los datos del corazón y oxígeno se actualizan al instante en la pantalla o nota que se quedan 'pegados'?"
+"Al moverse entre las pantallas de la aplicación, ¿siente que responde bien o es lenta?"
 ---
-
-<h4>Bloque 2: Acceso y navegación inicial</h4>
-
-1. ¿El proceso de registro e inicio de sesión fue sencillo de completar?  
-2. ¿Los mensajes de error o validación fueron claros cuando ingresaste datos incorrectos?  
-3. ¿Pudiste identificar rápidamente las opciones del menú principal (por ejemplo: Monitoreo, Reportes, Perfil, Soporte)?  
-4. ¿Cómo describirías la organización general de la aplicación? ¿Te resultó intuitiva o confusa?  
-5. ¿Hubo alguna pantalla o paso que te generó dudas sobre qué hacer a continuación?  
-
+Bloque 2: Facilidad de Entendimiento (Validación de US105) Queremos saber si las herramientas de ayuda funcionan.
+"¿Le fue fácil entender qué significan los números y gráficos que ve en la pantalla?"
+"Si tuviera una duda sobre algún dato, ¿encontró alguna explicación o ayuda dentro de la misma aplicación?"
+"¿Las explicaciones que encontró eran claras y fáciles de leer para usted?"
 ---
-
-<h4>Bloque 3: Uso de funcionalidades principales</h4>
-
-1. ¿Pudiste visualizar correctamente tus signos vitales en tiempo real?  
-2. ¿Consideras que los valores de frecuencia cardíaca, oxigenación y temperatura se presentan de forma clara y legible?  
-3. ¿Los gráficos o reportes diarios te ayudaron a interpretar tus resultados fácilmente?  
-4. ¿Las alertas automáticas ante valores anormales se muestran con suficiente claridad y explicación?  
-5. ¿Tuviste algún problema al generar o visualizar reportes diarios o históricos?  
-6. ¿El flujo para enviar o consultar tickets de soporte fue claro y coherente?  
-7. ¿Percibiste diferencia en las funciones disponibles según tu tipo de usuario (paciente, cuidador, administrador)?  
-
+Bloque 3: Seguridad y Conexión (Validación de US107) Queremos saber si confían en el sistema cuando falla el internet.
+"Si el dispositivo médico se quedara sin internet, ¿la aplicación le avisa de forma clara?"
+"¿Le da tranquilidad saber que la aplicación le alertará si el equipo se desconecta?"
 ---
-
-<h4>Bloque 4: Diseño visual, accesibilidad y desempeño</h4>
-
-1. ¿El tamaño del texto, botones e íconos es adecuado para tu comodidad visual?  
-2. ¿La combinación de colores y contraste te facilitó la lectura y comprensión de la información?  
-3. ¿El diseño visual mantiene coherencia entre las distintas pantallas?  
-4. ¿La aplicación responde con rapidez al realizar acciones (guardar, actualizar, eliminar datos)?  
-5. ¿Encontraste algún mensaje o icono que no comprendieras fácilmente?  
-6. ¿Sientes que la app sería usable por personas con poca experiencia tecnológica?  
-7. ¿La aplicación incluye elementos que consideras inclusivos o accesibles (por ejemplo, lenguaje claro, retroalimentación visual)?  
-
+Bloque 4: Satisfacción General (Validación de US108)
+"Del 1 al 5, ¿qué tan seguro se siente usando esta nueva versión para cuidar la salud?"
+"¿Recomendaría esta aplicación a otras familias?"
 ---
-
-<h4>Bloque 5: Satisfacción general y mejoras</h4>
-
-1. ¿Qué parte de la aplicación te resultó más útil o práctica?  
-2. ¿Qué elemento te pareció menos intuitivo o confuso?  
-3. ¿Qué funcionalidad agregarías o mejorarías en futuras versiones?  
-4. ¿Consideras que Tukuntech te ayudaría a monitorear mejor tu salud o la de tus pacientes?  
-5. ¿Recomendarías esta aplicación a otros usuarios? ¿Por qué?  
-6. En una escala del 1 al 5, ¿cómo calificarías tu experiencia general con la aplicación?  
+D. Criterios de Éxito
+Fluidez: La mayoría percibe que la app carga "al instante".
+Independencia: El usuario entiende los datos médicos gracias a la ayuda en pantalla, sin preguntar a nadie más.
+Alerta: El usuario reconoce rápidamente si el equipo está desconectado.
 
 
 
 <h3>8.3.4.2. Registro de Entrevistas.</h3>
+
 
 | Campo             | Detalle |
 |-------------------|---------|
@@ -6464,13 +6439,14 @@ Las preguntas se organizan en **cinco bloques temáticos**, comenzando con una c
 | **Apellidos**     | Pedemonte |
 | **Edad**          | 54 |
 | **Distrito**      | Surco |
-| **URL**           | [Video](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBFW5hREBblQYnpuvXlXXEjAYSm40dEuKXQSJ-oWj7dOtQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=nl4SV6)|
+| **URL**           | [https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQB5z0kJ99EqQJGeC0YCFE4PATMPebdUVKBuBTl9f7DP928?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=PPLfqs]([https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQBFW5hREBblQYnpuvXlXXEjAYSm40dEuKXQSJ-oWj7dOtQ?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=nl4SV6](https://upcedupe-my.sharepoint.com/:v:/g/personal/u202213372_upc_edu_pe/IQB5z0kJ99EqQJGeC0YCFE4PATMPebdUVKBuBTl9f7DP928?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJTdHJlYW1XZWJBcHAiLCJyZWZlcnJhbFZpZXciOiJTaGFyZURpYWxvZy1MaW5rIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXcifX0%3D&e=PPLfqs))|
 | **Duración**      | 10:16 |
-| **Resumen**       | La entrevistada es una cuidadora que desea una aplicación que permita detectar anormalidades en sus pacientes y brindar una solución de prediagnóstico. Está familiarizada con tecnologías, ya que ha usado aplicaciones para su rutina de marcapasos. Considera importante un buen diseño y sugiere incluir una opción de contraste para mejorar la lectura. Destaca que la aplicación es intuitiva y accesible para todo tipo de usuarios. Valora especialmente el monitoreo en tiempo real, que considera la funcionalidad más importante. |
+| **Resumen**       | La entrevistada, Carmen Mendoza, interactuó con la versión optimizada de la aplicación y manifestó haber notado avances positivos significativos respecto a versiones previas. Destacó especialmente la fluidez en la carga de datos al navegar entre pantallas y la claridad de las nuevas notificaciones de estado de conexión. Señaló que estas mejoras le brindan una mayor sensación de seguridad y facilitan su labor de monitoreo diario, eliminando la incertidumbre sobre el funcionamiento del equipo. |
 | **Personalidad**  | Orientada a la solución, pragmática, familiarizada con tecnología y enfocada en la usabilidad y eficiencia visual. |
 | **Marcas**        | Herramientas fiables que actúen como asistente de prediagnóstico. Diseño amigable, intuitivo y accesible, con enfoque en alto contraste. |
 | **Dispositivos**  | Smartphone, tablet y computadora. |
 | **Flujos principales** | - Detección proactiva de anormalidades.<br>- Recepción inmediata de sugerencias o prediagnósticos.<br>- Monitoreo en tiempo real.<br>- Interacción con un diseño intuitivo y legible (incluye contraste).<br>- Acceso claro y rápido a datos desde dispositivos digitales. |
+| <img src="Images/validacion2.png">|
 
 | Campo             | Detalle |
 |-------------------|---------|
